@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  debug: false,
+
+  allowedDomains: ['localhost:4200', 'localhost:8080', 'localhost'],
+  disallowedDomains: ['http://localhost:4200/api/auth/login', 'http://localhost:8080/api/auth/login'],
+  serverUrl: 'http://localhost:8080/api',
+
+  storedVarKeys: {
+    accessTokenKey: "hua_access_token",
+    userKey: "hua_access_token_user",
+  }
+
 };
 
 /*
