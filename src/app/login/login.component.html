@@ -1,0 +1,34 @@
+<div class="grid mt-3">
+  <p-toast></p-toast>
+  <div class="col-4 col-offset-4" style="text-align:center;">
+    <p-card [style]="{'padding-left': '6rem', 'padding-right': '6em'}">
+      <h3 class="welcome">Καλωσήρθατε στην <br>Εφαρμογή HUA</h3>
+      <i class="pi pi-user" style="font-size: 2rem;
+          border: 2px solid;
+          border-radius: 5px;
+          padding: 15px;
+          margin-bottom: 1em;
+          color: #1c7ad9;">
+      </i>
+      <form [formGroup]="loginForm" (keyup.enter)="submit()">
+        <div class="field">
+          <label for="username">Όνομα Χρήστη</label>
+          <input id="username" formControlName="username" placeholder="Όνομα Χρήστη" type="text"
+                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="field">
+          <label for="password">Κωδικός Χρήστη</label>
+          <input id="password" formControlName="password" type="password" placeholder="Κωδικός Χρήστη"
+                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+      </form>
+
+      <button pButton pRipple type="button" label="Ακύρωση" (click)="loginForm.reset()"
+              class="p-button-outlined p-button-warning ml-3 mr-3 mt-3"></button>
+      <button pButton pRipple type="button" (click)="submit()" label="Είσοδος"
+              class="p-button-outlined ml-3 mr-3 mt-3"></button>
+
+      <p-divider></p-divider>
+    </p-card>
+  </div>
+</div>

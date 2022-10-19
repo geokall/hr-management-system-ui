@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { JwtModule } from '@auth0/angular-jwt';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {JwtModule} from '@auth0/angular-jwt';
 import {environment} from "../environments/environment";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SharedModule} from "primeng/api";
 import {HttpClientModule} from "@angular/common/http";
-import { OAuthModule } from 'angular-oauth2-oidc';
+import {OAuthModule} from 'angular-oauth2-oidc';
 import {CoreModule} from "./core/core.module";
 import {FeaturesModule} from "./features/features.module";
 
@@ -18,7 +17,7 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,4 +39,5 @@ export function tokenGetter() {
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

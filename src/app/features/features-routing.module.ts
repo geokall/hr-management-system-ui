@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {AuthGuard} from "../core/shared/guards/auth.guard";
 import {GeneralGuard} from "../core/shared/guards/general.guard";
+import {LoginComponent} from "../login/login.component";
+import {HomeComponent} from "../home/home.component";
 
 const routes: Routes = [
   {
@@ -22,8 +24,8 @@ const routes: Routes = [
   },
   // {path: 'student-profile', component: StudentCreateComponent, canActivate: [AuthGuard]},
   // {path: 'student-password', component: PasswordComponent, canActivate: [AuthGuard]},
-  // {path: 'login', component: LoginComponent},
-  // {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: ''}
 ];
 

@@ -30,16 +30,20 @@ import {ToastModule} from "primeng/toast";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {MessagesModule} from "primeng/messages";
 import {MessageModule} from "primeng/message";
-import {MessageService, SharedModule} from "primeng/api";
+import {ConfirmationService, MessageService, SharedModule} from "primeng/api";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {FeaturesRoutingModule} from "./features-routing.module";
-
 import {PanelModule} from "primeng/panel";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {PasswordModule} from "primeng/password";
+import {LoginComponent} from "../login/login.component";
+import {HomeComponent} from "../home/home.component";
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LoginComponent,
+    HomeComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -83,7 +87,8 @@ import {PasswordModule} from "primeng/password";
   ],
   providers: [
     // DecisionFormService,
-    MessageService
+    MessageService,
+    ConfirmationService
   ]
 })
 export class FeaturesModule {
