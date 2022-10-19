@@ -1,0 +1,47 @@
+<!--<p-toast></p-toast>-->
+<!--<p-menubar [model]="menuItems" *ngIf="auth.isLoggedIn()">-->
+<!--<div class="login-bar">-->
+<!--  <span class="nav-user mr-4" *ngIf="auth.isLoggedIn()" style="width:130px;">-->
+<!--    <i class="pi pi-clock mr-1"></i>-->
+<!--    <span>{{ (auth.tokenExpiresInSec$) | async | hourMinutesSecs }}</span>-->
+<!--  </span>-->
+<!--  <a [href]="env.changePasswordUrl" class="no-underline cursor-pointer pl-1 pr-1" pTooltip="Αλλαγή Κωδικού Πρόσβασης" tooltipPosition="bottom" target="_blank">-->
+<!--    <p class="cursor-pointer p-0">-->
+<!--      <i class="pi pi-user"></i> {{auth.getUsername()}}-->
+<!--    </p>-->
+<!--  </a>-->
+<!--  <a-->
+<!--  type="button"-->
+<!--  icon="pi pi-info-circle"-->
+<!--  style="margin-left:.25em; padding: 0.7em;cursor: pointer;"-->
+<!--  (click)="versionPanel.toggle($event)"-->
+<!--  ><i class="pi pi-info-circle"></i></a>-->
+<!--  <a-->
+<!--  type="button"-->
+<!--  icon="pi pi-sign-out"-->
+<!--  style="margin-left:.25em; padding: 0.7em;cursor: pointer;"-->
+<!--  (click)="logout()"-->
+<!--  ><i class="pi pi-sign-out"></i> Αποσύνδεση</a>-->
+<!--</div>-->
+<!--</p-menubar>-->
+<!--<p-menubar *ngIf="!this.auth.isLoggedIn()">-->
+<!--<div class="login-bar">-->
+<!--  <a-->
+<!--  type="button"-->
+<!--  icon="pi pi-info-circle"-->
+<!--  style="margin-left:.25em; padding: 0.7em;cursor: pointer;"-->
+<!--  (click)="versionPanel.toggle($event)"-->
+<!--  ><i class="pi pi-info-circle"></i></a>-->
+<!--  <a-->
+<!--  type="button"-->
+<!--  icon="pi pi-sign-in"-->
+<!--  style="margin-left:.25em; padding: 0.7em;cursor: pointer;"-->
+<!--  (click)="login()"-->
+<!--  >Σύνδεση</a>-->
+<!--</div>-->
+<!--</p-menubar>-->
+<!--<p-overlayPanel #versionPanel>-->
+<!--  <ng-template pTemplate>-->
+<!--      Έκδοση: {{appInfo.version}}-->
+<!--  </ng-template>-->
+<!--</p-overlayPanel>-->

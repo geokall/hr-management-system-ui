@@ -1,0 +1,76 @@
+
+:host ::ng-deep {
+
+  .login-bar a, .login-bar p{
+    display: inline-block;
+    color: white;
+    font-weight: 500;
+    cursor:default;
+    border-radius: 6px;
+  }
+  .p-menuitem-link-active {
+    background: #46a2ff;
+  }
+
+  .p-menubar {
+    background: #1c7ad9;
+
+    &-button{
+      i{
+        color: white;
+      }
+      &:hover{
+        background-color: #46a2ff;
+      }
+    }
+  }
+
+  .p-menubar-root-list{
+    background: #1c7ad9;
+  }
+
+  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+    .p-menuitem-icon,
+    .p-submenu-icon,
+    .p-menuitem-text {
+      color: white;
+    }
+  }
+
+  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover,
+  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):active,
+  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):focus,
+  .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link,
+  .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover,
+  .login-bar a:hover {
+    background: #46a2ff;
+
+    .p-menuitem-icon,
+    .p-submenu-icon,
+    .p-menuitem-text {
+      color: white;
+    }
+  }
+
+  .nav-user::after {
+    position: absolute;
+    content: "";
+    border-right: 1px solid white;
+    width: 1px;
+    height: 30px;
+    top: 28px;
+    margin-left: 0.5em;
+  }
+
+  .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link {
+    background: #46a2ff;
+  }
+
+  .p-menubar .p-menuitem.p-menuitem-active .p-menuitem-link-active .p-menuitem-text,
+  .p-menubar .p-menuitem.p-menuitem-active .p-menuitem-link-active .p-menuitem-icon,
+  .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-text,
+  .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-icon,
+  .nav-user {
+    color: white;
+  }
+}
