@@ -3,11 +3,11 @@ import {Router} from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {BehaviorSubject, interval} from "rxjs";
 import {JwtResponse} from "./models/jwt/jwt-response.interface";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
 
   constructor(private jwt: JwtHelperService,
@@ -25,11 +25,7 @@ export class AuthService {
   isLoggedIn(): boolean {
     const token = this.getJwtToken();
 
-    if (token && !this.jwt.isTokenExpired(token)) {
-      return true;
-    }
-
-    return false;
+    return !!(token && !this.jwt.isTokenExpired(token));
   }
 
   // isTokenExpiredMilliseconds(token: string): boolean {
@@ -51,17 +47,17 @@ export class AuthService {
   }
 
   setJwtToken(token: string): void {
-    localStorage.setItem('access_token', token);
+    localStorage.setItem(environment.storedVarKeys.accessTokenKey, token);
   }
 
   //@ts-ignore
   setUser(details: JwtResponse = null) {
     if (details) {
-      localStorage.setItem('hua_user', JSON.stringify(details));
+      localStorage.setItem(environment.storedVarKeys.userKey, JSON.stringify(details));
     }
 
-    if (this.isLoggedIn() && localStorage.getItem('hua_user')) {
-      this.loggedInUser = JSON.parse(localStorage.getItem('hua_user') || '{}');
+    if (this.isLoggedIn() && localStorage.getItem(environment.storedVarKeys.userKey)) {
+      this.loggedInUser = JSON.parse(localStorage.getItem(environment.storedVarKeys.userKey) || '{}');
     }
   }
 
@@ -99,8 +95,8 @@ export class AuthService {
 
   logout(): void {
     this.loggedInUser = null;
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('hua_user');
+    localStorage.removeItem(environment.storedVarKeys.accessTokenKey);
+    localStorage.removeItem(environment.storedVarKeys.userKey);
     this.router.navigateByUrl('');
     this.authStatusChanged.emit(false);
   }
@@ -126,8 +122,5 @@ export class AuthService {
       //   this.logout()
       // }
     });
-
   }
-
-
 }
