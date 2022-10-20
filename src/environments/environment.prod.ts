@@ -4,7 +4,7 @@ export const environment = {
 
   allowedDomains: ['https://geokall.gr/api'],
   disallowedDomains: ['https://geokall.gr/api/auth/login'],
-  serverUrl: 'https://geokall.gr/api',
+  apiUrl: 'https://geokall.gr/api',
 
   storedVarKeys: {
     accessTokenKey: "hua_access_token",

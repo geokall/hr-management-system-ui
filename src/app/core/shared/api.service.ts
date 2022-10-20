@@ -13,7 +13,7 @@ export class ApiService {
   }
 
   login(username: string, password: string): Observable<JwtResponse> {
-    const url = `${environment.serverUrl}/auth/login`;
+    const url = `${environment.apiUrl}/auth/login`;
     return this.http.post<JwtResponse>(url, {username, password});
   }
 }

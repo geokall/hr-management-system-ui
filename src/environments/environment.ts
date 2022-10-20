@@ -8,7 +8,7 @@ export const environment = {
 
   allowedDomains: ['localhost:4200', 'localhost:8080', 'localhost'],
   disallowedDomains: ['http://localhost:4200/api/auth/login', 'http://localhost:8080/api/auth/login'],
-  serverUrl: 'http://localhost:8080/api',
+  apiUrl: 'http://localhost:8080/api',
 
   storedVarKeys: {
     accessTokenKey: "hua_access_token",
