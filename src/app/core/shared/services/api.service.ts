@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {JwtResponse} from "../models/jwt/jwt-response.interface";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
@@ -18,8 +18,12 @@ export class ApiService {
     return this.http.post<JwtResponse>(url, {username, password});
   }
 
-  register(registerDTO: RegisterDTO): Observable<any> {
+  register(role: string, registerDTO: RegisterDTO): Observable<any> {
+    let params = new HttpParams()
+      .set('role', role);
+
     const url = `${environment.apiUrl}/auth/register`;
-    return this.http.post(url, registerDTO);
+
+    return this.http.post(url, registerDTO, {params});
   }
 }

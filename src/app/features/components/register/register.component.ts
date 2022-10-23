@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
 import {ApiService} from "../../../core/shared/services/api.service";
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       name: new FormControl(''),
       username: new FormControl(''),
       password: new FormControl(''),
-      roleName: new FormControl('READER')
+      role: new FormControl('READER')
     });
   }
 
@@ -50,10 +50,11 @@ export class RegisterComponent implements OnInit {
     const form = this.registerForm.value as RegisterDTO;
     this.registerForm.reset(form);
 
-    this.api.register(form).subscribe(result => {
+    let role = this.role.value;
+
+    this.api.register(role, form).subscribe(result => {
       this.successModal = true;
       this.saving = false;
-      // this.router.navigateByUrl('login')
     }, error => {
       this.saving = false;
       this.successModal = false;
@@ -62,5 +63,9 @@ export class RegisterComponent implements OnInit {
         detail: error.error.errorMessage
       });
     });
+  }
+
+  get role(): FormControl {
+    return this.registerForm.get('role') as FormControl;
   }
 }
