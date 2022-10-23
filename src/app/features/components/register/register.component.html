@@ -54,14 +54,3 @@
   </div>
 
 </div>
-
-<p-dialog [(visible)]="successModal" [draggable]="false" [modal]="true" [resizable]="false"
-          [style]="{width: '20vw'}" header="Επιτυχία"
-          (click)="closeDialogAndNavigateToLogin()">
-  <p class="m-0">Η εγγραφή ολοκληρώθηκε με επιτυχία.</p>
-
-  <ng-template class="p-0" pTemplate="footer">
-    <p-button icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>
-  </ng-template>
-
-</p-dialog>

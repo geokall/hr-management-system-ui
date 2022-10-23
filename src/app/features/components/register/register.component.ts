@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
@@ -20,9 +20,6 @@ export class RegisterComponent implements OnInit {
 
   saving: boolean = false;
   loading: boolean = false;
-  successModal: boolean = false;
-  errorModal: boolean = false;
-  isEditMode: boolean = false;
 
   constructor(private api: ApiService,
               private messageService: MessageService,
@@ -32,17 +29,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      surname: new FormControl(''),
-      name: new FormControl(''),
-      username: new FormControl(''),
-      password: new FormControl(''),
+      surname: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
       role: new FormControl('READER')
     });
-  }
-
-  closeDialogAndNavigateToLogin() {
-    this.successModal = false;
-    this.router.navigateByUrl('login')
   }
 
   register() {
@@ -53,11 +45,14 @@ export class RegisterComponent implements OnInit {
     let role = this.role.value;
 
     this.api.register(role, form).subscribe(result => {
-      this.successModal = true;
       this.saving = false;
+      this.messageService.add({
+        severity: 'success',
+        detail: 'Η Εγγραφή ολοκληρώθηκε με επιτυχία.'
+      });
+      this.router.navigateByUrl('/login');
     }, error => {
       this.saving = false;
-      this.successModal = false;
       this.messageService.add({
         severity: 'error',
         detail: error.error.errorMessage
