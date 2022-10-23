@@ -1,0 +1,67 @@
+<div class="grid mt-3">
+  <!--  <p-toast></p-toast>-->
+  <div class="col-4 col-offset-4" style="text-align:center;">
+    <p-card [style]="{'padding-left': '6rem', 'padding-right': '6em'}">
+      <h3>Εγγραφή νέου χρήστη</h3>
+      <!--      <h3 class="welcome">Καλωσήρθατε στην <br>Εφαρμογή HUA</h3>-->
+      <!--      <i class="pi pi-user" style="font-size: 2rem;-->
+      <!--          border: 2px solid;-->
+      <!--          border-radius: 5px;-->
+      <!--          padding: 15px;-->
+      <!--          margin-bottom: 1em;-->
+      <!--          color: #1c7ad9;">-->
+      <!--      </i>-->
+      <form [formGroup]="registerForm" (keyup.enter)="register()">
+        <div class="field">
+          <label for="surname">Επώνυμο</label>
+          <input id="surname" formControlName="surname" placeholder="Επώνυμο" type="text"
+                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="field">
+          <label for="name">Όνομα</label>
+          <input id="name" formControlName="name" type="name" placeholder="Όνομα"
+                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" formControlName="username" type="username" placeholder="Username"
+                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="field">
+          <label for="password">Κωδικός</label>
+          <input id="password" formControlName="password" type="password" placeholder="Κωδικός"
+                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+      </form>
+
+      <div class="field">
+        <button pButton type="button" label="Επιστροφή" (click)="registerForm.reset()" routerLink="/login"
+                class="p-button-outlined p-button-warning ml-3 mr-3 mt-3">
+        </button>
+
+        <button pButton type="button" (click)="register()"
+                label="Εγγραφή"
+                class="p-button-outlined ml-3 mr-3 mt-3">
+        </button>
+      </div>
+
+      <p-divider></p-divider>
+    </p-card>
+  </div>
+
+</div>
+
+<p-dialog [(visible)]="successModal" [draggable]="false" [modal]="true" [resizable]="false"
+          [style]="{width: '20vw'}" header="Επιτυχία"
+          (click)="closeDialogAndNavigateToLogin()">
+  <p class="m-0">Η εγγραφή ολοκληρώθηκε με επιτυχία.</p>
+
+  <ng-template class="p-0" pTemplate="footer">
+    <p-button icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+
+</p-dialog>

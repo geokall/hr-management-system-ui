@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
 import {Router} from "@angular/router";
-import {AuthService} from "../../../core/shared/service/auth.service";
+import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
-import {ApiService} from "../../../core/shared/service/api.service";
+import {ApiService} from "../../../core/shared/services/api.service";
 
 @Component({
   selector: 'app-login',
@@ -12,9 +12,6 @@ import {ApiService} from "../../../core/shared/service/api.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  displayBasic: boolean = false;
-
 
   // @ts-ignore
   loginForm: FormGroup;
@@ -47,10 +44,5 @@ export class LoginComponent implements OnInit {
             detail: error.error.errorMessage
           });
         });
-  }
-
-  showTest() {
-    this.displayBasic = true;
-
   }
 }

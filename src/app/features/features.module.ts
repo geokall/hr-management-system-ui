@@ -38,11 +38,13 @@ import {ToggleButtonModule} from "primeng/togglebutton";
 import {PasswordModule} from "primeng/password";
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 @NgModule({
   declarations: [
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
