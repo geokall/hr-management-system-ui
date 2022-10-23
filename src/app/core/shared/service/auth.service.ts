@@ -2,8 +2,8 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {BehaviorSubject, interval} from "rxjs";
-import {JwtResponse} from "./models/jwt/jwt-response.interface";
-import {environment} from "../../../environments/environment";
+import {JwtResponse} from "../models/jwt/jwt-response.interface";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'

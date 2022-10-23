@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {MenuItem, MessageService} from "primeng/api";
-import {AuthService} from "../../shared/auth.service";
+import {AuthService} from "../../shared/service/auth.service";
 import {Router} from "@angular/router";
 
 @Component({

@@ -36,8 +36,8 @@ import {FeaturesRoutingModule} from "./features-routing.module";
 import {PanelModule} from "primeng/panel";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {PasswordModule} from "primeng/password";
-import {LoginComponent} from "../login/login.component";
-import {HomeComponent} from "../home/home.component";
+import {LoginComponent} from "./components/login/login.component";
+import {HomeComponent} from "./components/home/home.component";
 
 @NgModule({
   declarations: [
