@@ -41,3 +41,9 @@
     }
   }
 }
+
+.required::after {
+  content: '*';
+  color: red;
+  padding: 0px 3px;
+}
