@@ -39,12 +39,15 @@ import {PasswordModule} from "primeng/password";
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {TabViewModule} from 'primeng/tabview';
 
 @NgModule({
   declarations: [
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -85,7 +88,8 @@ import {RegisterComponent} from "./components/register/register.component";
     OverlayPanelModule,
     PanelModule,
     ToggleButtonModule,
-    PasswordModule
+    PasswordModule,
+    TabViewModule
   ],
   providers: [
     // DecisionFormService,

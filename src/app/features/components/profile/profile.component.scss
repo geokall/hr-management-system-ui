@@ -1,0 +1,161 @@
+$blue:#067EF3;
+$darkblue: #0158ad;
+$black:hsl(0, 0%, 0%);
+$grey:#495057;
+$green: #00c16e;
+$lightgreen : #66D9A8;
+$darkgreen : #037f4a;
+$navcolor : #343a40;
+
+:host ::ng-deep{
+
+  .p-panel{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    .p-panel-header {
+      background-color: $blue;
+      color: white;
+      border: 0;
+
+      span{
+        font-family: 'ManropeBold',
+        'arial',
+        sans-serif;
+      }
+    }
+
+    button.edit {
+      float: right;
+      font-size: 14px;
+      margin-bottom: 2em;
+    }
+
+    .footer{
+      margin-bottom: 2em;
+    }
+  }
+
+  i.open{
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+    &:hover{
+      color: $green;
+      transform: scale3d(1.2,1.2,1.2);
+    }
+  }
+
+  p-tabview{
+    .p-progress-spinner{
+      left: 45%;
+    }
+    .p-tabview-nav{
+      border-color: transparent;
+      font-size: 14px;
+      li .p-tabview-nav-link:not(.p-disabled):focus{
+        box-shadow: none;
+      }
+      li .p-tabview-nav-link{
+        color: $blue;
+        border: none;
+      }
+
+      li.p-highlight .p-tabview-nav-link{
+        border-bottom: 2px solid $blue;
+        color: $blue;
+
+        span{
+          font-family: 'ManropeBold',
+          'arial',
+          sans-serif;
+        }
+
+      }
+
+      &-container {
+        margin-bottom: 2em;
+      }
+    }
+  }
+
+  p-tabpanel{
+    .row{
+      border-bottom: 1px solid #d3d3d37a;
+      width: 60%;
+
+      label{
+        font-size: 14px;
+      }
+
+      div.info{
+        font-family: 'ManropeBold',
+        'arial',
+        sans-serif;
+      }
+    }
+
+    table{
+      width: 80%;
+
+      span{
+        font-size: 14px;
+        color: $grey;
+      }
+    }
+  }
+
+  .p-tabview-panel{
+    p-fileupload{
+      .p-button-label{
+        display: none;
+      }
+      span{
+        color: white;
+      }
+    }
+  }
+
+  .p-dialog{
+
+    &-header {
+      background-color: $darkblue;
+      padding: 0.5em 0.8em;
+      color: white;
+      border-bottom: 1px solid $blue;
+
+      .p-dialog-title {
+        font-size: 1em;
+        font-family: 'ManropeBold',
+        'arial',
+        sans-serif;
+      }
+
+      .p-dialog-header-icon {
+        color: white;
+      }
+    }
+
+    label{
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      font-family: 'ManropeBold',
+      'arial',
+      sans-serif;
+    }
+
+    input{
+      width: 80%;
+    }
+
+    small{
+      font-size: 13px;
+    }
+
+    .dialog-footer{
+      button{
+        margin: 0 0.5em;
+        font-size: 14px;
+      }
+    }
+  }
+}

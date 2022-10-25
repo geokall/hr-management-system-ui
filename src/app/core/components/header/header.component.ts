@@ -33,19 +33,19 @@ export class HeaderComponent implements OnInit {
       routerLinkActiveOptions: {exact: true},
       visible: this.auth.isLoggedIn()
     },
-      {
-        label: 'Υπάλληλος',
-        icon: 'pi pi-file-o',
-        routerLinkActiveOptions: {exact: false},
-        visible: this.auth.isLoggedIn(),
-        items: [
-          {label: 'Εγγραφή νέου φοιτητή', icon: 'pi pi-plus-circle', routerLink: 'actions/create'},
-        ]
-      },
+      // {
+      //   label: 'Υπάλληλος',
+      //   icon: 'pi pi-file-o',
+      //   routerLinkActiveOptions: {exact: false},
+      //   visible: this.auth.isLoggedIn(),
+      //   items: [
+      //     {label: 'Εγγραφή νέου φοιτητή', icon: 'pi pi-plus-circle', routerLink: 'actions/create'},
+      //   ]
+      // },
       {
         label: 'Προφίλ',
         icon: 'pi pi-users',
-        routerLink: '/student-profile',
+        routerLink: '/user-profile',
         visible: this.auth.isLoggedIn()
       },
     ]

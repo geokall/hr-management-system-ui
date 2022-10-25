@@ -4,6 +4,7 @@ import {JwtResponse} from "../models/jwt/jwt-response.interface";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {RegisterDTO} from "../models/register-dto";
+import {UserDTO} from "../models/user-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ApiService {
 
   login(username: string, password: string): Observable<JwtResponse> {
     const url = `${environment.apiUrl}/auth/login`;
+
     return this.http.post<JwtResponse>(url, {username, password});
   }
 
@@ -25,5 +27,11 @@ export class ApiService {
     const url = `${environment.apiUrl}/auth/register`;
 
     return this.http.post(url, registerDTO, {params});
+  }
+
+  getUserInfo(id: number): Observable<UserDTO> {
+    const url = `${environment.apiUrl}/user/info/${id}`;
+
+    return this.http.get<UserDTO>(url);
   }
 }

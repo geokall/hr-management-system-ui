@@ -1,0 +1,198 @@
+<p-toast></p-toast>
+<p-panel header="test">
+  <p-tabView>
+    <p-tabPanel header="qq">
+      <p-progressSpinner *ngIf="this.userInfoView == false"></p-progressSpinner>
+      <div *ngIf="this.userInfoView" class="profile_info">
+        <div class="row mb-3 pb-2">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10 info">
+            {{this.userDetails?.name}}
+            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+          </div>
+        </div>
+        <div class="row mb-3 pb-2">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10 info">
+<!--            {{this.profileForm.name}}-->
+            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+          </div>
+        </div>
+        <div class="row mb-3 pb-2">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10 info">
+<!--            {{this.profileForm.surname}}-->
+            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+          </div>
+        </div>
+        <div class="row mb-3 pb-2">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10 info">
+<!--            {{this.userDetails.email}}-->
+            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+          </div>
+        </div>
+        <div class="row mb-3 pb-2">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10 info">
+<!--            {{this.userDetails.vatNumber}}-->
+            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+          </div>
+        </div>
+        <div class="row mb-3 pb-2">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10 info">
+<!--            {{this.userDetails.mobileNumber}}-->
+            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+          </div>
+        </div>
+        <div class="row mb-3 pb-2">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10 info">
+<!--            {{this.userDetails.phoneNumber}}-->
+            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+          </div>
+        </div>
+        <div class="footer">
+          <button pButton type="button" label="" icon="pi pi-pencil"
+                  class="edit p-button-warning p-button-outlined" (click)="editProfile()"></button>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <p-tabPanel header="">
+      <p-progressSpinner *ngIf="!this.userInfoView"></p-progressSpinner>
+      <table class="table table-hover" *ngIf="this.userInfoView">
+        <tr>
+          <td class="pb-2 pt-2" style="width: 40%;"><span></span></td>
+          <td class="pb-2 pt-2" style="width: 20%;"><i class="pi pi-file-pdf open" style="font-size: 1.5rem"
+                                                       (click)="getGdpr()"></i></td>
+          <td class="pb-2 pt-2" style="width: 20%;">
+            <div class="i.open">
+              <p-fileUpload mode="basic"
+                            #gdprUpload id="gdprFile" name="gdprFile[]" accept=".pdf"
+                            [showUploadButton]="false" [showCancelButton]="false"
+                            (onSelect)="onSelect($event, 'gdprFile', 'gdprFile')">
+              </p-fileUpload>
+            </div>
+          </td>
+          <td class="pb-2 pt-2" style="width: 20%;">
+            <button pButton type="button" [hidden]="!isGdprFileUpload" label=""
+                    icon="pi pi-upload" class="p-button-outlined p-button-secondary"
+                    (click)="updateGdprFile()">
+            </button>
+
+          </td>
+        </tr>
+        <tr>
+          <td class="pb-2 pt-2" style="width: 40%;"><span></span></td>
+          <td class="pb-2 pt-2" style="width: 20%;"><i class="pi pi-file-pdf open" style="font-size: 1.5rem"
+                                                       (click)="getAffirmation()"></i></td>
+          <td class="pb-2 pt-2" style="width: 20%;">
+            <div class="i.open">
+              <p-fileUpload mode="basic"
+                            #affirmationUpload id="affirmationFile" name="affirmationFile[]" accept=".pdf"
+                            [showUploadButton]="false" [showCancelButton]="false"
+                            (onSelect)="onSelect($event, 'affirmationFile', 'affirmationFile')">
+              </p-fileUpload>
+            </div>
+          </td>
+          <td>
+            <button pButton type="button" [hidden]="!isAffirmationFileUpload" label=""
+                    icon="pi pi-upload" class="p-button-outlined p-button-secondary"
+                    (click)="updateAffirmationFile()">
+            </button>
+          </td>
+        </tr>
+      </table>
+    </p-tabPanel>
+  </p-tabView>
+</p-panel>
+
+
+<p-dialog header="" [modal]="true" [(visible)]="profileEdit"
+          [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" (onHide)="hideProfileDialog()">
+  <div *ngIf="this.userInfoView" class="profile_info">
+    <p-progressSpinner *ngIf="!this.userInfoView"></p-progressSpinner>
+    <form [formGroup]="profileForm" *ngIf="this.profileForm && this.userInfoView">
+      <div class="row mt-2 mb-2 pt-2 pb-2">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-10 info">
+          <input type="text" [formControlName]="'username'" class="p-inputtext-sm p-inputtext">
+          <div *ngIf="username.invalid && (username.dirty || username.touched)">
+            <small *ngIf="username.errors?.['required']" class="p-error">This field is required.</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2 mb-2 pt-2 pb-2">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-10 info">
+          <input type="text" [formControlName]="'name'" class="p-inputtext-sm p-inputtext">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            <small *ngIf="name.errors?.['required']" class="text-danger">This field is required.</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2 mb-2 pt-2 pb-2">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-10 info">
+          <input type="text" [formControlName]="'surname'" class="p-inputtext-sm p-inputtext">
+          <div *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+            <small *ngIf="surname.errors?.['required']" class="text-danger">This field is required.</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2 mb-2 pt-2 pb-2">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-10 info">
+          <input type="text" [formControlName]="'email'" class="p-inputtext-sm p-inputtext">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <small *ngIf="email.errors?.['required']" class="text-danger">This field is required.</small>
+          </div>
+        </div>
+      </div>
+<!--      <div class="row mt-2 mb-2 pt-2 pb-2">-->
+<!--        <label class="col-sm-2"></label>-->
+<!--        <div class="col-sm-10 info">-->
+<!--          <input type="text" [formControlName]="'vatNumber'" class="p-inputtext-sm p-inputtext">-->
+<!--          <div *ngIf="vatNumber.invalid && (vatNumber.dirty || vatNumber.touched)">-->
+<!--            <small *ngIf="vatNumber.errors?.['required']" class="text-danger">This field is required.</small>-->
+<!--            <small *ngIf="vatNumber.errors?.['pattern']" class="text-danger"> Only input numbers.</small>-->
+<!--            <small *ngIf="vatNumber.hasError('minlength')" class="text-danger"> Length of characters should be-->
+<!--              9.</small>-->
+<!--            <small *ngIf="vatNumber.hasError('maxLength')" class="text-danger"> Length of characters should be-->
+<!--              9.</small>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row mt-2 mb-2 pt-2 pb-2">-->
+<!--        <label class="col-sm-2"></label>-->
+<!--        <div class="col-sm-10 info">-->
+<!--          <input type="text" [formControlName]="'mobileNumber'" class="p-inputtext-sm p-inputtext">-->
+<!--          <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)">-->
+<!--            <small *ngIf="mobileNumber.errors?.['required']" class="text-danger">This field is required.</small>-->
+<!--            <small *ngIf="mobileNumber.errors?.['pattern']" class="text-danger"> Only input numbers.</small>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row mt-2 mb-2 pt-2 pb-2">-->
+<!--        <label class="col-sm-2"></label>-->
+<!--        <div class="col-sm-10 info">-->
+<!--          <input type="text" [formControlName]="'phoneNumber'" class="p-inputtext-sm p-inputtext">-->
+<!--          <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">-->
+<!--            <small *ngIf="phoneNumber.errors?.['required']" class="text-danger">This field is required.</small>-->
+<!--            <small *ngIf="phoneNumber.errors?.['pattern']" class="text-danger"> Only input numbers.</small>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="dialog-footer">
+        <button pButton type="button" label="" icon="pi pi-times"
+                class="p-button-danger p-button-outlined" (click)="hideProfileDialog()"></button>
+        <button pButton type="button" label="" icon="pi pi-refresh"
+                class="p-button-outlined p-button-success" (click)="updateProfile()"></button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
