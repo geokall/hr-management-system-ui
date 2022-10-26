@@ -2,7 +2,7 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {BehaviorSubject, interval} from "rxjs";
-import {JwtResponse} from "../models/jwt/jwt-response.interface";
+import {JwtResponseDTO} from "../models/jwt/jwt-response-dto";
 import {environment} from "../../../../environments/environment";
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthService {
     this.setUser();
   }
 
-  loggedInUser: JwtResponse | undefined | null;
+  loggedInUser: JwtResponseDTO | undefined | null;
   public tokenExpiresInSec$ = new BehaviorSubject(0);
   //@ts-expect-error
   private timerSubscription: Subscription = null;
@@ -40,7 +40,7 @@ export class AuthService {
     return this.jwt.tokenGetter();
   }
 
-  setAuthDetails(details: JwtResponse) {
+  setAuthDetails(details: JwtResponseDTO) {
     this.setJwtToken(details.token);
     this.setUser(details);
     this.authStatusChanged.emit(true);
@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   //@ts-ignore
-  setUser(details: JwtResponse = null) {
+  setUser(details: JwtResponseDTO = null) {
     if (details) {
       localStorage.setItem(environment.storedVarKeys.userKey, JSON.stringify(details));
     }

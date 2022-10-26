@@ -1,4 +1,4 @@
-export interface JwtResponse {
+export interface JwtResponseDTO {
   id: any;
   token: string;
   username: string;
