@@ -12,12 +12,13 @@ import {AuthService} from "../../../core/shared/services/auth.service";
 export class ProfileComponent implements OnInit {
 
   public userDetails = <any>{};
-  profileForm: any;
+  profileForm: FormGroup;
   userInfoView: boolean = false;
   profileEdit: any;
   isGdprFileUpload = false;
   isAffirmationFileUpload = false;
   loading: boolean = false;
+  isEditMode: boolean = false;
 
 
   @ViewChild('gdprUpload') gdprUpload: any;
@@ -29,40 +30,38 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userInfoView = false;
-
-
-    this.getUser();
+    this.initForm();
+    this.getUserInfo();
   }
 
-  initForm(user: any): void {
+  initForm(): void {
     this.profileForm = new FormGroup({
-      name: new FormControl(user.name, [
-        Validators.required
-      ])
+      id: new FormControl(null),
+      name: new FormControl(null),
+      surname: new FormControl(null),
+      email: new FormControl(null),
+      username: new FormControl(null),
+      birthDate: new FormControl(null),
     })
   }
 
-  getUser() {
-    // this.initForm(this.userDetails);
-
+  getUserInfo() {
     this.api.getUserInfo(this.auth.getId())
-      .subscribe(user => {
+      .subscribe(userInfo => {
+        this.profileForm.patchValue(userInfo)
+        // this.profileForm.reset(userInfo)
         // this.profileForm.reset(user);
         // @ts-ignore
-        this.userDetails = user['user'];
         this.userInfoView = true;
-        this.initForm(this.userDetails)
-        console.log(this.userDetails)
+        console.log(this.profileForm.value)
       })
       .add(() => this.loading = false);
-
   }
 
   hideProfileDialog() {
     this.profileEdit = false;
     this.profileForm.reset();
-    this.getUser();
+    this.getUserInfo();
   }
 
   updateProfile() {
@@ -136,7 +135,6 @@ export class ProfileComponent implements OnInit {
   }
 
   onSelect(event: any, fileName: string, whichFile: string) {
-    console.log(this.gdprUpload)
 
     for (let file of event.files) {
 

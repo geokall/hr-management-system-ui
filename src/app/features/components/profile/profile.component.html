@@ -1,23 +1,29 @@
 <p-toast></p-toast>
-<p-panel header="test">
+<p-panel header="Προσωπικά στοιχεία">
   <p-tabView>
-    <p-tabPanel header="qq">
+    <p-tabPanel header="Προφίλ">
       <p-progressSpinner *ngIf="this.userInfoView == false"></p-progressSpinner>
-      <div *ngIf="this.userInfoView" class="profile_info">
+
+      <div *ngIf="this.userInfoView == true" class="profile_info">
+
         <div class="row mb-3 pb-2">
-          <label class="col-sm-2"></label>
+          <label class="col-sm-2">Επώνυμο</label>
           <div class="col-sm-10 info">
-            {{this.userDetails?.name}}
+            {{this.surname?.value}}
+
+            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+
+          </div>
+        </div>
+
+        <div class="row mb-3 pb-2">
+          <label class="col-sm-2">Όνομα</label>
+          <div class="col-sm-10 info">
+            {{this.name?.value}}
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
           </div>
         </div>
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2"></label>
-          <div class="col-sm-10 info">
-<!--            {{this.profileForm.name}}-->
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-          </div>
-        </div>
+
         <div class="row mb-3 pb-2">
           <label class="col-sm-2"></label>
           <div class="col-sm-10 info">
@@ -119,8 +125,8 @@
         <label class="col-sm-2"></label>
         <div class="col-sm-10 info">
           <input type="text" [formControlName]="'username'" class="p-inputtext-sm p-inputtext">
-          <div *ngIf="username.invalid && (username.dirty || username.touched)">
-            <small *ngIf="username.errors?.['required']" class="p-error">This field is required.</small>
+          <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+            <small *ngIf="username?.errors?.['required']" class="p-error">This field is required.</small>
           </div>
         </div>
       </div>
@@ -128,8 +134,8 @@
         <label class="col-sm-2"></label>
         <div class="col-sm-10 info">
           <input type="text" [formControlName]="'name'" class="p-inputtext-sm p-inputtext">
-          <div *ngIf="name.invalid && (name.dirty || name.touched)">
-            <small *ngIf="name.errors?.['required']" class="text-danger">This field is required.</small>
+          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+            <small *ngIf="name?.errors?.['required']" class="text-danger">This field is required.</small>
           </div>
         </div>
       </div>
@@ -137,8 +143,8 @@
         <label class="col-sm-2"></label>
         <div class="col-sm-10 info">
           <input type="text" [formControlName]="'surname'" class="p-inputtext-sm p-inputtext">
-          <div *ngIf="surname.invalid && (surname.dirty || surname.touched)">
-            <small *ngIf="surname.errors?.['required']" class="text-danger">This field is required.</small>
+          <div *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+            <small *ngIf="surname?.errors?.['required']" class="text-danger">This field is required.</small>
           </div>
         </div>
       </div>
@@ -146,8 +152,8 @@
         <label class="col-sm-2"></label>
         <div class="col-sm-10 info">
           <input type="text" [formControlName]="'email'" class="p-inputtext-sm p-inputtext">
-          <div *ngIf="email.invalid && (email.dirty || email.touched)">
-            <small *ngIf="email.errors?.['required']" class="text-danger">This field is required.</small>
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+            <small *ngIf="email?.errors?.['required']" class="text-danger">This field is required.</small>
           </div>
         </div>
       </div>
