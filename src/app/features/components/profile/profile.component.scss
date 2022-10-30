@@ -1,23 +1,27 @@
-$blue:#067EF3;
+$blue: #067EF3;
 $darkblue: #0158ad;
-$black:hsl(0, 0%, 0%);
-$grey:#495057;
+$black: hsl(0, 0%, 0%);
+$grey: #495057;
 $green: #00c16e;
-$lightgreen : #66D9A8;
-$darkgreen : #037f4a;
-$navcolor : #343a40;
+$lightgreen: #66D9A8;
+$darkgreen: #037f4a;
+$navcolor: #343a40;
 
-:host ::ng-deep{
+$system-color-blue: #405870;
+$system-color-gray: #ced4da;
 
-  .p-panel{
+:host ::ng-deep {
+
+  .p-panel {
     margin-bottom: 3em;
     margin-top: 3em;
+
     .p-panel-header {
-      background-color: $blue;
+      background-color: $system-color-blue;
       color: white;
       border: 0;
 
-      span{
+      span {
         font-family: 'ManropeBold',
         'arial',
         sans-serif;
@@ -30,40 +34,44 @@ $navcolor : #343a40;
       margin-bottom: 2em;
     }
 
-    .footer{
+    .footer {
       margin-bottom: 2em;
     }
   }
 
-  i.open{
+  i.open {
     cursor: pointer;
     transition: transform 0.2s ease-out;
-    &:hover{
+
+    &:hover {
       color: $green;
-      transform: scale3d(1.2,1.2,1.2);
+      transform: scale3d(1.2, 1.2, 1.2);
     }
   }
 
-  p-tabview{
-    .p-progress-spinner{
+  p-tabview {
+    .p-progress-spinner {
       left: 45%;
     }
-    .p-tabview-nav{
+
+    .p-tabview-nav {
       border-color: transparent;
       font-size: 14px;
-      li .p-tabview-nav-link:not(.p-disabled):focus{
+
+      li .p-tabview-nav-link:not(.p-disabled):focus {
         box-shadow: none;
       }
-      li .p-tabview-nav-link{
+
+      li .p-tabview-nav-link {
         color: $blue;
         border: none;
       }
 
-      li.p-highlight .p-tabview-nav-link{
+      li.p-highlight .p-tabview-nav-link {
         border-bottom: 2px solid $blue;
         color: $blue;
 
-        span{
+        span {
           font-family: 'ManropeBold',
           'arial',
           sans-serif;
@@ -77,50 +85,51 @@ $navcolor : #343a40;
     }
   }
 
-  p-tabpanel{
-    .row{
+  p-tabpanel {
+    .row {
       border-bottom: 1px solid #d3d3d37a;
       width: 60%;
 
-      label{
+      label {
         font-size: 14px;
       }
 
-      div.info{
+      div.info {
         font-family: 'ManropeBold',
         'arial',
         sans-serif;
       }
     }
 
-    table{
+    table {
       width: 80%;
 
-      span{
+      span {
         font-size: 14px;
         color: $grey;
       }
     }
   }
 
-  .p-tabview-panel{
-    p-fileupload{
-      .p-button-label{
+  .p-tabview-panel {
+    p-fileupload {
+      .p-button-label {
         display: none;
       }
-      span{
+
+      span {
         color: white;
       }
     }
   }
 
-  .p-dialog{
+  .p-dialog {
 
     &-header {
-      background-color: $darkblue;
+      background-color: $system-color-blue;
       padding: 0.5em 0.8em;
       color: white;
-      border-bottom: 1px solid $blue;
+      border-bottom: 1px solid $system-color-gray;
 
       .p-dialog-title {
         font-size: 1em;
@@ -134,7 +143,7 @@ $navcolor : #343a40;
       }
     }
 
-    label{
+    label {
       font-size: 14px;
       display: flex;
       align-items: center;
@@ -143,16 +152,16 @@ $navcolor : #343a40;
       sans-serif;
     }
 
-    input{
+    input {
       width: 80%;
     }
 
-    small{
+    small {
       font-size: 13px;
     }
 
-    .dialog-footer{
-      button{
+    .dialog-footer {
+      button {
         margin: 0 0.5em;
         font-size: 14px;
       }
@@ -166,14 +175,20 @@ $navcolor : #343a40;
   -moz-box-shadow: 0 0 2px 1px $green;
   box-shadow: 0 0 2px 1px $green;
   border: 1px solid $green;
-  // background: #fafafa;
 }
 
 .p-inputtext.ng-dirty.ng-invalid {
   border-color: #f44336;
 }
 
-.main-container ::ng-deep p-calendar .ui-datepicker-trigger.ui-button {
-  // add style here
-  left: 200px;
+:host ::ng-deep .p-button {
+  background-color: $system-color-blue;
+
+  border: 1px solid gray;
+}
+
+:host ::ng-deep .p-button:hover {
+  background-color: $system-color-blue;
+
+  border: 1px solid $system-color-gray;
 }
