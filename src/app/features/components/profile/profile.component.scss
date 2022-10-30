@@ -159,3 +159,21 @@ $navcolor : #343a40;
     }
   }
 }
+
+.p-inputtext:enabled:focus,
+.p-inputtext:enabled:hover {
+  -webkit-box-shadow: 0 0 2px 1px $green;
+  -moz-box-shadow: 0 0 2px 1px $green;
+  box-shadow: 0 0 2px 1px $green;
+  border: 1px solid $green;
+  // background: #fafafa;
+}
+
+.p-inputtext.ng-dirty.ng-invalid {
+  border-color: #f44336;
+}
+
+.main-container ::ng-deep p-calendar .ui-datepicker-trigger.ui-button {
+  // add style here
+  left: 200px;
+}

@@ -36,12 +36,12 @@ export class ProfileComponent implements OnInit {
   initForm(): void {
     this.profileForm = new FormGroup({
       id: new FormControl(null),
-      name: new FormControl(null),
-      surname: new FormControl(null),
-      email: new FormControl(null),
-      username: new FormControl(null),
+      name: new FormControl(null, Validators.required),
+      surname: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      username: new FormControl(null, Validators.required),
       birthDate: new FormControl(null),
-      mobileNumber: new FormControl(null),
+      mobileNumber: new FormControl(null, [Validators.pattern("^[0-9]*$")]),
       vatNumber: new FormControl(null),
       role: new FormControl(null)
     })
@@ -63,24 +63,22 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    let user = this.profileForm.value;
-    // this.api.updateUserProfile(user).subscribe(result => {
-    //     console.log("success!", result);
-    //     this.messageService.add({
-    //       severity: 'success',
-    //       detail: "Successful update!",
-    //     });
-    //     this.userInfoView = false;
-    //     this.getUser();
-    //     this.profileEdit = false;
-    //   },
-    //   error => {
-    //     console.error("error", error);
-    //     this.messageService.add({
-    //       severity: 'error',
-    //       detail: "Error with update!",
-    //     });
-    //   })
+    let userDTO = this.profileForm.value;
+    this.api.updateUserInfo(this.auth.getId(), userDTO).subscribe(result => {
+        this.messageService.add({
+          severity: 'success',
+          detail: "Successful update!",
+        });
+        this.userInfoView = false;
+        this.getUserInfo();
+        this.profileEdit = false;
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error',
+          detail: "Error with update!",
+        });
+      })
   }
 
   editProfile() {

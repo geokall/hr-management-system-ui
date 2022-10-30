@@ -9,7 +9,7 @@
         <div class="row mb-3 pb-2 grid">
           <label class="col-fixed" style="width:110px">Επώνυμο:</label>
             <div class="col">
-              {{this.surname?.value}}
+              {{this.surname.value}}
 
               <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
             </div>
@@ -18,7 +18,7 @@
         <div class="row mb-3 pb-2 grid">
           <label class="col-fixed" style="width:110px">Όνομα:</label>
           <div class="col">
-            {{this.name?.value}}
+            {{this.name.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
 
@@ -28,7 +28,7 @@
         <div class="row mb-3 pb-2 grid">
           <label class="col-fixed" style="width:110px">Email:</label>
           <div class="col">
-            {{this.email?.value}}
+            {{this.email.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
 
@@ -38,7 +38,7 @@
         <div class="row mb-3 pb-2 grid">
           <label class="col-fixed" style="width:110px">Username:</label>
           <div class="col">
-            {{this.username?.value}}
+            {{this.username.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
 
@@ -48,7 +48,7 @@
         <div class="row mb-3 pb-2 grid">
           <label class="col-fixed" style="width:110px">Ημ. Γέννησης:</label>
           <div class="col">
-            {{this.birthDate?.value}}
+            {{this.birthDate.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
 
@@ -58,7 +58,7 @@
         <div class="row mb-3 pb-2 grid">
           <label class="col-fixed" style="width:110px">Τηλέφωνο:</label>
           <div class="col">
-            {{this.mobileNumber?.value}}
+            {{this.mobileNumber.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
 
@@ -68,7 +68,7 @@
         <div class="row mb-3 pb-2 grid">
           <label class="col-fixed" style="width:110px">Α.Φ.Μ:</label>
           <div class="col">
-            {{this.vatNumber?.value}}
+            {{this.vatNumber.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
 
@@ -78,7 +78,7 @@
         <div class="row mb-3 pb-2 grid">
           <label class="col-fixed" style="width:110px">Ρόλος:</label>
           <div class="col">
-            {{this.role?.value}}
+            {{this.role.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
 
@@ -86,7 +86,7 @@
         </div>
 
         <div class="footer">
-          <button pButton type="button" label="Ενημέρωση στοιχείων" icon="pi pi-pencil"
+          <button pButton type="button" label="Επεξεργασία" icon="pi pi-pencil"
                   class="edit p-button-warning p-button-outlined" (click)="editProfile()"></button>
         </div>
       </div>
@@ -143,89 +143,116 @@
 </p-panel>
 
 
-<p-dialog header="" [modal]="true" [(visible)]="profileEdit"
-          [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" (onHide)="hideProfileDialog()">
-  <div *ngIf="this.userInfoView" class="profile_info">
-    <p-progressSpinner *ngIf="!this.userInfoView"></p-progressSpinner>
-    <form [formGroup]="profileForm" *ngIf="this.profileForm && this.userInfoView">
-      <div class="row mt-2 mb-2 pt-2 pb-2">
-        <label class="col-sm-2"></label>
-        <div class="col-sm-10 info">
-          <input type="text" [formControlName]="'username'" class="p-inputtext-sm p-inputtext">
-          <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
-            <small *ngIf="username?.errors?.['required']" class="p-error">This field is required.</small>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-2 mb-2 pt-2 pb-2">
-        <label class="col-sm-2"></label>
-        <div class="col-sm-10 info">
-          <input type="text" [formControlName]="'name'" class="p-inputtext-sm p-inputtext">
-          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
-            <small *ngIf="name?.errors?.['required']" class="text-danger">This field is required.</small>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-2 mb-2 pt-2 pb-2">
-        <label class="col-sm-2"></label>
-        <div class="col-sm-10 info">
-          <input type="text" [formControlName]="'surname'" class="p-inputtext-sm p-inputtext">
-          <div *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
-            <small *ngIf="surname?.errors?.['required']" class="text-danger">This field is required.</small>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-2 mb-2 pt-2 pb-2">
-        <label class="col-sm-2"></label>
-        <div class="col-sm-10 info">
-          <input type="text" [formControlName]="'email'" class="p-inputtext-sm p-inputtext">
-          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-            <small *ngIf="email?.errors?.['required']" class="text-danger">This field is required.</small>
-          </div>
-        </div>
-      </div>
-<!--      <div class="row mt-2 mb-2 pt-2 pb-2">-->
-<!--        <label class="col-sm-2"></label>-->
-<!--        <div class="col-sm-10 info">-->
-<!--          <input type="text" [formControlName]="'vatNumber'" class="p-inputtext-sm p-inputtext">-->
-<!--          <div *ngIf="vatNumber.invalid && (vatNumber.dirty || vatNumber.touched)">-->
-<!--            <small *ngIf="vatNumber.errors?.['required']" class="text-danger">This field is required.</small>-->
-<!--            <small *ngIf="vatNumber.errors?.['pattern']" class="text-danger"> Only input numbers.</small>-->
-<!--            <small *ngIf="vatNumber.hasError('minlength')" class="text-danger"> Length of characters should be-->
-<!--              9.</small>-->
-<!--            <small *ngIf="vatNumber.hasError('maxLength')" class="text-danger"> Length of characters should be-->
-<!--              9.</small>-->
-<!--          </div>-->
+<p-dialog header="Ανανέωση Προσωπικών Στοιχείων" [modal]="true" [(visible)]="profileEdit"
+          [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
+          (onHide)="hideProfileDialog()">
 
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="row mt-2 mb-2 pt-2 pb-2">-->
-<!--        <label class="col-sm-2"></label>-->
-<!--        <div class="col-sm-10 info">-->
-<!--          <input type="text" [formControlName]="'mobileNumber'" class="p-inputtext-sm p-inputtext">-->
-<!--          <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)">-->
-<!--            <small *ngIf="mobileNumber.errors?.['required']" class="text-danger">This field is required.</small>-->
-<!--            <small *ngIf="mobileNumber.errors?.['pattern']" class="text-danger"> Only input numbers.</small>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="row mt-2 mb-2 pt-2 pb-2">-->
-<!--        <label class="col-sm-2"></label>-->
-<!--        <div class="col-sm-10 info">-->
-<!--          <input type="text" [formControlName]="'phoneNumber'" class="p-inputtext-sm p-inputtext">-->
-<!--          <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">-->
-<!--            <small *ngIf="phoneNumber.errors?.['required']" class="text-danger">This field is required.</small>-->
-<!--            <small *ngIf="phoneNumber.errors?.['pattern']" class="text-danger"> Only input numbers.</small>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+  <div *ngIf="this.userInfoView">
+
+    <p-progressSpinner *ngIf="!this.userInfoView"></p-progressSpinner>
+
+    <form [formGroup]="profileForm" *ngIf="this.profileForm && this.userInfoView">
+
+      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
+        <label class="col-fixed" style="width:120px; font-weight: bold;">Επώνυμο:</label>
+        <div class="col">
+          <input type="text" [formControl]="surname" class="p-inputtext-sm p-inputtext">
+
+          <div *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+            <small *ngIf="surname?.errors?.['required']" class="p-error">Το πεδίο είναι υποχρεωτικό.</small>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
+        <label class="col-fixed" style="width:120px; font-weight: bold;">Όνομα:</label>
+        <div class="col">
+          <input type="text" [formControl]="name" class="p-inputtext-sm p-inputtext">
+
+          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+            <small *ngIf="name?.errors?.['required']" class="p-error">Το πεδίο είναι υποχρεωτικό.</small>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
+        <label class="col-fixed" style="width:120px; font-weight: bold;">Email:</label>
+        <div class="col">
+          <input type="text" [formControl]="email" class="p-inputtext-sm p-inputtext">
+
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+            <small *ngIf="email?.errors?.['required']" class="p-error">Το πεδίο είναι υποχρεωτικό.</small>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
+        <label class="col-fixed" style="width:120px; font-weight: bold;">Username:</label>
+        <div class="col">
+          <input type="text" [formControl]="username" class="p-inputtext-sm p-inputtext">
+
+          <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+            <small *ngIf="username?.errors?.['required']" class="text-danger">Το πεδίο είναι υποχρεωτικό.</small>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
+        <label class="col-fixed" style="width:120px; font-weight: bold;">Τηλέφωνο:</label>
+        <div class="col">
+          <input type="text" [formControl]="mobileNumber" class="p-inputtext-sm p-inputtext">
+
+          <div *ngIf="mobileNumber?.invalid && (mobileNumber?.dirty || mobileNumber?.touched)">
+            <small *ngIf="mobileNumber?.errors?.['required']" class="text-danger">Το πεδίο είναι υποχρεωτικό.</small>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
+        <label class="col-fixed" style="width:120px; font-weight: bold;">Α.Φ.Μ:</label>
+        <div class="col">
+          <input type="text" [formControl]="vatNumber" class="p-inputtext-sm p-inputtext">
+
+          <div *ngIf="vatNumber?.invalid && (vatNumber?.dirty || vatNumber?.touched)">
+            <small *ngIf="vatNumber?.errors?.['required']" class="text-danger">Το πεδίο είναι υποχρεωτικό.</small>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
+        <label class="col-fixed" style="width:120px; font-weight: bold;">Ημ. Γέννησης:</label>
+        <div class="col">
+          <p-calendar formControlName="birthDate"
+            id="birthDate"
+            dateFormat="dd/mm/yy"
+            [showIcon]="true" dataType="string"
+            inputId="birthDate">
+          </p-calendar>
+
+          <div *ngIf="birthDate?.invalid && (birthDate?.dirty || birthDate?.touched)">
+            <small *ngIf="birthDate?.errors?.['required']" class="text-danger">Το πεδίο είναι υποχρεωτικό.</small>
+          </div>
+
+        </div>
+      </div>
 
       <div class="dialog-footer">
-        <button pButton type="button" label="" icon="pi pi-times"
-                class="p-button-danger p-button-outlined" (click)="hideProfileDialog()"></button>
-        <button pButton type="button" label="" icon="pi pi-refresh"
-                class="p-button-outlined p-button-success" (click)="updateProfile()"></button>
+        <button pButton type="button" label="Ακύρωση" icon="pi pi-times"
+                class="p-button-danger p-button-outlined" (click)="hideProfileDialog()">
+        </button>
+
+        <button pButton type="button" label="Ανανέωση" icon="pi pi-refresh"
+                class="p-button-outlined p-button-success" (click)="updateProfile()">
+        </button>
       </div>
+
     </form>
+
   </div>
 </p-dialog>

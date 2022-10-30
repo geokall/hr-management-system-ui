@@ -21,8 +21,7 @@ export class ApiService {
   }
 
   register(role: string, registerDTO: RegisterDTO): Observable<any> {
-    let params = new HttpParams()
-      .set('role', role);
+    let params = new HttpParams().set('role', role);
 
     const url = `${environment.apiUrl}/auth/register`;
 
@@ -33,5 +32,11 @@ export class ApiService {
     const url = `${environment.apiUrl}/user/info/${id}`;
 
     return this.http.get<UserDTO>(url);
+  }
+
+  updateUserInfo(id: number, userDTO: UserDTO): Observable<any> {
+    const url = `${environment.apiUrl}/user/update-info/${id}`;
+
+    return this.http.put<UserDTO>(url, userDTO);
   }
 }
