@@ -4,21 +4,20 @@
     <p-tabPanel header="Προφίλ">
       <p-progressSpinner *ngIf="this.userInfoView == false"></p-progressSpinner>
 
-      <div *ngIf="this.userInfoView == true" class="profile_info">
+      <div *ngIf="this.userInfoView == true">
 
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2">Επώνυμο</label>
-          <div class="col-sm-10 info">
-            {{this.surname?.value}}
+        <div class="row mb-3 pb-2 grid">
+          <label class="col-fixed" style="width:110px">Επώνυμο:</label>
+            <div class="col">
+              {{this.surname?.value}}
 
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-
-          </div>
+              <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
+            </div>
         </div>
 
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2">Όνομα</label>
-          <div class="col-sm-10 info">
+        <div class="row mb-3 pb-2 grid">
+          <label class="col-fixed" style="width:110px">Όνομα:</label>
+          <div class="col">
             {{this.name?.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
@@ -26,9 +25,9 @@
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2">email</label>
-          <div class="col-sm-10 info">
+        <div class="row mb-3 pb-2 grid">
+          <label class="col-fixed" style="width:110px">email:</label>
+          <div class="col">
             {{this.email?.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
@@ -36,9 +35,9 @@
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2">username</label>
-          <div class="col-sm-10 info">
+        <div class="row mb-3 pb-2 grid">
+          <label class="col-fixed" style="width:110px">username:</label>
+          <div class="col">
             {{this.username?.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
@@ -46,9 +45,9 @@
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2">Ημερομηνία Γέννησης</label>
-          <div class="col-sm-10 info">
+        <div class="row mb-3 pb-2 grid">
+          <label class="col-fixed" style="width:110px">Ημ. Γέννησης:</label>
+          <div class="col">
             {{this.birthDate?.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
@@ -56,9 +55,9 @@
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2">Κινητό τηλέφωνο</label>
-          <div class="col-sm-10 info">
+        <div class="row mb-3 pb-2 grid">
+          <label class="col-fixed" style="width:110px">Τηλέφωνο:</label>
+          <div class="col">
             {{this.mobileNumber?.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
@@ -66,9 +65,9 @@
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2">Α.Φ.Μ</label>
-          <div class="col-sm-10 info">
+        <div class="row mb-3 pb-2 grid">
+          <label class="col-fixed" style="width:110px">Α.Φ.Μ:</label>
+          <div class="col">
             {{this.vatNumber?.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
@@ -76,9 +75,9 @@
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
-          <label class="col-sm-2">Ρόλος</label>
-          <div class="col-sm-10 info">
+        <div class="row mb-3 pb-2 grid">
+          <label class="col-fixed" style="width:110px">Ρόλος:</label>
+          <div class="col">
             {{this.role?.value}}
 
             <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
