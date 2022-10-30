@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/shared/services/auth.service";
 
 @Component({
@@ -11,7 +11,6 @@ import {AuthService} from "../../../core/shared/services/auth.service";
 })
 export class ProfileComponent implements OnInit {
 
-  public userDetails = <any>{};
   profileForm: FormGroup;
   userInfoView: boolean = false;
   profileEdit: any;
@@ -42,6 +41,9 @@ export class ProfileComponent implements OnInit {
       email: new FormControl(null),
       username: new FormControl(null),
       birthDate: new FormControl(null),
+      mobileNumber: new FormControl(null),
+      vatNumber: new FormControl(null),
+      role: new FormControl(null)
     })
   }
 
@@ -49,11 +51,7 @@ export class ProfileComponent implements OnInit {
     this.api.getUserInfo(this.auth.getId())
       .subscribe(userInfo => {
         this.profileForm.patchValue(userInfo)
-        // this.profileForm.reset(userInfo)
-        // this.profileForm.reset(user);
-        // @ts-ignore
         this.userInfoView = true;
-        console.log(this.profileForm.value)
       })
       .add(() => this.loading = false);
   }
@@ -89,21 +87,36 @@ export class ProfileComponent implements OnInit {
     this.profileEdit = true;
   }
 
-
-  get username() {
-    return this.profileForm.get('username');
+  get username(): FormControl {
+    return this.profileForm.get('username') as FormControl;
   }
 
-  get name() {
-    return this.profileForm.get('name');
+  get name(): FormControl {
+    return this.profileForm.get('name') as FormControl;
   }
 
-  get surname() {
-    return this.profileForm.get('surname');
+  get birthDate(): FormControl {
+    return this.profileForm.get('birthDate') as FormControl;
   }
 
-  get email() {
-    return this.profileForm.get('email');
+  get role(): FormControl {
+    return this.profileForm.get('role') as FormControl;
+  }
+
+  get mobileNumber(): FormControl {
+    return this.profileForm.get('mobileNumber') as FormControl;
+  }
+
+  get vatNumber(): FormControl {
+    return this.profileForm.get('vatNumber') as FormControl;
+  }
+
+  get surname(): FormControl {
+    return this.profileForm.get('surname') as FormControl;
+  }
+
+  get email(): FormControl {
+    return this.profileForm.get('email') as FormControl;
   }
 
   get gdprFile() {
