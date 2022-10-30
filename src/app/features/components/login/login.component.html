@@ -1,8 +1,9 @@
 <div class="grid mt-3">
-  <!--  <p-toast></p-toast>-->
   <div class="col-4 col-offset-4" style="text-align:center;">
+
     <p-card [style]="{'padding-left': '6rem', 'padding-right': '6em'}">
       <h3 class="welcome">Καλωσήρθατε στο <br>Σύστημα διαχείρισης προσωπικού</h3>
+
       <i class="pi pi-user" style="font-size: 2rem;
           border: 2px solid;
           border-radius: 5px;
@@ -10,6 +11,7 @@
           margin-bottom: 1em;
           color: #1c7ad9;">
       </i>
+
       <form [formGroup]="loginForm" (keyup.enter)="submit()">
         <div class="field">
           <label for="username" class="required">Όνομα Χρήστη</label>
