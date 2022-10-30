@@ -2,12 +2,13 @@
 <p-panel header="Προσωπικά στοιχεία">
   <p-tabView>
     <p-tabPanel header="Προφίλ">
+
       <p-progressSpinner *ngIf="this.userInfoView == false"></p-progressSpinner>
 
       <div *ngIf="this.userInfoView == true">
 
         <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:110px">Επώνυμο:</label>
+          <label class="col-fixed" style="width:120px; font-weight: bold;">Επώνυμο:</label>
             <div class="col">
               {{this.surname.value}}
 
@@ -16,7 +17,7 @@
         </div>
 
         <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:110px">Όνομα:</label>
+          <label class="col-fixed" style="width:120px; font-weight: bold;">Όνομα:</label>
           <div class="col">
             {{this.name.value}}
 
@@ -26,7 +27,7 @@
         </div>
 
         <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:110px">Email:</label>
+          <label class="col-fixed" style="width:120px; font-weight: bold;">Email:</label>
           <div class="col">
             {{this.email.value}}
 
@@ -36,7 +37,7 @@
         </div>
 
         <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:110px">Username:</label>
+          <label class="col-fixed" style="width:120px; font-weight: bold;">Username:</label>
           <div class="col">
             {{this.username.value}}
 
@@ -46,7 +47,7 @@
         </div>
 
         <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:110px">Ημ. Γέννησης:</label>
+          <label class="col-fixed" style="width:120px; font-weight: bold;">Ημ. Γέννησης:</label>
           <div class="col">
             {{this.birthDate.value}}
 
@@ -56,7 +57,7 @@
         </div>
 
         <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:110px">Τηλέφωνο:</label>
+          <label class="col-fixed" style="width:120px; font-weight: bold;">Τηλέφωνο:</label>
           <div class="col">
             {{this.mobileNumber.value}}
 
@@ -66,7 +67,7 @@
         </div>
 
         <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:110px">Α.Φ.Μ:</label>
+          <label class="col-fixed" style="width:120px; font-weight: bold;">Α.Φ.Μ:</label>
           <div class="col">
             {{this.vatNumber.value}}
 
@@ -76,7 +77,7 @@
         </div>
 
         <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:110px">Ρόλος:</label>
+          <label class="col-fixed" style="width:120px; font-weight: bold;">Ρόλος:</label>
           <div class="col">
             {{this.role.value}}
 
@@ -87,7 +88,9 @@
 
         <div class="footer">
           <button pButton type="button" label="Επεξεργασία" icon="pi pi-pencil"
-                  class="edit p-button-warning p-button-outlined" (click)="editProfile()"></button>
+                  class="edit p-button-warning p-button-outlined"
+                  (click)="editProfile()">
+          </button>
         </div>
       </div>
 

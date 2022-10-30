@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
-import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/shared/services/auth.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   userInfoView: boolean = false;
-  profileEdit: any;
+  profileEdit: boolean = false;
   isGdprFileUpload = false;
   isAffirmationFileUpload = false;
   loading: boolean = false;
@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
     this.api.updateUserInfo(this.auth.getId(), userDTO).subscribe(result => {
         this.messageService.add({
           severity: 'success',
-          detail: "Successful update!",
+          detail: "Η ενημέρωση έγινε με επιτυχία.",
         });
         this.userInfoView = false;
         this.getUserInfo();
@@ -76,57 +76,13 @@ export class ProfileComponent implements OnInit {
       error => {
         this.messageService.add({
           severity: 'error',
-          detail: "Error with update!",
+          detail: "Υπήρξε κάποιο σφάλμα!",
         });
       })
   }
 
   editProfile() {
     this.profileEdit = true;
-  }
-
-  get username(): FormControl {
-    return this.profileForm.get('username') as FormControl;
-  }
-
-  get name(): FormControl {
-    return this.profileForm.get('name') as FormControl;
-  }
-
-  get birthDate(): FormControl {
-    return this.profileForm.get('birthDate') as FormControl;
-  }
-
-  get role(): FormControl {
-    return this.profileForm.get('role') as FormControl;
-  }
-
-  get mobileNumber(): FormControl {
-    return this.profileForm.get('mobileNumber') as FormControl;
-  }
-
-  get vatNumber(): FormControl {
-    return this.profileForm.get('vatNumber') as FormControl;
-  }
-
-  get surname(): FormControl {
-    return this.profileForm.get('surname') as FormControl;
-  }
-
-  get email(): FormControl {
-    return this.profileForm.get('email') as FormControl;
-  }
-
-  get gdprFile() {
-    return this.profileForm.get('gdprFile') as FormGroup;
-  }
-
-  get affirmationFile() {
-    return this.profileForm.get('affirmationFile') as FormGroup;
-  }
-
-  get type() {
-    return this.gdprFile.get('type') as FormControl;
   }
 
   getGdpr() {
@@ -208,6 +164,50 @@ export class ProfileComponent implements OnInit {
     // }, error => {
     //   console.log('error', error)
     // })
+  }
+
+  get username(): FormControl {
+    return this.profileForm.get('username') as FormControl;
+  }
+
+  get name(): FormControl {
+    return this.profileForm.get('name') as FormControl;
+  }
+
+  get birthDate(): FormControl {
+    return this.profileForm.get('birthDate') as FormControl;
+  }
+
+  get role(): FormControl {
+    return this.profileForm.get('role') as FormControl;
+  }
+
+  get mobileNumber(): FormControl {
+    return this.profileForm.get('mobileNumber') as FormControl;
+  }
+
+  get vatNumber(): FormControl {
+    return this.profileForm.get('vatNumber') as FormControl;
+  }
+
+  get surname(): FormControl {
+    return this.profileForm.get('surname') as FormControl;
+  }
+
+  get email(): FormControl {
+    return this.profileForm.get('email') as FormControl;
+  }
+
+  get gdprFile() {
+    return this.profileForm.get('gdprFile') as FormGroup;
+  }
+
+  get affirmationFile() {
+    return this.profileForm.get('affirmationFile') as FormGroup;
+  }
+
+  get type() {
+    return this.gdprFile.get('type') as FormControl;
   }
 
 }
