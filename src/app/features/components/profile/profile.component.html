@@ -1,265 +1,212 @@
-<!--<div class="block-div">-->
+<div class="grid">
+  <div class="col-12 lg:col-8 lg:col-offset-0">
+    <p-card *ngIf="!loading" [formGroup]="profileForm" [header]="'Personal'">
 
-<p-panel header="Προσωπικά στοιχεία">
-  <p-tabView>
-    <p-tabPanel header="Προφίλ">
+      <div class="card">
+        <h3>Basic Information</h3>
 
-      <p-progressSpinner *ngIf="this.userInfoView == false"></p-progressSpinner>
-
-      <div *ngIf="this.userInfoView == true">
-
-        <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:120px; font-weight: bold;">Επώνυμο:</label>
-            <div class="col">
-              {{this.surname.value}}
-
-              <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-            </div>
-        </div>
-
-        <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:120px; font-weight: bold;">Όνομα:</label>
-          <div class="col">
-            {{this.name.value}}
-
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-
+        <div class="formgroup-inline">
+          <div class="field">
+            <label for="surname" class="block">Επώνυμο</label>
+            <input [readOnly]="isEditMode" id="surname" type="text" pInputText
+                   [formControl]="surname">
           </div>
-        </div>
 
-        <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:120px; font-weight: bold;">Email:</label>
-          <div class="col">
-            {{this.email.value}}
-
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-
+          <div class="field">
+            <label for="name" class="block">Όνομα</label>
+            <input [readOnly]="isEditMode" id="name" type="text" pInputText
+                   [formControl]="name">
           </div>
-        </div>
 
-        <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:120px; font-weight: bold;">Username:</label>
-          <div class="col">
-            {{this.username.value}}
-
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-
+          <div class="field">
+            <label for="name" class="block">Business Email</label>
+            <input [readOnly]="isEditMode" id="personalEmail" type="text" pInputText
+                   [formControl]="email">
           </div>
+
         </div>
 
-        <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:120px; font-weight: bold;">Ημ. Γέννησης:</label>
-          <div class="col">
-            {{this.birthDate.value}}
-
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-
+        <div class="formgroup-inline">
+          <div class="field">
+            <label for="Username" class="block">Username</label>
+            <input [readOnly]="isEditMode" id="Username" type="text" pInputText
+                   [formControl]="username">
           </div>
-        </div>
 
-        <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:120px; font-weight: bold;">Τηλέφωνο:</label>
-          <div class="col">
-            {{this.mobileNumber.value}}
-
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-
+          <div class="field">
+            <label for="motherName" class="block">Μητρώνυμο</label>
+            <input [readOnly]="isEditMode" id="motherName" type="text" pInputText formControlName="motherName">
           </div>
+
         </div>
 
-        <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:120px; font-weight: bold;">Α.Φ.Μ:</label>
-          <div class="col">
-            {{this.vatNumber.value}}
+        <div class="formgroup-inline">
 
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-
+          <div class="field">
+            <label for="birthDate" class="block">Ημερομηνία Γέννησης</label>
+            <p-calendar [ngStyle]="isEditMode ? {'pointer-events': 'none'} : {'pointer-events': 'true'}"
+                        formControlName="birthDate"
+                        id="birthDate"
+                        dateFormat="dd/mm/yy"
+                        [showIcon]="true"
+                        dataType="string"
+                        inputId="birthDate">
+            </p-calendar>
           </div>
-        </div>
 
-        <div class="row mb-3 pb-2 grid">
-          <label class="col-fixed" style="width:120px; font-weight: bold;">Ρόλος:</label>
-          <div class="col">
-            {{this.role.value}}
-
-            <p-skeleton *ngIf="!this.userInfoView" height="2rem" styleClass="p-mb-2"></p-skeleton>
-
+          <div class="field">
+            <label for="gender" class="block">Επιλογή φύλου</label>
+            <p-dropdown [readonly]="isEditMode" [options]="genders"
+                        [formControl]="gender"
+                        placeholder="Φύλο"
+                        id="gender"
+                        optionValue="key"
+                        optionLabel="value">
+            </p-dropdown>
           </div>
+
         </div>
 
-        <div class="footer">
-          <button pButton type="button" label="Επεξεργασία" icon="pi pi-pencil"
-                  class="edit p-button-warning p-button-outlined"
-                  (click)="editProfile()">
-          </button>
-        </div>
       </div>
 
-    </p-tabPanel>
+<!--      <div class="card" *ngIf="isGraduateInfoEnabled">-->
+<!--        <h3>Στοιχεία φοίτησης</h3>-->
 
-    <p-tabPanel header="Αρχεία">
-      <p-progressSpinner *ngIf="!this.userInfoView"></p-progressSpinner>
-      <table class="table table-hover" *ngIf="this.userInfoView">
-        <tr>
-          <td class="pb-2 pt-2" style="width: 40%;"><span></span></td>
-          <td class="pb-2 pt-2" style="width: 20%;"><i class="pi pi-file-pdf open" style="font-size: 1.5rem"
-                                                       (click)="getGdpr()"></i></td>
-          <td class="pb-2 pt-2" style="width: 20%;">
-            <div class="i.open">
-              <p-fileUpload mode="basic"
-                            #gdprUpload id="gdprFile" name="gdprFile[]" accept=".pdf"
-                            [showUploadButton]="false" [showCancelButton]="false"
-                            (onSelect)="onSelect($event, 'gdprFile', 'gdprFile')">
-              </p-fileUpload>
-            </div>
-          </td>
-          <td class="pb-2 pt-2" style="width: 20%;">
-            <button pButton type="button" [hidden]="!isGdprFileUpload" label=""
-                    icon="pi pi-upload" class="p-button-outlined p-button-secondary"
-                    (click)="updateGdprFile()">
-            </button>
+<!--        <div class="formgrid grid">-->
 
-          </td>
-        </tr>
-        <tr>
-          <td class="pb-2 pt-2" style="width: 40%;"><span></span></td>
-          <td class="pb-2 pt-2" style="width: 20%;"><i class="pi pi-file-pdf open" style="font-size: 1.5rem"
-                                                       (click)="getAffirmation()"></i></td>
-          <td class="pb-2 pt-2" style="width: 20%;">
-            <div class="i.open">
-              <p-fileUpload mode="basic"
-                            #affirmationUpload id="affirmationFile" name="affirmationFile[]" accept=".pdf"
-                            [showUploadButton]="false" [showCancelButton]="false"
-                            (onSelect)="onSelect($event, 'affirmationFile', 'affirmationFile')">
-              </p-fileUpload>
-            </div>
-          </td>
-          <td>
-            <button pButton type="button" [hidden]="!isAffirmationFileUpload" label=""
-                    icon="pi pi-upload" class="p-button-outlined p-button-secondary"
-                    (click)="updateAffirmationFile()">
-            </button>
-          </td>
-        </tr>
-      </table>
-    </p-tabPanel>
-  </p-tabView>
-</p-panel>
+<!--          <div class="field col-5">-->
+<!--            <label for="department" class="block">Τμήμα</label>-->
+<!--            <input class="w-full"-->
+<!--                   type="text"-->
+<!--                   id="department"-->
+<!--                   [readOnly]="isEditMode"-->
+<!--                   pInputText [formControl]="department"/>-->
+<!--          </div>-->
 
+<!--          <div class="field col-7">-->
+<!--            <label for="direction" class="block">Επιλογή Κατεύθυνσης</label>-->
+<!--            <p-dropdown [readonly]="isEditMode" [options]="studentDirections"-->
+<!--                        id="direction"-->
+<!--                        placeholder="Κατεύθυνση"-->
+<!--                        [formControl]="direction"-->
+<!--                        optionLabel="name">-->
+<!--            </p-dropdown>-->
+<!--          </div>-->
+<!--        </div>-->
 
-<p-dialog header="Ανανέωση Προσωπικών Στοιχείων" [modal]="true" [(visible)]="profileEdit"
-          [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
-          (onHide)="hideProfileDialog()">
+<!--      </div>-->
 
-  <div *ngIf="this.userInfoView">
+<!--      <div class="card">-->
+<!--        <h3>Στοιχεία επικοινωνίας</h3>-->
 
-    <p-progressSpinner *ngIf="!this.userInfoView"></p-progressSpinner>
+<!--        <div class="formgroup-inline">-->
 
-    <form [formGroup]="profileForm" *ngIf="this.profileForm && this.userInfoView">
+<!--          <div class="field">-->
+<!--            <label for="address" class="block">Διεύθυνση</label>-->
+<!--            <input [readOnly]="isEditMode" id="address" type="text" pInputText [formControl]="address">-->
+<!--          </div>-->
 
-      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
-        <label class="col-fixed" style="width:120px; font-weight: bold;">Επώνυμο:</label>
-        <div class="col">
-          <input type="text" [formControl]="surname" class="p-inputtext-sm p-inputtext">
+<!--          <div class="field">-->
+<!--            <label for="city" class="block">Πόλη</label>-->
+<!--            <input [readOnly]="isEditMode" id="city" type="text" pInputText [formControl]="city">-->
+<!--          </div>-->
 
-          <div *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
-            <small *ngIf="surname?.errors?.['required']" class="p-error">Το πεδίο είναι υποχρεωτικό.</small>
-          </div>
+<!--          <div class="field">-->
+<!--            <label for="postalCode" class="block">Ταχυδρομικός κώδικας</label>-->
+<!--            <p-inputNumber [readonly]="isEditMode"-->
+<!--                           [formControl]="postalCode"-->
+<!--                           id="postalCode"-->
+<!--                           mode="decimal"-->
+<!--                           [maxlength]="10"-->
+<!--                           [useGrouping]="false"-->
+<!--                           inputId="postalCode">-->
+<!--            </p-inputNumber>-->
+<!--          </div>-->
 
-        </div>
-      </div>
+<!--        </div>-->
 
-      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
-        <label class="col-fixed" style="width:120px; font-weight: bold;">Όνομα:</label>
-        <div class="col">
-          <input type="text" [formControl]="name" class="p-inputtext-sm p-inputtext">
+<!--        <div class="formgroup-inline">-->
 
-          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
-            <small *ngIf="name?.errors?.['required']" class="p-error">Το πεδίο είναι υποχρεωτικό.</small>
-          </div>
+<!--          <div class="field">-->
+<!--            <label for="postalCode" class="block">Τηλέφωνο επικοινωνίας</label>-->
+<!--            <p-inputNumber [readonly]="isEditMode"-->
+<!--                           [formControl]="mobileNumber"-->
+<!--                           id="mobileNumber"-->
+<!--                           mode="decimal"-->
+<!--                           [maxlength]="10"-->
+<!--                           [useGrouping]="false"-->
+<!--                           inputId="mobileNumber">-->
+<!--            </p-inputNumber>-->
+<!--          </div>-->
 
-        </div>
-      </div>
+<!--          <div class="field">-->
+<!--            <label for="postalCode" class="block">Α.Φ.Μ</label>-->
+<!--            <p-inputNumber [readonly]="isEditMode"-->
+<!--                           [formControl]="vatNumber"-->
+<!--                           id="Αfm"-->
+<!--                           mode="decimal"-->
+<!--                           [maxlength]="10"-->
+<!--                           [useGrouping]="false"-->
+<!--                           inputId="vatNumber">-->
+<!--            </p-inputNumber>-->
+<!--          </div>-->
 
-      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
-        <label class="col-fixed" style="width:120px; font-weight: bold;">Email:</label>
-        <div class="col">
-          <input type="text" [formControl]="email" class="p-inputtext-sm p-inputtext">
+<!--        </div>-->
 
-          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-            <small *ngIf="email?.errors?.['required']" class="p-error">Το πεδίο είναι υποχρεωτικό.</small>
-          </div>
+<!--        <div class="card" *ngIf="!form?.get('id')?.value">-->
+<!--          <h3>Αρχείο</h3>-->
 
-        </div>
-      </div>
+<!--          <div class="formgroup-inline">-->
+<!--            <app-file [form]="form" [isMinioFileExist]="false"></app-file>-->
+<!--          </div>-->
 
-      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
-        <label class="col-fixed" style="width:120px; font-weight: bold;">Username:</label>
-        <div class="col">
-          <input type="text" [formControl]="username" class="p-inputtext-sm p-inputtext">
+<!--        </div>-->
 
-          <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
-            <small *ngIf="username?.errors?.['required']" class="text-danger">Το πεδίο είναι υποχρεωτικό.</small>
-          </div>
+<!--      </div>-->
 
-        </div>
-      </div>
+      <ng-template pTemplate="footer">
+        <p-button *ngIf="isEditMode == false" (onClick)="updateProfile()"
+                  [disabled]="profileForm.invalid || profileForm.untouched"
+                  [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
+                  label="Αποθήκευση">
+        </p-button>
+        <p-button *ngIf="isEditMode == false" (onClick)="onClear()" [disabled]="profileForm.untouched"
+                  [style]="{'margin-left': '.5em'}"
+                  [icon]="!profileForm?.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
+                  [label]="!profileForm?.get('id')?.value ? 'Καθαρισμός': 'Επαναφορά'"
+                  styleClass="p-button-secondary">
+        </p-button>
+      </ng-template>
 
-      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
-        <label class="col-fixed" style="width:120px; font-weight: bold;">Τηλέφωνο:</label>
-        <div class="col">
-          <input type="text" [formControl]="mobileNumber" class="p-inputtext-sm p-inputtext">
-
-          <div *ngIf="mobileNumber?.invalid && (mobileNumber?.dirty || mobileNumber?.touched)">
-            <small *ngIf="mobileNumber?.errors?.['required']" class="text-danger">Το πεδίο είναι υποχρεωτικό.</small>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
-        <label class="col-fixed" style="width:120px; font-weight: bold;">Α.Φ.Μ:</label>
-        <div class="col">
-          <input type="text" [formControl]="vatNumber" class="p-inputtext-sm p-inputtext">
-
-          <div *ngIf="vatNumber?.invalid && (vatNumber?.dirty || vatNumber?.touched)">
-            <small *ngIf="vatNumber?.errors?.['required']" class="text-danger">Το πεδίο είναι υποχρεωτικό.</small>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="row mt-2 mb-2 pt-2 pb-2 grid">
-        <label class="col-fixed" style="width:120px; font-weight: bold;">Ημ. Γέννησης:</label>
-        <div class="col">
-          <p-calendar appendTo="body" [formControl]="birthDate"
-            id="birthDate"
-            dateFormat="dd/mm/yy"
-            [showIcon]="true" dataType="string"
-            inputId="birthDate">
-          </p-calendar>
-
-          <div *ngIf="birthDate?.invalid && (birthDate?.dirty || birthDate?.touched)">
-            <small *ngIf="birthDate?.errors?.['required']" class="text-danger">Το πεδίο είναι υποχρεωτικό.</small>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="dialog-footer">
-        <button pButton type="button" label="Ακύρωση" icon="pi pi-times"
-                class="p-button-danger p-button-outlined" (click)="hideProfileDialog()">
-        </button>
-
-        <button pButton type="button" label="Ανανέωση" icon="pi pi-refresh"
-                class="p-button-outlined p-button-success" (click)="updateProfile()">
-        </button>
-      </div>
-
-    </form>
+    </p-card>
 
   </div>
 
-</p-dialog>
+<!--  <p-dialog [(visible)]="successModal" [draggable]="false" [modal]="true" [resizable]="false"-->
+<!--            [style]="{width: '20vw'}" header="Επιτυχία">-->
+<!--    <p class="m-0">Η καταχώριση ολοκληρώθηκε με επιτυχία.</p>-->
+<!--    <ng-template class="p-0" pTemplate="footer">-->
+<!--      <p-button (click)="successModal=false" icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>-->
+<!--    </ng-template>-->
+<!--  </p-dialog>-->
 
-<!--</div>-->
+<!--  <p-dialog [(visible)]="errorModal" [draggable]="false" [modal]="true" [resizable]="false"-->
+<!--            [style]="{width: '25vw'}" header="Αποτυχία">-->
+<!--    <p class="m-0">Παρουσιάστηκε πρόβλημα στη καταχώριση. Παρακαλώ επικοινωνήστε με τους διαχειριστές του-->
+<!--      συστήματος.</p>-->
+<!--    <ng-template class="p-0" pTemplate="footer">-->
+<!--      <p-button (click)="errorModal=false" icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>-->
+<!--    </ng-template>-->
+<!--  </p-dialog>-->
+
+  <ng-container *ngIf="showDebug">
+    <pre>{{profileForm.value | json}}</pre>
+  </ng-container>
+
+</div>
+
+<ng-template #loadingList>
+  <div class="col-8">
+    <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+  </div>
+</ng-template>

@@ -3,6 +3,9 @@ import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/shared/services/auth.service";
+import {environment} from "../../../../environments/environment";
+import {GenderEnum} from "../../../core/shared/models/enums/gender-enum";
+import {UserDTO} from "../../../core/shared/models/dto/user-dto";
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +21,16 @@ export class ProfileComponent implements OnInit {
   isAffirmationFileUpload = false;
   loading: boolean = false;
   isEditMode: boolean = false;
+  saving: boolean = false;
+  successModal: boolean = false;
 
+  genders: any[] = Object.keys(GenderEnum)
+    .map((item) => {
+      // @ts-ignore
+      return {key: item, value: GenderEnum[item]}
+    });
+
+  showDebug = environment.debug;
 
   @ViewChild('gdprUpload') gdprUpload: any;
   @ViewChild('affirmationUpload') affirmationUpload: any;
@@ -70,43 +82,8 @@ export class ProfileComponent implements OnInit {
     this.getUserInfo();
   }
 
-  updateProfile() {
-    let userDTO = this.profileForm.value;
-    this.api.updateUserInfo(this.auth.getId(), userDTO).subscribe(result => {
-        this.messageService.add({
-          severity: 'success',
-          detail: "Η ενημέρωση έγινε με επιτυχία.",
-        });
-        this.userInfoView = false;
-        this.getUserInfo();
-        this.profileEdit = false;
-      },
-      error => {
-        this.messageService.add({
-          severity: 'error',
-          detail: "Υπήρξε κάποιο σφάλμα!",
-        });
-      })
-  }
-
   editProfile() {
     this.profileEdit = true;
-  }
-
-  getGdpr() {
-    // this.api.getGdprFile().subscribe(response => {
-    //   let file = new Blob([response], {type: 'application/pdf'});
-    //   let fileURL = URL.createObjectURL(file);
-    //   window.open(fileURL);
-    // });
-  }
-
-  getAffirmation() {
-    // this.api.getAffirmationFile().subscribe(response => {
-    //   let file = new Blob([response], {type: 'application/pdf'});
-    //   let fileURL = URL.createObjectURL(file);
-    //   window.open(fileURL);
-    // });
   }
 
   onSelect(event: any, fileName: string, whichFile: string) {
@@ -141,37 +118,36 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  updateGdprFile(): void {
-    let gdprFileDTO = this.gdprFile.value;
+  updateProfile() {
+    this.saving = true;
 
-    // this.api.updateGdprFile(gdprFileDTO).subscribe(result => {
-    //   this.messageService.add({
-    //     severity: 'success',
-    //     detail: this.translate.instant('PROFILE.UPDATE_GDPR_FILE'),
-    //   });
-    //
-    //   this.isGdprFileUpload = false;
-    //   this.gdprUpload.clear();
-    //
-    // }, error => {
-    //   console.log('error', error)
-    // })
+    let userDTO = this.profileForm.value;
+    this.api.updateUserInfo(this.auth.getId(), userDTO)
+      .subscribe(result => {
+        this.successModal = true;
+        this.saving = false;
+
+        this.messageService.add({
+          severity: 'success',
+          detail: "Η ενημέρωση έγινε με επιτυχία.",
+        });
+        this.userInfoView = false;
+        this.getUserInfo();
+        this.profileEdit = false;
+      },
+      error => {
+        this.saving = false;
+        this.successModal = false;
+
+        this.messageService.add({
+          severity: 'error',
+          detail: "Υπήρξε κάποιο σφάλμα!",
+        });
+      })
   }
 
-  updateAffirmationFile(): void {
-    let affirmationFileDTO = this.affirmationFile.value;
-
-    // this.api.updateAffirmationFile(affirmationFileDTO).subscribe(result => {
-    //   this.messageService.add({
-    //     severity: 'success',
-    //     detail: this.translate.instant('PROFILE.UPDATE_AFFIRMATION_FILE'),
-    //   });
-    //   this.isAffirmationFileUpload = false;
-    //   this.affirmationUpload.clear();
-    //
-    // }, error => {
-    //   console.log('error', error)
-    // })
+  onClear(): void {
+    // this.form.reset(this.studentForm);
   }
 
   get basicInformation(): FormGroup {
@@ -216,6 +192,10 @@ export class ProfileComponent implements OnInit {
 
   get affirmationFile() {
     return this.basicInformation.get('affirmationFile') as FormGroup;
+  }
+
+  get gender(): FormControl {
+    return this.basicInformation.get('gender') as FormControl;
   }
 
   get type() {

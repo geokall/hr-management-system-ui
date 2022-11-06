@@ -5,7 +5,7 @@ import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {Router} from "@angular/router";
-import {RegisterDTO} from "../../../core/shared/models/register-dto";
+import {RegisterDTO} from "../../../core/shared/models/dto/register-dto";
 
 @Component({
   selector: 'app-register',

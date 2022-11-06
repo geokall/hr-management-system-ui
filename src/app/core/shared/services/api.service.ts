@@ -3,8 +3,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {JwtResponseDTO} from "../models/jwt/jwt-response-dto";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
-import {RegisterDTO} from "../models/register-dto";
-import {UserDTO} from "../models/user-dto";
+import {RegisterDTO} from "../models/dto/register-dto";
+import {UserDTO} from "../models/dto/user-dto";
 
 @Injectable({
   providedIn: 'root'
