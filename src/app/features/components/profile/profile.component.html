@@ -1,5 +1,17 @@
 <div class="grid">
-  <div class="col-12 lg:col-8 lg:col-offset-0">
+<!--  this is the left container-->
+  <div class="col-3">
+    <p-card *ngIf="!loading" [formGroup]="profileForm" [header]="'test'">
+
+      <div class="card">
+        <h5>Basic Information</h5>
+
+      </div>
+    </p-card>
+  </div>
+
+<!--  2nd container with basic information-->
+  <div class="col-10 lg:col-8 lg:col-offset-0">
     <p-card *ngIf="!loading" [formGroup]="profileForm" [header]="'Personal'">
 
       <div class="card">
