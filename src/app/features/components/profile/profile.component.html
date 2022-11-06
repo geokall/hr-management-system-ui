@@ -1,3 +1,5 @@
+<!--<div class="block-div">-->
+
 <p-panel header="Προσωπικά στοιχεία">
   <p-tabView>
     <p-tabPanel header="Προφίλ">
@@ -230,7 +232,7 @@
       <div class="row mt-2 mb-2 pt-2 pb-2 grid">
         <label class="col-fixed" style="width:120px; font-weight: bold;">Ημ. Γέννησης:</label>
         <div class="col">
-          <p-calendar appendTo="body" formControlName="birthDate"
+          <p-calendar appendTo="body" [formControl]="birthDate"
             id="birthDate"
             dateFormat="dd/mm/yy"
             [showIcon]="true" dataType="string"
@@ -257,4 +259,7 @@
     </form>
 
   </div>
+
 </p-dialog>
+
+<!--</div>-->

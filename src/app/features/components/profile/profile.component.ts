@@ -35,22 +35,30 @@ export class ProfileComponent implements OnInit {
 
   initForm(): void {
     this.profileForm = new FormGroup({
-      id: new FormControl(null),
-      name: new FormControl(null, Validators.required),
-      surname: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      username: new FormControl(null, Validators.required),
-      birthDate: new FormControl(null),
-      mobileNumber: new FormControl(null, [Validators.pattern("^[0-9]*$")]),
-      vatNumber: new FormControl(null),
-      role: new FormControl(null)
+      basicInformation: new FormGroup({
+        id: new FormControl(null),
+        role: new FormControl(null),
+        name: new FormControl(null, Validators.required),
+        surname: new FormControl(null, Validators.required),
+        email: new FormControl(null, [Validators.required, Validators.email]),
+        username: new FormControl(null, Validators.required),
+        birthDate: new FormControl(null),
+        hireDate: new FormControl(null),
+        mobileNumber: new FormControl(null, [Validators.pattern("^[0-9]*$")]),
+        vatNumber: new FormControl(null),
+        gender: new FormControl(null),
+        employeeStatus: new FormControl(null),
+        jobStatus: new FormControl(null),
+        maritalStatus: new FormControl(null)
+      })
     })
   }
 
   getUserInfo() {
     this.api.getUserInfo(this.auth.getId())
       .subscribe(userInfo => {
-        this.profileForm.patchValue(userInfo)
+        this.profileForm.reset(userInfo);
+
         this.userInfoView = true;
       })
       .add(() => this.loading = false);
@@ -166,44 +174,48 @@ export class ProfileComponent implements OnInit {
     // })
   }
 
+  get basicInformation(): FormGroup {
+    return this.profileForm.get('basicInformation') as FormGroup;
+  }
+
   get username(): FormControl {
-    return this.profileForm.get('username') as FormControl;
+    return this.basicInformation.get('username') as FormControl;
   }
 
   get name(): FormControl {
-    return this.profileForm.get('name') as FormControl;
+    return this.basicInformation.get('name') as FormControl;
   }
 
   get birthDate(): FormControl {
-    return this.profileForm.get('birthDate') as FormControl;
+    return this.basicInformation.get('birthDate') as FormControl;
   }
 
   get role(): FormControl {
-    return this.profileForm.get('role') as FormControl;
+    return this.basicInformation.get('role') as FormControl;
   }
 
   get mobileNumber(): FormControl {
-    return this.profileForm.get('mobileNumber') as FormControl;
+    return this.basicInformation.get('mobileNumber') as FormControl;
   }
 
   get vatNumber(): FormControl {
-    return this.profileForm.get('vatNumber') as FormControl;
+    return this.basicInformation.get('vatNumber') as FormControl;
   }
 
   get surname(): FormControl {
-    return this.profileForm.get('surname') as FormControl;
+    return this.basicInformation.get('surname') as FormControl;
   }
 
   get email(): FormControl {
-    return this.profileForm.get('email') as FormControl;
+    return this.basicInformation.get('email') as FormControl;
   }
 
   get gdprFile() {
-    return this.profileForm.get('gdprFile') as FormGroup;
+    return this.basicInformation.get('gdprFile') as FormGroup;
   }
 
   get affirmationFile() {
-    return this.profileForm.get('affirmationFile') as FormGroup;
+    return this.basicInformation.get('affirmationFile') as FormGroup;
   }
 
   get type() {

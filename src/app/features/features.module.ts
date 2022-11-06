@@ -41,6 +41,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {TabViewModule} from 'primeng/tabview';
+import {ImageModule} from "primeng/image";
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import {TabViewModule} from 'primeng/tabview';
     PanelModule,
     ToggleButtonModule,
     PasswordModule,
-    TabViewModule
+    TabViewModule,
+    ImageModule
   ],
   providers: [
     // DecisionFormService,
