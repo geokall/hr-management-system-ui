@@ -1,53 +1,35 @@
 <div class="grid">
-<!--  this is the left container-->
-  <div class="col-3">
-    <p-card *ngIf="!loading" [formGroup]="profileForm" [header]="'test'">
+  <div class="col-12 lg:col-12 lg:col-offset-0">
+    <p-card [formGroup]="profileForm">
+
+      <ng-template pTemplate="header">
+
+        <div style="padding-left: 20px">
+          <i class="pi pi-id-card" [style]="{'display': 'inline-block'}"></i>
+          <h2 [style]="{'display': 'inline-block', 'padding-left': '20px'}">Personal</h2>
+        </div>
+
+        <div class="line"></div>
+
+      </ng-template>
+
 
       <div class="card">
-        <h5>Basic Information</h5>
-
-      </div>
-    </p-card>
-  </div>
-
-<!--  2nd container with basic information-->
-  <div class="col-10 lg:col-8 lg:col-offset-0">
-    <p-card *ngIf="!loading" [formGroup]="profileForm" [header]="'Personal'">
-
-      <div class="card">
-        <h3>Basic Information</h3>
+        <i class="pi pi-user" [style]="{'display': 'inline-block'}"></i>
+        <h3 [style]="{'display': 'inline-block', 'padding-left': '20px'}">Basic Information</h3>
 
         <div class="formgroup-inline">
-          <div class="field">
-            <label for="surname" class="block">Επώνυμο</label>
-            <input [readOnly]="isEditMode" id="surname" type="text" pInputText
-                   [formControl]="surname">
-          </div>
 
           <div class="field">
-            <label for="name" class="block">Όνομα</label>
+            <label for="name" class="block">Name</label>
             <input [readOnly]="isEditMode" id="name" type="text" pInputText
                    [formControl]="name">
           </div>
 
           <div class="field">
-            <label for="name" class="block">Business Email</label>
-            <input [readOnly]="isEditMode" id="personalEmail" type="text" pInputText
-                   [formControl]="email">
-          </div>
-
-        </div>
-
-        <div class="formgroup-inline">
-          <div class="field">
-            <label for="Username" class="block">Username</label>
-            <input [readOnly]="isEditMode" id="Username" type="text" pInputText
-                   [formControl]="username">
-          </div>
-
-          <div class="field">
-            <label for="motherName" class="block">Μητρώνυμο</label>
-            <input [readOnly]="isEditMode" id="motherName" type="text" pInputText formControlName="motherName">
+            <label for="surname" class="block">Surname</label>
+            <input [readOnly]="isEditMode" id="surname" type="text" pInputText
+                   [formControl]="surname">
           </div>
 
         </div>
@@ -56,8 +38,8 @@
 
           <div class="field">
             <label for="birthDate" class="block">Ημερομηνία Γέννησης</label>
-            <p-calendar [ngStyle]="isEditMode ? {'pointer-events': 'none'} : {'pointer-events': 'true'}"
-                        formControlName="birthDate"
+            <p-calendar
+                        [formControl]="birthDate"
                         id="birthDate"
                         dateFormat="dd/mm/yy"
                         [showIcon]="true"
@@ -66,17 +48,31 @@
             </p-calendar>
           </div>
 
+        </div>
+
+        <div class="formgroup-inline">
+
           <div class="field">
-            <label for="gender" class="block">Επιλογή φύλου</label>
+            <label for="gender" class="block">Gender</label>
             <p-dropdown [readonly]="isEditMode" [options]="genders"
                         [formControl]="gender"
-                        placeholder="Φύλο"
+                        placeholder="-Select-"
                         id="gender"
                         optionValue="key"
                         optionLabel="value">
             </p-dropdown>
           </div>
 
+          <div class="field">
+            <label for="maritalStatus" class="block">Marital Status</label>
+            <p-dropdown [readonly]="isEditMode" [options]="maritalStatuses"
+                        [formControl]="maritalStatus"
+                        placeholder="-Select-"
+                        id="maritalStatus"
+                        optionValue="key"
+                        optionLabel="value">
+            </p-dropdown>
+          </div>
         </div>
 
       </div>

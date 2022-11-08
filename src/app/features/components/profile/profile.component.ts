@@ -5,7 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {environment} from "../../../../environments/environment";
 import {GenderEnum} from "../../../core/shared/models/enums/gender-enum";
-import {UserDTO} from "../../../core/shared/models/dto/user-dto";
+import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-status-enum";
 
 @Component({
   selector: 'app-profile',
@@ -30,10 +30,13 @@ export class ProfileComponent implements OnInit {
       return {key: item, value: GenderEnum[item]}
     });
 
-  showDebug = environment.debug;
+  maritalStatuses: any[] = Object.keys(MaritalStatusEnum)
+    .map((item) => {
+      // @ts-ignore
+      return {key: item, value: MaritalStatusEnum[item]}
+    });
 
-  @ViewChild('gdprUpload') gdprUpload: any;
-  @ViewChild('affirmationUpload') affirmationUpload: any;
+  showDebug = environment.debug;
 
   constructor(private api: ApiService,
               private auth: AuthService,
@@ -43,6 +46,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getUserInfo();
+    console.log(this.loading)
   }
 
   initForm(): void {
@@ -76,47 +80,6 @@ export class ProfileComponent implements OnInit {
       .add(() => this.loading = false);
   }
 
-  hideProfileDialog() {
-    this.profileEdit = false;
-    this.profileForm.reset();
-    this.getUserInfo();
-  }
-
-  editProfile() {
-    this.profileEdit = true;
-  }
-
-  onSelect(event: any, fileName: string, whichFile: string) {
-
-    for (let file of event.files) {
-
-      this.getBase64(file).then(base64encoded => {
-        let base64encodedString = base64encoded as string;
-        let base64Format = base64encodedString.split(',')[1];
-
-        // @ts-ignore
-        this[fileName].setValue({
-          file: base64Format,
-          originalFileName: file.name,
-          mimeType: file.type
-        });
-
-        // @ts-ignore
-        this[fileName].updateValueAndValidity();
-
-        whichFile === 'gdprFile' ? this.isGdprFileUpload = true : this.isAffirmationFileUpload = true;
-      });
-    }
-  }
-
-  getBase64(file: any) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  }
 
   updateProfile() {
     this.saving = true;
@@ -196,6 +159,10 @@ export class ProfileComponent implements OnInit {
 
   get gender(): FormControl {
     return this.basicInformation.get('gender') as FormControl;
+  }
+
+  get maritalStatus(): FormControl {
+    return this.basicInformation.get('maritalStatus') as FormControl;
   }
 
   get type() {

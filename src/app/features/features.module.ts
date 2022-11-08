@@ -42,13 +42,19 @@ import {RegisterComponent} from "./components/register/register.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {TabViewModule} from 'primeng/tabview';
 import {ImageModule} from "primeng/image";
+import {TabMenuModule} from "primeng/tabmenu";
+import {InfoMenuComponent} from "./components/info-menu/info-menu.component";
+import {MenubarModule} from "primeng/menubar";
+import {JobComponent} from "../job/job.component";
 
 @NgModule({
   declarations: [
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    InfoMenuComponent,
+    JobComponent
   ],
   imports: [
     CommonModule,
@@ -91,7 +97,9 @@ import {ImageModule} from "primeng/image";
     ToggleButtonModule,
     PasswordModule,
     TabViewModule,
-    ImageModule
+    ImageModule,
+    TabMenuModule,
+    MenubarModule
   ],
   providers: [
     // DecisionFormService,

@@ -1,0 +1,24 @@
+<div class="grid">
+  <!--  this is the left container with basic information-->
+  <div class="col-3">
+    <p-card *ngIf="!loading" [header]="'My basic information'">
+
+      <div class="card">
+        <h5>Basic Information</h5>
+
+<!--        edw tha valoume mono ta numbers, hire date, manager, direct reports-->
+
+      </div>
+    </p-card>
+  </div>
+
+<div class="col-9">
+
+  <p-tabMenu [model]="items" [activeItem]="activeItem">
+
+  </p-tabMenu>
+
+  <app-profile></app-profile>
+</div>
+
+</div>
