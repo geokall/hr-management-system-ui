@@ -4,7 +4,8 @@ import {JwtResponseDTO} from "../models/jwt/jwt-response-dto";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {RegisterDTO} from "../models/dto/register-dto";
-import {UserDTO} from "../models/dto/user-dto";
+import {PersonalInfoDTO} from "../models/dto/personal-info-dto";
+import {MainInfoDTO} from "../models/dto/main-info-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -28,15 +29,21 @@ export class ApiService {
     return this.http.post(url, registerDTO, {params});
   }
 
-  getUserInfo(id: number): Observable<UserDTO> {
+  getUserInfo(id: number): Observable<PersonalInfoDTO> {
     const url = `${environment.apiUrl}/user/personal-info/${id}`;
 
-    return this.http.get<UserDTO>(url);
+    return this.http.get<PersonalInfoDTO>(url);
   }
 
-  updateUserInfo(id: number, userDTO: UserDTO): Observable<any> {
+  getMainInfo(id: number): Observable<MainInfoDTO> {
+    const url = `${environment.apiUrl}/user/main-info/${id}`;
+
+    return this.http.get<MainInfoDTO>(url);
+  }
+
+  updateUserInfo(id: number, userDTO: PersonalInfoDTO): Observable<any> {
     const url = `${environment.apiUrl}/user/update-info/${id}`;
 
-    return this.http.put<UserDTO>(url, userDTO);
+    return this.http.put<PersonalInfoDTO>(url, userDTO);
   }
 }

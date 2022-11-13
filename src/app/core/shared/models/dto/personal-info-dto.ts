@@ -1,6 +1,6 @@
 import {BasicInformationDTO} from "./basic-information-dto";
 
-export interface UserDTO {
+export interface PersonalInfoDTO {
   basicInformation: BasicInformationDTO;
 
 }
