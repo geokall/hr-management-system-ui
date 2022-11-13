@@ -1,10 +1,10 @@
 export interface BasicInformationDTO {
-  id:number;
+  id: number;
   role: string;
   name: string;
   surname: string;
   username: string;
-  email: string;
+  businessEmail: string;
   birthDate: Date;
   hireDate: Date;
   createdDate: Date;

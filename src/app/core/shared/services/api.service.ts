@@ -29,7 +29,7 @@ export class ApiService {
   }
 
   getUserInfo(id: number): Observable<UserDTO> {
-    const url = `${environment.apiUrl}/user/info/${id}`;
+    const url = `${environment.apiUrl}/user/personal-info/${id}`;
 
     return this.http.get<UserDTO>(url);
   }

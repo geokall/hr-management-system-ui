@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem, MessageService} from "primeng/api";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 import {GenderEnum} from "../../../core/shared/models/enums/gender-enum";
 import {environment} from "../../../../environments/environment";
 import {ApiService} from "../../../core/shared/services/api.service";
@@ -44,13 +44,13 @@ export class InfoMenuComponent implements OnInit {
 
     this.items = [
       { label: 'Personal',
-        icon: 'pi pi-fw pi-home',
+        // icon: 'pi pi-fw pi-home',
         routerLink: ['/user-profile'],
         routerLinkActiveOptions: {exact: true},
         visible: this.auth.isLoggedIn()
       },
       {label: 'Job',
-        icon: 'pi pi-fw pi-calendar',
+        // icon: 'pi pi-fw pi-calendar',
         routerLink: ['/job'],
         routerLinkActiveOptions: {exact: true},
         visible: this.auth.isLoggedIn()

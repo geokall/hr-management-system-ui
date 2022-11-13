@@ -5,7 +5,7 @@ export interface RegisterDTO {
   name?: string;
   username?: string;
   password?: string;
-  email?: string;
+  businessEmail?: string;
   roleName?: string;
   birthDate?: Date;
   dateCreated?: Date;

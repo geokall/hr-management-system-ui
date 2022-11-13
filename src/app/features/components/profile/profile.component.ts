@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -46,7 +46,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getUserInfo();
-    console.log(this.loading)
   }
 
   initForm(): void {
@@ -56,7 +55,7 @@ export class ProfileComponent implements OnInit {
         role: new FormControl(null),
         name: new FormControl(null, Validators.required),
         surname: new FormControl(null, Validators.required),
-        email: new FormControl(null, [Validators.required, Validators.email]),
+        businessEmail: new FormControl(null, [Validators.required, Validators.email]),
         username: new FormControl(null, Validators.required),
         birthDate: new FormControl(null),
         hireDate: new FormControl(null),
@@ -145,8 +144,8 @@ export class ProfileComponent implements OnInit {
     return this.basicInformation.get('surname') as FormControl;
   }
 
-  get email(): FormControl {
-    return this.basicInformation.get('email') as FormControl;
+  get businessEmail(): FormControl {
+    return this.basicInformation.get('businessEmail') as FormControl;
   }
 
   get gdprFile() {

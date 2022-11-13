@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
   initMenuItems() {
     this.menuItems = [{
-      label: 'Αρχική',
+      label: 'Home',
       icon: 'pi pi-home',
       routerLink: ['/'],
       routerLinkActiveOptions: {exact: true},
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
       //   ]
       // },
       {
-        label: 'Προφίλ',
+        label: 'My Info',
         icon: 'pi pi-users',
         routerLink: '/user-profile',
         visible: this.auth.isLoggedIn()
