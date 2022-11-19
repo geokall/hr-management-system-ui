@@ -3,10 +3,9 @@ import {RouterModule, Routes} from "@angular/router";
 import {AuthGuard} from "../core/shared/guards/auth.guard";
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
-import {RegisterComponent} from "./components/register/register.component";
-import {ProfileComponent} from "./components/profile/profile.component";
 import {InfoMenuComponent} from "./components/info-menu/info-menu.component";
 import {JobComponent} from "../job/job.component";
+import {UserInvitationComponent} from "../user-invitation/user-invitation.component";
 
 const routes: Routes = [
   {
@@ -26,6 +25,7 @@ const routes: Routes = [
     ]
   },
   {path: 'user-profile', component: InfoMenuComponent, canActivate: [AuthGuard]},
+  {path: 'user-invitation', component: UserInvitationComponent, canActivate: [AuthGuard]},
   // {path: 'student-password', component: PasswordComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'job', component: JobComponent},

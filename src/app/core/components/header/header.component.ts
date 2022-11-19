@@ -48,6 +48,12 @@ export class HeaderComponent implements OnInit {
         routerLink: '/user-profile',
         visible: this.auth.isLoggedIn()
       },
+      {
+        label: 'Invite',
+        icon: 'pi pi-users',
+        routerLink: '/user-invitation',
+        visible: this.auth.isLoggedIn()
+      },
     ]
   }
 

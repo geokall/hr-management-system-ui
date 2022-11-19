@@ -29,6 +29,12 @@ export class ApiService {
     return this.http.post(url, registerDTO, {params});
   }
 
+  invite(email: string): Observable<any> {
+    const url = `${environment.apiUrl}/user/invite/${email}`;
+
+    return this.http.put<any>(url, null);
+  }
+
   getUserInfo(id: number): Observable<PersonalInfoDTO> {
     const url = `${environment.apiUrl}/user/personal-info/${id}`;
 

@@ -1,0 +1,24 @@
+<div class="grid">
+  <div class="col-12 lg:col-12 lg:col-offset-0">
+
+    <p-card [formGroup]="invitationForm" [header]="'User invitation'">
+
+      <div class="formgroup-inline">
+
+        <div class="field">
+          <label for="email" class="required">Email</label>
+          <input placeholder="Email" id="email" type="text" pInputText
+                 formControlName="email">
+        </div>
+
+        <div class="field">
+          <button pButton [disabled]="invitationForm.valid === false" type="button"
+                  (click)="submit()" label="Invite">
+          </button>
+        </div>
+
+      </div>
+
+    </p-card>
+  </div>
+</div>
