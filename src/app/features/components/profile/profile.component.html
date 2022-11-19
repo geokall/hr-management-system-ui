@@ -15,19 +15,19 @@
 
       <div class="card">
         <i class="pi pi-user inline-block"></i>
-        <h3 class="next-more">Basic Information</h3>
+        <h4 class="next-more">Basic Information</h4>
 
         <div class="formgroup-inline">
 
           <div class="field">
             <label for="name" class="block">Name</label>
-            <input [readOnly]="isEditMode" id="name" type="text" pInputText
+            <input class="p-inputtext-sm" id="name" type="text" pInputText
                    [formControl]="name">
           </div>
 
           <div class="field">
             <label for="surname" class="block">Surname</label>
-            <input [readOnly]="isEditMode" id="surname" type="text" pInputText
+            <input class="p-inputtext-sm" id="surname" type="text" pInputText
                    [formControl]="surname">
           </div>
 
@@ -75,106 +75,116 @@
         </div>
 
         <div class="line"></div>
-
         <div style="padding-top: 10px"></div>
 
       </div>
 
-<!--      <div class="card" *ngIf="isGraduateInfoEnabled">-->
-<!--        <h3>Στοιχεία φοίτησης</h3>-->
+      <i class="pi pi-user inline-block"></i>
+      <h3 class="next-more">Address</h3>
 
-<!--        <div class="formgrid grid">-->
+      <div class="field">
+        <input class="p-inputtext-sm" placeholder="Street 1" type="text" pInputText [formControl]="street1">
+      </div>
 
-<!--          <div class="field col-5">-->
-<!--            <label for="department" class="block">Τμήμα</label>-->
-<!--            <input class="w-full"-->
-<!--                   type="text"-->
-<!--                   id="department"-->
-<!--                   [readOnly]="isEditMode"-->
-<!--                   pInputText [formControl]="department"/>-->
-<!--          </div>-->
+      <div class="field">
+        <input class="p-inputtext-sm" placeholder="Street 2" type="text" pInputText
+               [formControl]="street2">
+      </div>
 
-<!--          <div class="field col-7">-->
-<!--            <label for="direction" class="block">Επιλογή Κατεύθυνσης</label>-->
-<!--            <p-dropdown [readonly]="isEditMode" [options]="studentDirections"-->
-<!--                        id="direction"-->
-<!--                        placeholder="Κατεύθυνση"-->
-<!--                        [formControl]="direction"-->
-<!--                        optionLabel="name">-->
-<!--            </p-dropdown>-->
-<!--          </div>-->
-<!--        </div>-->
+      <div class="formgroup-inline">
 
-<!--      </div>-->
+        <div class="field">
+          <input class="p-inputtext-sm" placeholder="City" type="text" pInputText
+                 [formControl]="city">
+        </div>
 
-<!--      <div class="card">-->
-<!--        <h3>Στοιχεία επικοινωνίας</h3>-->
+        <div class="field">
+          <input class="p-inputtext-sm" placeholder="Province" type="text" pInputText
+                 [formControl]="province">
+        </div>
 
-<!--        <div class="formgroup-inline">-->
+        <div class="field">
+          <input class="p-inputtext-sm" placeholder="Postal Code" type="text" pInputText
+                 [formControl]="postalCode">
+        </div>
 
-<!--          <div class="field">-->
-<!--            <label for="address" class="block">Διεύθυνση</label>-->
-<!--            <input [readOnly]="isEditMode" id="address" type="text" pInputText [formControl]="address">-->
-<!--          </div>-->
+      </div>
 
-<!--          <div class="field">-->
-<!--            <label for="city" class="block">Πόλη</label>-->
-<!--            <input [readOnly]="isEditMode" id="city" type="text" pInputText [formControl]="city">-->
-<!--          </div>-->
+      <div class="field">
+        <input class="p-inputtext-sm" placeholder="Country" type="text" pInputText [formControl]="country">
+      </div>
 
-<!--          <div class="field">-->
-<!--            <label for="postalCode" class="block">Ταχυδρομικός κώδικας</label>-->
-<!--            <p-inputNumber [readonly]="isEditMode"-->
-<!--                           [formControl]="postalCode"-->
-<!--                           id="postalCode"-->
-<!--                           mode="decimal"-->
-<!--                           [maxlength]="10"-->
-<!--                           [useGrouping]="false"-->
-<!--                           inputId="postalCode">-->
-<!--            </p-inputNumber>-->
-<!--          </div>-->
+      <div class="line"></div>
+      <div style="padding-top: 10px"></div>
 
-<!--        </div>-->
+      <i class="pi pi-user inline-block"></i>
+      <h3 class="next-more">Contact</h3>
 
-<!--        <div class="formgroup-inline">-->
+      <label class="block">Phone</label>
+      <div style="padding-top: 10px"></div>
 
-<!--          <div class="field">-->
-<!--            <label for="postalCode" class="block">Τηλέφωνο επικοινωνίας</label>-->
-<!--            <p-inputNumber [readonly]="isEditMode"-->
-<!--                           [formControl]="mobileNumber"-->
-<!--                           id="mobileNumber"-->
-<!--                           mode="decimal"-->
-<!--                           [maxlength]="10"-->
-<!--                           [useGrouping]="false"-->
-<!--                           inputId="mobileNumber">-->
-<!--            </p-inputNumber>-->
-<!--          </div>-->
+      <div class="field">
+        <p-inputNumber class="p-inputtext-sm" placeholder="Work Phone"
+                       [maxlength]="10"
+                       [useGrouping]="false" [formControl]="workNumber">
+        </p-inputNumber>
+      </div>
 
-<!--          <div class="field">-->
-<!--            <label for="postalCode" class="block">Α.Φ.Μ</label>-->
-<!--            <p-inputNumber [readonly]="isEditMode"-->
-<!--                           [formControl]="vatNumber"-->
-<!--                           id="Αfm"-->
-<!--                           mode="decimal"-->
-<!--                           [maxlength]="10"-->
-<!--                           [useGrouping]="false"-->
-<!--                           inputId="vatNumber">-->
-<!--            </p-inputNumber>-->
-<!--          </div>-->
+      <div class="field">
+        <p-inputNumber class="p-inputtext-sm" placeholder="Mobile Phone"
+                       [maxlength]="10"
+                       [useGrouping]="false" [formControl]="mobileNumber">
+        </p-inputNumber>
+      </div>
 
-<!--        </div>-->
+      <div class="field">
+        <p-inputNumber class="p-inputtext-sm" placeholder="Home Phone"
+                       [maxlength]="10"
+                       [useGrouping]="false" [formControl]="homeNumber">
+        </p-inputNumber>
+      </div>
 
-<!--        <div class="card" *ngIf="!form?.get('id')?.value">-->
-<!--          <h3>Αρχείο</h3>-->
+      <label class="block">Email</label>
+      <div style="padding-top: 10px"></div>
 
-<!--          <div class="formgroup-inline">-->
-<!--            <app-file [form]="form" [isMinioFileExist]="false"></app-file>-->
-<!--          </div>-->
+      <div class="field">
+        <input class="p-inputtext-sm" placeholder="Business Email" type="text" pInputText
+               [formControl]="businessEmail">
+      </div>
 
-<!--        </div>-->
+      <div class="field">
+        <input class="p-inputtext-sm" placeholder="Personal Email" type="text" pInputText
+               [formControl]="personalEmail">
+      </div>
 
-<!--      </div>-->
+      <div class="line"></div>
+      <div style="padding-top: 10px"></div>
 
+      <i class="pi pi-user inline-block"></i>
+      <h3 class="next-more">Social Links</h3>
+
+      <div class="field">
+        <input class="p-inputtext-sm" placeholder="Linkedin" type="text" pInputText
+               [formControl]="linkedinUrl">
+      </div>
+
+      <div class="field">
+        <input class="p-inputtext-sm" placeholder="Twitter" type="text" pInputText
+               [formControl]="twitterUrl">
+      </div>
+
+      <div class="field">
+        <input class="p-inputtext-sm" placeholder="Facebook" type="text" pInputText
+               [formControl]="facebookUrl">
+      </div>
+
+      <div class="line"></div>
+      <div style="padding-top: 10px"></div>
+
+      <i class="pi pi-user inline-block"></i>
+      <h3 class="next-more">Education</h3>
+
+      <!--      end-->
       <ng-template pTemplate="footer">
         <p-button *ngIf="isEditMode == false" (onClick)="updateProfile()"
                   [disabled]="profileForm.invalid || profileForm.untouched"

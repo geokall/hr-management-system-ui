@@ -59,12 +59,20 @@ export class ProfileComponent implements OnInit {
         username: new FormControl(null, Validators.required),
         birthDate: new FormControl(null),
         hireDate: new FormControl(null),
+        workNumber: new FormControl(null, [Validators.pattern("^[0-9]*$")]),
         mobileNumber: new FormControl(null, [Validators.pattern("^[0-9]*$")]),
+        homeNumber: new FormControl(null, [Validators.pattern("^[0-9]*$")]),
         vatNumber: new FormControl(null),
         gender: new FormControl(null),
         employeeStatus: new FormControl(null),
         jobStatus: new FormControl(null),
-        maritalStatus: new FormControl(null)
+        maritalStatus: new FormControl(null),
+        street1: new FormControl(null),
+        street2: new FormControl(null),
+        city: new FormControl(null),
+        province: new FormControl(null),
+        postalCode: new FormControl(null),
+        country: new FormControl(null),
       })
     })
   }
@@ -130,10 +138,6 @@ export class ProfileComponent implements OnInit {
     return this.basicInformation.get('role') as FormControl;
   }
 
-  get mobileNumber(): FormControl {
-    return this.basicInformation.get('mobileNumber') as FormControl;
-  }
-
   get vatNumber(): FormControl {
     return this.basicInformation.get('vatNumber') as FormControl;
   }
@@ -146,12 +150,8 @@ export class ProfileComponent implements OnInit {
     return this.basicInformation.get('businessEmail') as FormControl;
   }
 
-  get gdprFile() {
-    return this.basicInformation.get('gdprFile') as FormGroup;
-  }
-
-  get affirmationFile() {
-    return this.basicInformation.get('affirmationFile') as FormGroup;
+  get personalEmail(): FormControl {
+    return this.basicInformation.get('personalEmail') as FormControl;
   }
 
   get gender(): FormControl {
@@ -162,8 +162,52 @@ export class ProfileComponent implements OnInit {
     return this.basicInformation.get('maritalStatus') as FormControl;
   }
 
-  get type() {
-    return this.gdprFile.get('type') as FormControl;
+  get street1() {
+    return this.basicInformation.get('street1') as FormControl;
+  }
+
+  get street2() {
+    return this.basicInformation.get('street2') as FormControl;
+  }
+
+  get city() {
+    return this.basicInformation.get('city') as FormControl;
+  }
+
+  get province() {
+    return this.basicInformation.get('province') as FormControl;
+  }
+
+  get postalCode() {
+    return this.basicInformation.get('postalCode') as FormControl;
+  }
+
+  get country() {
+    return this.basicInformation.get('country') as FormControl;
+  }
+
+  get workNumber() {
+    return this.basicInformation.get('workNumber') as FormControl;
+  }
+
+  get mobileNumber() {
+    return this.basicInformation.get('mobileNumber') as FormControl;
+  }
+
+  get homeNumber() {
+    return this.basicInformation.get('homeNumber') as FormControl;
+  }
+
+  get linkedinUrl() {
+    return this.basicInformation.get('linkedinUrl') as FormControl;
+  }
+
+  get twitterUrl() {
+    return this.basicInformation.get('twitterUrl') as FormControl;
+  }
+
+  get facebookUrl() {
+    return this.basicInformation.get('facebookUrl') as FormControl;
   }
 
 }
