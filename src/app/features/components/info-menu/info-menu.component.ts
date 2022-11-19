@@ -36,14 +36,14 @@ export class InfoMenuComponent implements OnInit {
       {
         label: 'Personal',
         // icon: 'pi pi-fw pi-home',
-        routerLink: ['/user-profile'],
+        routerLink: ['/user-personal'],
         routerLinkActiveOptions: {exact: true},
         visible: this.auth.isLoggedIn()
       },
       {
         label: 'Job',
         // icon: 'pi pi-fw pi-calendar',
-        routerLink: ['/job'],
+        routerLink: ['/user-job'],
         routerLinkActiveOptions: {exact: true},
         visible: this.auth.isLoggedIn()
       }

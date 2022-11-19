@@ -24,11 +24,11 @@ const routes: Routes = [
       // },
     ]
   },
-  {path: 'user-profile', component: InfoMenuComponent, canActivate: [AuthGuard]},
+  {path: 'user-personal', component: InfoMenuComponent, canActivate: [AuthGuard]},
   {path: 'user-invitation', component: UserInvitationComponent, canActivate: [AuthGuard]},
   // {path: 'student-password', component: PasswordComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'job', component: JobComponent},
+  {path: 'user-job', component: JobComponent},
   // {path: 'register', component: RegisterComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: ''}

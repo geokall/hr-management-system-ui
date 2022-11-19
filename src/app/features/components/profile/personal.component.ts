@@ -48,7 +48,7 @@ export class PersonalComponent implements OnInit {
     this.initForm();
     this.getUserInfo();
 
-    this.activeItem = this.menuItems[0];
+    this.activeItem = this.menuItems[1];
   }
 
   initForm(): void {
