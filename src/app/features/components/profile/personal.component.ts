@@ -9,10 +9,10 @@ import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-statu
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  templateUrl: './personal.component.html',
+  styleUrls: ['./personal.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class PersonalComponent implements OnInit {
 
   @Input() activeItem: MenuItem;
   @Input() menuItems: MenuItem[];

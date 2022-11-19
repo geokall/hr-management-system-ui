@@ -39,7 +39,7 @@ import {PasswordModule} from "primeng/password";
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 import {RegisterComponent} from "./components/register/register.component";
-import {ProfileComponent} from "./components/profile/profile.component";
+import {PersonalComponent} from "./components/profile/personal.component";
 import {TabViewModule} from 'primeng/tabview';
 import {ImageModule} from "primeng/image";
 import {TabMenuModule} from "primeng/tabmenu";
@@ -53,7 +53,7 @@ import {UserInvitationComponent} from "./components/user-invitation/user-invitat
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    ProfileComponent,
+    PersonalComponent,
     InfoMenuComponent,
     JobComponent,
     UserInvitationComponent
