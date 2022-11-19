@@ -4,8 +4,8 @@ import {AuthGuard} from "../core/shared/guards/auth.guard";
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 import {InfoMenuComponent} from "./components/info-menu/info-menu.component";
-import {JobComponent} from "../job/job.component";
-import {UserInvitationComponent} from "../user-invitation/user-invitation.component";
+import {JobComponent} from "./components/job/job.component";
+import {UserInvitationComponent} from "./components/user-invitation/user-invitation.component";
 
 const routes: Routes = [
   {

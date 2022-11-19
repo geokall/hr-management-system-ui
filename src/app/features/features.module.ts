@@ -45,8 +45,8 @@ import {ImageModule} from "primeng/image";
 import {TabMenuModule} from "primeng/tabmenu";
 import {InfoMenuComponent} from "./components/info-menu/info-menu.component";
 import {MenubarModule} from "primeng/menubar";
-import {JobComponent} from "../job/job.component";
-import {UserInvitationComponent} from "../user-invitation/user-invitation.component";
+import {JobComponent} from "./components/job/job.component";
+import {UserInvitationComponent} from "./components/user-invitation/user-invitation.component";
 
 @NgModule({
   declarations: [
