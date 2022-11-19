@@ -5,8 +5,8 @@
       <ng-template pTemplate="header">
 
         <div style="padding-left: 20px">
-          <i class="pi pi-id-card" [style]="{'display': 'inline-block'}"></i>
-          <h2 [style]="{'display': 'inline-block', 'padding-left': '20px'}">Personal</h2>
+          <i class="pi pi-id-card inline-block"></i>
+          <h2 class="next-more">Personal</h2>
         </div>
 
         <div class="line"></div>
@@ -14,8 +14,8 @@
       </ng-template>
 
       <div class="card">
-        <i class="pi pi-user" [style]="{'display': 'inline-block'}"></i>
-        <h3 [style]="{'display': 'inline-block', 'padding-left': '20px'}">Basic Information</h3>
+        <i class="pi pi-user inline-block"></i>
+        <h3 class="next-more">Basic Information</h3>
 
         <div class="formgroup-inline">
 
@@ -36,7 +36,7 @@
         <div class="formgroup-inline">
 
           <div class="field">
-            <label for="birthDate" class="block">Ημερομηνία Γέννησης</label>
+            <label for="birthDate" class="block">Birth Date</label>
             <p-calendar
                         [formControl]="birthDate"
                         id="birthDate"
@@ -73,6 +73,10 @@
             </p-dropdown>
           </div>
         </div>
+
+        <div class="line"></div>
+
+        <div style="padding-top: 10px"></div>
 
       </div>
 
