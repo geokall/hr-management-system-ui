@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
 import {Router} from "@angular/router";
@@ -13,7 +13,6 @@ import {ApiService} from "../../../core/shared/services/api.service";
 })
 export class LoginComponent implements OnInit {
 
-  // @ts-ignore
   loginForm: FormGroup;
   env = environment;
 
@@ -31,18 +30,17 @@ export class LoginComponent implements OnInit {
   }
 
   submit(): void {
-    this.api.login(this.loginForm.value.username, this.loginForm.value.password)
-      .subscribe(result => {
-          this.auth.setAuthDetails(result);
-          // this.auth.startTokenExpirationCounter();
+    this.api.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(result => {
+        this.auth.setAuthDetails(result);
+        // this.auth.startTokenExpirationCounter();
 
-          this.router.navigateByUrl('');
-        },
-        error => {
-          this.messageService.add({
-            severity: 'error',
-            detail: error.error.errorMessage
-          });
+        this.router.navigateByUrl('');
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
         });
+      });
   }
 }

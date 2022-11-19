@@ -72,35 +72,25 @@ export class InfoMenuComponent implements OnInit {
       }),
       directReports: this.fb.array([])
     })
-    //   directReports: new FormGroup({
-    //     id: new FormControl(null),
-    //     profilePicture: new FormControl(null),
-    //     name: new FormControl(null),
-    //     surname: new FormControl(null)
-    //   })
-    // })
-
   }
 
   retrieveMainInfo(): any {
-    this.api.getMainInfo(this.auth.getId())
-      .subscribe(result => {
-          this.basicInfoForm.patchValue(result);
+    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
+        this.basicInfoForm.patchValue(result);
 
-          result.directReports.forEach(report => {
-            this.directReports.push(this.fb.group({
-              name: report.name,
-              surname: report.surname
-            }))
-          })
-
-        },
-        error => {
-          this.messageService.add({
-            severity: 'error',
-            detail: error.error.errorMessage
-          });
+        result.directReports.forEach(report => {
+          this.directReports.push(this.fb.group({
+            name: report.name,
+            surname: report.surname
+          }))
         })
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
   }
 
   get workNumber(): FormControl {

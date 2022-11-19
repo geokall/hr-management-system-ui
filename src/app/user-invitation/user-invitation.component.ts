@@ -25,21 +25,19 @@ export class UserInvitationComponent implements OnInit {
   }
 
   submit() {
-    this.api.invite(this.invitationForm.value.email)
-      .subscribe(result => {
-
-          this.messageService.add({
-            severity: 'success',
-            detail: "Invitation done",
-          });
-
-          this.router.navigateByUrl('');
-        },
-        error => {
-          this.messageService.add({
-            severity: 'error',
-            detail: error.error.errorMessage
-          });
+    this.api.invite(this.invitationForm.value.email).subscribe(result => {
+        this.messageService.add({
+          severity: 'success',
+          detail: "Invitation done",
         });
+
+        this.router.navigateByUrl('');
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      });
   }
 }

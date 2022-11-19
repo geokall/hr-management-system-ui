@@ -70,12 +70,11 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.api.getUserInfo(this.auth.getId())
-      .subscribe(userInfo => {
-        this.profileForm.reset(userInfo);
+    this.api.getUserInfo(this.auth.getId()).subscribe(userInfo => {
+      this.profileForm.reset(userInfo);
 
-        this.userInfoView = true;
-      })
+      this.userInfoView = true;
+    })
       .add(() => this.loading = false);
   }
 
@@ -84,8 +83,7 @@ export class ProfileComponent implements OnInit {
     this.saving = true;
 
     let userDTO = this.profileForm.value;
-    this.api.updateUserInfo(this.auth.getId(), userDTO)
-      .subscribe(result => {
+    this.api.updateUserInfo(this.auth.getId(), userDTO).subscribe(result => {
         this.successModal = true;
         this.saving = false;
 
