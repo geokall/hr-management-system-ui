@@ -62,7 +62,7 @@ export class InfoMenuComponent implements OnInit {
       jobStatus: new FormControl(null),
       division: new FormControl(null),
       location: new FormControl(null),
-      manager: new FormGroup({
+      directManager: new FormGroup({
         id: new FormControl(null),
         profilePicture: new FormControl(null),
         name: new FormControl(null)
@@ -99,5 +99,22 @@ export class InfoMenuComponent implements OnInit {
   get hireDate(): FormControl {
     return this.basicInfoForm.get('hireDate') as FormControl;
   }
+
+  get employeeNumber(): FormControl {
+    return this.basicInfoForm.get('employeeNumber') as FormControl;
+  }
+
+  get jobStatus(): FormControl {
+    return this.basicInfoForm.get('jobStatus') as FormControl;
+  }
+
+  get division(): FormControl {
+    return this.basicInfoForm.get('division') as FormControl;
+  }
+
+  get location(): FormControl {
+    return this.basicInfoForm.get('location') as FormControl;
+  }
+
 
 }
