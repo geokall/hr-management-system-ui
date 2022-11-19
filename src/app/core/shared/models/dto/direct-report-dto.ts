@@ -1,7 +1,6 @@
-export interface ManagerDTO {
+export interface DirectReportDTO {
   id: number;
   profilePicture: any;
   name: string;
   surname: string;
-  titleJob: string;
 }

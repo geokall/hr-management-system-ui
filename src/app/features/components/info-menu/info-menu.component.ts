@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem, MessageService} from "primeng/api";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 
@@ -19,7 +19,8 @@ export class InfoMenuComponent implements OnInit {
 
   basicInfoForm: FormGroup;
 
-  constructor(private api: ApiService,
+  constructor(private fb: FormBuilder,
+              private api: ApiService,
               private auth: AuthService,
               private messageService: MessageService) {
   }
@@ -52,7 +53,7 @@ export class InfoMenuComponent implements OnInit {
   }
 
   initForm(): void {
-    this.basicInfoForm = new FormGroup({
+    this.basicInfoForm = this.fb.group({
       workNumber: new FormControl(null),
       mobileNumber: new FormControl(null),
       businessEmail: new FormControl(null),
@@ -69,13 +70,15 @@ export class InfoMenuComponent implements OnInit {
         surname: new FormControl(null),
         titleJob: new FormControl(null),
       }),
-      directReports: new FormGroup({
-        id: new FormControl(null),
-        profilePicture: new FormControl(null),
-        name: new FormControl(null),
-        surname: new FormControl(null)
-      })
+      directReports: this.fb.array([])
     })
+    //   directReports: new FormGroup({
+    //     id: new FormControl(null),
+    //     profilePicture: new FormControl(null),
+    //     name: new FormControl(null),
+    //     surname: new FormControl(null)
+    //   })
+    // })
 
   }
 
@@ -83,6 +86,14 @@ export class InfoMenuComponent implements OnInit {
     this.api.getMainInfo(this.auth.getId())
       .subscribe(result => {
           this.basicInfoForm.patchValue(result);
+
+          result.directReports.forEach(report => {
+            this.directReports.push(this.fb.group({
+              name: report.name,
+              surname: report.surname
+            }))
+          })
+
         },
         error => {
           this.messageService.add({
@@ -140,17 +151,7 @@ export class InfoMenuComponent implements OnInit {
     return this.directManager.get('titleJob') as FormControl;
   }
 
-  get directReports(): FormGroup {
-    return this.basicInfoForm.get('directReports') as FormGroup;
+  get directReports(): FormArray {
+    return this.basicInfoForm.get('directReports') as FormArray;
   }
-
-  get reportName(): FormControl {
-    return this.directReports.get('name') as FormControl;
-  }
-
-  get reportSurname(): FormControl {
-    return this.directReports.get('surname') as FormControl;
-  }
-
-
 }

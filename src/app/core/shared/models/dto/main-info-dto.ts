@@ -1,4 +1,5 @@
 import {ManagerDTO} from "./manager-dto";
+import {DirectReportDTO} from "./direct-report-dto";
 
 export interface MainInfoDTO {
   workNumber: string;
@@ -11,5 +12,5 @@ export interface MainInfoDTO {
   division: string;
   location: string;
   manager: ManagerDTO;
-  directReports: string[];
+  directReports: DirectReportDTO[];
 }
