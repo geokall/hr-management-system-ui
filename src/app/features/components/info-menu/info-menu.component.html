@@ -12,21 +12,21 @@
         <div class="row mb-3 pb-2">
           <i class="pi pi-id-card inline-block"></i>
           <div class="col-sm-10 info next">
-            {{workNumber?.value}}
+            {{workNumber.value}}
           </div>
         </div>
 
         <div class="row mb-3 pb-2">
           <i class="pi pi-id-card inline-block"></i>
           <div class="col-sm-10 info next">
-            {{mobileNumber?.value}}
+            {{mobileNumber.value}}
           </div>
         </div>
 
         <div class="row mb-3 pb-2">
           <i class="pi pi-id-card inline-block"></i>
           <div class="col-sm-10 info next">
-            {{businessEmail?.value}}
+            {{businessEmail.value}}
           </div>
         </div>
 
@@ -37,7 +37,7 @@
         <div class="row mb-3 pb-2">
           <label><b>Hire Date</b></label>
           <div class="col-sm-10 info">
-            {{hireDate?.value}}
+            {{hireDate.value}}
           </div>
           <div class="col-sm-10 info">
             {{'3y - 12d'}}
@@ -51,28 +51,28 @@
         <div class="row mb-3 pb-2">
           <i class="pi pi-id-card inline-block"></i>
           <div class="col-sm-10 info next">
-            {{employeeNumber?.value}}
+            {{employeeNumber.value}}
           </div>
         </div>
 
         <div class="row mb-3 pb-2">
           <i class="pi pi-id-card inline-block"></i>
           <div class="col-sm-10 info next">
-            {{jobStatus?.value}}
+            {{jobStatus.value}}
           </div>
         </div>
 
         <div class="row mb-3 pb-2">
           <i class="pi pi-id-card inline-block"></i>
           <div class="col-sm-10 info next">
-            {{division?.value}}
+            {{division.value}}
           </div>
         </div>
 
         <div class="row mb-3 pb-2">
           <i class="pi pi-id-card inline-block"></i>
           <div class="col-sm-10 info next">
-            {{location?.value}}
+            {{location.value}}
           </div>
         </div>
 
@@ -85,7 +85,7 @@
           <div style="padding-top: 10px"></div>
 
           <div class="col-sm-10 info">
-            {{managerName?.value + ' ' + managerSurname?.value}}
+            {{managerName.value + ' ' + managerSurname.value}}
           </div>
           <div class="col-sm-10 info">
             <!--            {{managerTitleJob?.value}}-->
@@ -106,7 +106,7 @@
             <div [formGroupName]="i">
               <i class="pi pi-user inline-block"></i>
               <div class="col-sm-10 info next">
-                {{directReport?.value.name + ' ' + directReport.value.surname}}
+                {{directReport?.value.name + ' ' + directReport?.value.surname}}
               </div>
             </div>
           </div>
@@ -119,11 +119,13 @@
 
   <div class="col-9">
 
-    <p-tabMenu [model]="items" [activeItem]="activeItem">
-
+    <p-tabMenu [model]="menuItems"
+               [activeItem]="activeItem">
     </p-tabMenu>
 
-    <app-profile></app-profile>
+    <app-profile [activeItem]="activeItem"
+                 [menuItems]="menuItems">
+    </app-profile>
   </div>
 
 </div>

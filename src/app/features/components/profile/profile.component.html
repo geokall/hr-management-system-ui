@@ -193,8 +193,8 @@
         </p-button>
         <p-button *ngIf="isEditMode == false" (onClick)="onClear()" [disabled]="profileForm.untouched"
                   [style]="{'margin-left': '.5em'}"
-                  [icon]="!profileForm?.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
-                  [label]="!profileForm?.get('id')?.value ? 'Καθαρισμός': 'Επαναφορά'"
+                  [icon]="!profileForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
+                  [label]="!profileForm.get('id')?.value ? 'Καθαρισμός': 'Επαναφορά'"
                   styleClass="p-button-secondary">
         </p-button>
       </ng-template>
@@ -202,23 +202,6 @@
     </p-card>
 
   </div>
-
-<!--  <p-dialog [(visible)]="successModal" [draggable]="false" [modal]="true" [resizable]="false"-->
-<!--            [style]="{width: '20vw'}" header="Επιτυχία">-->
-<!--    <p class="m-0">Η καταχώριση ολοκληρώθηκε με επιτυχία.</p>-->
-<!--    <ng-template class="p-0" pTemplate="footer">-->
-<!--      <p-button (click)="successModal=false" icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>-->
-<!--    </ng-template>-->
-<!--  </p-dialog>-->
-
-<!--  <p-dialog [(visible)]="errorModal" [draggable]="false" [modal]="true" [resizable]="false"-->
-<!--            [style]="{width: '25vw'}" header="Αποτυχία">-->
-<!--    <p class="m-0">Παρουσιάστηκε πρόβλημα στη καταχώριση. Παρακαλώ επικοινωνήστε με τους διαχειριστές του-->
-<!--      συστήματος.</p>-->
-<!--    <ng-template class="p-0" pTemplate="footer">-->
-<!--      <p-button (click)="errorModal=false" icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>-->
-<!--    </ng-template>-->
-<!--  </p-dialog>-->
 
   <ng-container *ngIf="showDebug">
     <pre>{{profileForm.value | json}}</pre>

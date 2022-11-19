@@ -11,7 +11,7 @@ import {AuthService} from "../../../core/shared/services/auth.service";
 })
 export class InfoMenuComponent implements OnInit {
 
-  items: MenuItem[];
+  menuItems: MenuItem[];
   activeItem: MenuItem;
 
   loading: boolean = false;
@@ -32,7 +32,7 @@ export class InfoMenuComponent implements OnInit {
   }
 
   initMenuItems(): void {
-    this.items = [
+    this.menuItems = [
       {
         label: 'Personal',
         // icon: 'pi pi-fw pi-home',
@@ -49,7 +49,7 @@ export class InfoMenuComponent implements OnInit {
       }
     ]
 
-    this.activeItem = this.items[0];
+    // this.activeItem = this.menuItems[0];
   }
 
   initForm(): void {

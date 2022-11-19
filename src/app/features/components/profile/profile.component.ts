@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from "../../../core/shared/services/api.service";
-import {MessageService} from "primeng/api";
+import {MenuItem, MessageService} from "primeng/api";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {environment} from "../../../../environments/environment";
@@ -14,11 +14,12 @@ import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-statu
 })
 export class ProfileComponent implements OnInit {
 
+  @Input() activeItem: MenuItem;
+  @Input() menuItems: MenuItem[];
+
   profileForm: FormGroup;
   userInfoView: boolean = false;
   profileEdit: boolean = false;
-  isGdprFileUpload = false;
-  isAffirmationFileUpload = false;
   loading: boolean = false;
   isEditMode: boolean = false;
   saving: boolean = false;
@@ -46,6 +47,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getUserInfo();
+
+    this.activeItem = this.menuItems[0];
   }
 
   initForm(): void {
