@@ -8,7 +8,7 @@ import {GenderEnum} from "../../../core/shared/models/enums/gender-enum";
 import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-status-enum";
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-personal',
   templateUrl: './personal.component.html',
   styleUrls: ['./personal.component.scss']
 })
