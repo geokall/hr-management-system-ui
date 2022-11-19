@@ -65,10 +65,18 @@ export class InfoMenuComponent implements OnInit {
       directManager: new FormGroup({
         id: new FormControl(null),
         profilePicture: new FormControl(null),
-        name: new FormControl(null)
+        name: new FormControl(null),
+        surname: new FormControl(null),
+        titleJob: new FormControl(null),
       }),
-      directReports: new FormControl(null)
+      directReports: new FormGroup({
+        id: new FormControl(null),
+        profilePicture: new FormControl(null),
+        name: new FormControl(null),
+        surname: new FormControl(null)
+      })
     })
+
   }
 
   retrieveMainInfo(): any {
@@ -114,6 +122,34 @@ export class InfoMenuComponent implements OnInit {
 
   get location(): FormControl {
     return this.basicInfoForm.get('location') as FormControl;
+  }
+
+  get directManager(): FormGroup {
+    return this.basicInfoForm.get('directManager') as FormGroup;
+  }
+
+  get managerName(): FormControl {
+    return this.directManager.get('name') as FormControl;
+  }
+
+  get managerSurname(): FormControl {
+    return this.directManager.get('surname') as FormControl;
+  }
+
+  get managerTitleJob(): FormControl {
+    return this.directManager.get('titleJob') as FormControl;
+  }
+
+  get directReports(): FormGroup {
+    return this.basicInfoForm.get('directReports') as FormGroup;
+  }
+
+  get reportName(): FormControl {
+    return this.directReports.get('name') as FormControl;
+  }
+
+  get reportSurname(): FormControl {
+    return this.directReports.get('surname') as FormControl;
   }
 
 
