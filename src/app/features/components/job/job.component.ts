@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 
 @Component({
@@ -8,9 +8,11 @@ import {FormGroup} from "@angular/forms";
 })
 export class JobComponent implements OnInit {
 
-  @Input() jobForm: FormGroup;
-  @Input() personalForm: FormGroup;
+  jobForm: FormGroup;
+
   @Input() selected: boolean;
+
+  @Output() jobFormOutput = new EventEmitter<FormGroup>();
 
   constructor() {
   }
@@ -23,12 +25,8 @@ export class JobComponent implements OnInit {
     this.jobForm = new FormGroup({
       test: new FormGroup({})
     })
-  }
 
-  test(): void {
-    if (this.selected) {
-      this.personalForm.reset();
-    }
+    this.jobFormOutput.emit(this.jobForm);
   }
 
 

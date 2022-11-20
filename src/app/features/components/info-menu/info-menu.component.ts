@@ -20,6 +20,7 @@ export class InfoMenuComponent implements OnInit {
   basicInfoForm: FormGroup;
 
   personalForm: FormGroup;
+  personalValue: any;
   jobForm: FormGroup;
 
   activeIndex: number = 0;
@@ -149,17 +150,33 @@ export class InfoMenuComponent implements OnInit {
   }
 
   selectTab() {
+    console.log(this.jobForm)
+    this.personalForm.reset(this.personalForm)
     if (this.activeIndex == 0) {
       this.personalSelected = true;
       this.jobSelected = false;
+
+      // this.transferPersonalForm(this.personalForm);
+      // this.personalForm.reset(this.personalValue)
+
+      // this.jobForm.patchValue(this.jobForm);
     }
     if (this.activeIndex == 1) {
       this.jobSelected = true;
       this.personalSelected = false;
-      console.log(this.personalForm)
-      console.log(this.jobForm)
-      // this.personalForm.reset();
+
+      // this.transferJobForm(this.jobForm)
+      // this.personalForm.patchValue(this.personalForm)
 
     }
+  }
+
+  transferPersonalForm(personalForm: FormGroup) {
+    this.personalForm = personalForm;
+    console.log(this.personalForm)
+  }
+
+  transferJobForm(jobForm: FormGroup) {
+    this.jobForm = jobForm;
   }
 }

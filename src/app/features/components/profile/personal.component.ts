@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -14,9 +14,11 @@ import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-statu
 })
 export class PersonalComponent implements OnInit {
 
-  @Input() personalForm: FormGroup;
-  @Input() jobForm: FormGroup;
+  personalForm: FormGroup;
+
   @Input() selected: boolean;
+
+  @Output() personalFormOutput = new EventEmitter<FormGroup>();
 
   userInfoView: boolean = false;
   profileEdit: boolean = false;
@@ -84,11 +86,13 @@ export class PersonalComponent implements OnInit {
 
   getUserInfo() {
     this.api.getUserInfo(this.auth.getId()).subscribe(userInfo => {
-      this.personalForm.reset(userInfo);
+      this.personalForm.patchValue(userInfo);
 
       this.userInfoView = true;
-    })
-      .add(() => this.loading = false);
+
+      this.personalFormOutput.emit(this.personalForm);
+    }).add(() => this.loading = false);
+
   }
 
 

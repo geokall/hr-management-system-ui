@@ -125,9 +125,8 @@
         <p-tabPanel [header]="personHeader" [selected]="personalSelected">
           <!--          <p-progressSpinner *ngIf="!this.basicInfoForm"></p-progressSpinner>-->
 
-          <app-personal [selected]="personalSelected"
-                        [jobForm]="jobForm"
-                        [personalForm]="personalForm">
+          <app-personal (personalFormOutput)="transferPersonalForm($event)"
+                        [selected]="personalSelected">
           </app-personal>
 
         </p-tabPanel>
@@ -135,9 +134,8 @@
         <p-tabPanel [header]="jobHeader" [selected]="jobSelected">
           <!--          <p-progressSpinner *ngIf="!this.jobForm"></p-progressSpinner>-->
 
-          <app-job [selected]="jobSelected"
-                   [jobForm]="jobForm"
-                   [personalForm]="personalForm">
+          <app-job (jobFormOutput)="transferJobForm($event)"
+                   [selected]="jobSelected">
           </app-job>
         </p-tabPanel>
 
