@@ -1,6 +1,9 @@
-import {BasicInformationDTO} from "./basic-information-dto";
+import {PersonalInformationDTO} from "./personal-information-dto";
+import {JobInformationDTO} from "./job-information-dto";
 
 export interface PersonalInfoDTO {
-  basicInformation: BasicInformationDTO;
+  personalInformation: PersonalInformationDTO;
+
+  jobInformation: JobInformationDTO;
 
 }

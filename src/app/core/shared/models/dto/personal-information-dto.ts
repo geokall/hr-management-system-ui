@@ -1,4 +1,4 @@
-export interface BasicInformationDTO {
+export interface PersonalInformationDTO {
   id: number;
   role: string;
   name: string;

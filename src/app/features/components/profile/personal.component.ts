@@ -54,7 +54,7 @@ export class PersonalComponent implements OnInit {
 
   initForm(): void {
     this.personalForm = new FormGroup({
-      basicInformation: new FormGroup({
+      personalInformation: new FormGroup({
         id: new FormControl(null),
         role: new FormControl(null),
         name: new FormControl(null, Validators.required),
@@ -127,96 +127,96 @@ export class PersonalComponent implements OnInit {
     // this.form.reset(this.studentForm);
   }
 
-  get basicInformation(): FormGroup {
-    return this.personalForm.get('basicInformation') as FormGroup;
+  get personalInformation(): FormGroup {
+    return this.personalForm.get('personalInformation') as FormGroup;
   }
 
   get username(): FormControl {
-    return this.basicInformation.get('username') as FormControl;
+    return this.personalInformation.get('username') as FormControl;
   }
 
   get name(): FormControl {
-    return this.basicInformation.get('name') as FormControl;
+    return this.personalInformation.get('name') as FormControl;
   }
 
   get birthDate(): FormControl {
-    return this.basicInformation.get('birthDate') as FormControl;
+    return this.personalInformation.get('birthDate') as FormControl;
   }
 
   get role(): FormControl {
-    return this.basicInformation.get('role') as FormControl;
+    return this.personalInformation.get('role') as FormControl;
   }
 
   get vatNumber(): FormControl {
-    return this.basicInformation.get('vatNumber') as FormControl;
+    return this.personalInformation.get('vatNumber') as FormControl;
   }
 
   get surname(): FormControl {
-    return this.basicInformation.get('surname') as FormControl;
+    return this.personalInformation.get('surname') as FormControl;
   }
 
   get businessEmail(): FormControl {
-    return this.basicInformation.get('businessEmail') as FormControl;
+    return this.personalInformation.get('businessEmail') as FormControl;
   }
 
   get personalEmail(): FormControl {
-    return this.basicInformation.get('personalEmail') as FormControl;
+    return this.personalInformation.get('personalEmail') as FormControl;
   }
 
   get gender(): FormControl {
-    return this.basicInformation.get('gender') as FormControl;
+    return this.personalInformation.get('gender') as FormControl;
   }
 
   get maritalStatus(): FormControl {
-    return this.basicInformation.get('maritalStatus') as FormControl;
+    return this.personalInformation.get('maritalStatus') as FormControl;
   }
 
   get street1() {
-    return this.basicInformation.get('street1') as FormControl;
+    return this.personalInformation.get('street1') as FormControl;
   }
 
   get street2() {
-    return this.basicInformation.get('street2') as FormControl;
+    return this.personalInformation.get('street2') as FormControl;
   }
 
   get city() {
-    return this.basicInformation.get('city') as FormControl;
+    return this.personalInformation.get('city') as FormControl;
   }
 
   get province() {
-    return this.basicInformation.get('province') as FormControl;
+    return this.personalInformation.get('province') as FormControl;
   }
 
   get postalCode() {
-    return this.basicInformation.get('postalCode') as FormControl;
+    return this.personalInformation.get('postalCode') as FormControl;
   }
 
   get country() {
-    return this.basicInformation.get('country') as FormControl;
+    return this.personalInformation.get('country') as FormControl;
   }
 
   get workNumber() {
-    return this.basicInformation.get('workNumber') as FormControl;
+    return this.personalInformation.get('workNumber') as FormControl;
   }
 
   get mobileNumber() {
-    return this.basicInformation.get('mobileNumber') as FormControl;
+    return this.personalInformation.get('mobileNumber') as FormControl;
   }
 
   get homeNumber() {
-    return this.basicInformation.get('homeNumber') as FormControl;
+    return this.personalInformation.get('homeNumber') as FormControl;
   }
 
   get linkedinUrl() {
-    return this.basicInformation.get('linkedinUrl') as FormControl;
+    return this.personalInformation.get('linkedinUrl') as FormControl;
   }
 
   get twitterUrl() {
-    return this.basicInformation.get('twitterUrl') as FormControl;
+    return this.personalInformation.get('twitterUrl') as FormControl;
   }
 
   get facebookUrl() {
-    return this.basicInformation.get('facebookUrl') as FormControl;
+    return this.personalInformation.get('facebookUrl') as FormControl;
   }
 
 }
