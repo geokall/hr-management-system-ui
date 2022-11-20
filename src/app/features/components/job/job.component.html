@@ -1,1 +1,36 @@
-<p> test </p>
+<div class="grid">
+  <div class="col-12 lg:col-12 lg:col-offset-0">
+    <p-card [formGroup]="jobForm">
+
+      <ng-template pTemplate="header">
+
+        <div style="padding-left: 20px">
+          <i class="pi pi-id-card inline-block"></i>
+          <h2 class="next-more">Job</h2>
+        </div>
+
+        <div class="line"></div>
+
+      </ng-template>
+
+      <div class="card">
+        <i class="pi pi-user inline-block"></i>
+        <h4 class="next-more">Bonus</h4>
+
+      </div>
+
+      <div class="field">
+        <label for="birthDate" class="block">Birth Date</label>
+        <p-calendar
+          [formControl]="hireDate"
+          id="birthDate"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          dataType="string"
+          inputId="hireDate">
+        </p-calendar>
+      </div>
+
+    </p-card>
+  </div>
+</div>
