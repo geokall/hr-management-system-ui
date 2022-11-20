@@ -53,7 +53,7 @@
 
           <div class="field">
             <label for="gender" class="block">Gender</label>
-            <p-dropdown [readonly]="isEditMode" [options]="genders"
+            <p-dropdown [options]="genders"
                         [formControl]="gender"
                         placeholder="-Select-"
                         id="gender"
@@ -64,7 +64,7 @@
 
           <div class="field">
             <label for="maritalStatus" class="block">Marital Status</label>
-            <p-dropdown [readonly]="isEditMode" [options]="maritalStatuses"
+            <p-dropdown [options]="maritalStatuses"
                         [formControl]="maritalStatus"
                         placeholder="-Select-"
                         id="maritalStatus"

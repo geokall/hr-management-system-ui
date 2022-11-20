@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import {EthnicityEnum} from "../../../core/shared/models/enums/ethnicity-enum";
+import {JobCategoryEnum} from "../../../core/shared/models/enums/job-category-enum";
 
 @Component({
   selector: 'app-job',
@@ -15,6 +17,18 @@ export class JobComponent implements OnInit {
   @Output() jobFormOutput = new EventEmitter<FormGroup>();
   @Output() jobFormValue = new EventEmitter<any>();
 
+  ethnicities: any[] = Object.keys(EthnicityEnum)
+    .map((item) => {
+      // @ts-ignore
+      return {key: item, value: EthnicityEnum[item]}
+    });
+
+  jobCategories: any[] = Object.keys(JobCategoryEnum)
+    .map((item) => {
+      // @ts-ignore
+      return {key: item, value: JobCategoryEnum[item]}
+    });
+
   constructor() {
   }
 
@@ -27,6 +41,8 @@ export class JobComponent implements OnInit {
       jobInformation: new FormGroup({
         id: new FormControl(null),
         hireDate: new FormControl(null),
+        ethnicity: new FormControl(null),
+        jobCategory: new FormControl(null),
       })
     })
 
@@ -41,5 +57,13 @@ export class JobComponent implements OnInit {
 
   get hireDate(): FormControl {
     return this.jobInformation.get('hireDate') as FormControl;
+  }
+
+  get ethnicity(): FormControl {
+    return this.jobInformation.get('ethnicity') as FormControl;
+  }
+
+  get jobCategory(): FormControl {
+    return this.jobInformation.get('jobCategory') as FormControl;
   }
 }
