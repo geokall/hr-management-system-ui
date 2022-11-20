@@ -19,6 +19,7 @@ export class PersonalComponent implements OnInit {
   @Input() selected: boolean;
 
   @Output() personalFormOutput = new EventEmitter<FormGroup>();
+  @Output() personalFormValue = new EventEmitter<any>();
 
   userInfoView: boolean = false;
   profileEdit: boolean = false;
@@ -91,10 +92,9 @@ export class PersonalComponent implements OnInit {
       this.userInfoView = true;
 
       this.personalFormOutput.emit(this.personalForm);
+      this.personalFormValue.emit(userInfo);
     }).add(() => this.loading = false);
-
   }
-
 
   updateProfile() {
     this.saving = true;

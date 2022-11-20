@@ -126,6 +126,7 @@
           <!--          <p-progressSpinner *ngIf="!this.basicInfoForm"></p-progressSpinner>-->
 
           <app-personal (personalFormOutput)="transferPersonalForm($event)"
+                        (personalFormValue)="transferPersonalFormValue($event)"
                         [selected]="personalSelected">
           </app-personal>
 
@@ -135,8 +136,10 @@
           <!--          <p-progressSpinner *ngIf="!this.jobForm"></p-progressSpinner>-->
 
           <app-job (jobFormOutput)="transferJobForm($event)"
+                   (jobFormValue)="transferJobFormValue($event)"
                    [selected]="jobSelected">
           </app-job>
+
         </p-tabPanel>
 
       </p-tabView>

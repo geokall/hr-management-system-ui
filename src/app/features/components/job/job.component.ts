@@ -13,6 +13,7 @@ export class JobComponent implements OnInit {
   @Input() selected: boolean;
 
   @Output() jobFormOutput = new EventEmitter<FormGroup>();
+  @Output() jobFormValue = new EventEmitter<any>();
 
   constructor() {
   }
@@ -26,7 +27,9 @@ export class JobComponent implements OnInit {
       test: new FormGroup({})
     })
 
+    //to be added on fetch endpoint
     this.jobFormOutput.emit(this.jobForm);
+    this.jobFormValue.emit(null)
   }
 
 

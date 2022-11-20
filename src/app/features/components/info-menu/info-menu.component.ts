@@ -3,6 +3,7 @@ import {MenuItem, MessageService} from "primeng/api";
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
+import {PersonalInfoDTO} from "../../../core/shared/models/dto/personal-info-dto";
 
 @Component({
   selector: 'app-info-menu',
@@ -20,8 +21,10 @@ export class InfoMenuComponent implements OnInit {
   basicInfoForm: FormGroup;
 
   personalForm: FormGroup;
-  personalValue: any;
+  personalFormValue: PersonalInfoDTO;
+
   jobForm: FormGroup;
+  jobFormValue: any;
 
   activeIndex: number = 0;
 
@@ -150,33 +153,37 @@ export class InfoMenuComponent implements OnInit {
   }
 
   selectTab() {
-    console.log(this.jobForm)
-    this.personalForm.reset(this.personalForm)
     if (this.activeIndex == 0) {
       this.personalSelected = true;
       this.jobSelected = false;
 
-      // this.transferPersonalForm(this.personalForm);
-      // this.personalForm.reset(this.personalValue)
+      this.transferPersonalForm(this.personalForm)
+      this.transferPersonalFormValue(this.personalFormValue)
 
-      // this.jobForm.patchValue(this.jobForm);
+      this.personalForm.patchValue(this.personalFormValue)
     }
     if (this.activeIndex == 1) {
       this.jobSelected = true;
       this.personalSelected = false;
 
-      // this.transferJobForm(this.jobForm)
-      // this.personalForm.patchValue(this.personalForm)
-
+      this.transferJobFormValue(this.jobForm);
+      this.transferJobFormValue(this.jobFormValue);
     }
   }
 
   transferPersonalForm(personalForm: FormGroup) {
     this.personalForm = personalForm;
-    console.log(this.personalForm)
+  }
+
+  transferPersonalFormValue(userInfo: PersonalInfoDTO) {
+    this.personalFormValue = userInfo;
   }
 
   transferJobForm(jobForm: FormGroup) {
     this.jobForm = jobForm;
+  }
+
+  transferJobFormValue(value: any) {
+    this.jobFormValue = value;
   }
 }
