@@ -47,8 +47,6 @@ export class PersonalComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getUserInfo();
-
-    this.activeItem = this.menuItems[1];
   }
 
   initForm(): void {
@@ -59,6 +57,7 @@ export class PersonalComponent implements OnInit {
         name: new FormControl(null, Validators.required),
         surname: new FormControl(null, Validators.required),
         businessEmail: new FormControl(null, [Validators.required, Validators.email]),
+        personalEmail: new FormControl(null, [Validators.required, Validators.email]),
         username: new FormControl(null, Validators.required),
         birthDate: new FormControl(null),
         hireDate: new FormControl(null),
@@ -76,6 +75,9 @@ export class PersonalComponent implements OnInit {
         province: new FormControl(null),
         postalCode: new FormControl(null),
         country: new FormControl(null),
+        linkedinUrl: new FormControl(null),
+        twitterUrl: new FormControl(null),
+        facebookUrl: new FormControl(null)
       })
     })
   }

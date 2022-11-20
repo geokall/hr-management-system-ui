@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {MenuItem} from "primeng/api";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-job',
@@ -8,15 +7,10 @@ import {MenuItem} from "primeng/api";
 })
 export class JobComponent implements OnInit {
 
-  @Input() activeItem: MenuItem;
-  @Input() menuItems: MenuItem[];
-
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log(this.menuItems);
-    // this.activeItem = this.menuItems[1];
 
   }
 

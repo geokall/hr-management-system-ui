@@ -4,7 +4,6 @@ import {AuthGuard} from "../core/shared/guards/auth.guard";
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 import {InfoMenuComponent} from "./components/info-menu/info-menu.component";
-import {JobComponent} from "./components/job/job.component";
 import {UserInvitationComponent} from "./components/user-invitation/user-invitation.component";
 
 const routes: Routes = [
@@ -28,7 +27,6 @@ const routes: Routes = [
   {path: 'user-invitation', component: UserInvitationComponent, canActivate: [AuthGuard]},
   // {path: 'student-password', component: PasswordComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'user-job', component: JobComponent},
   // {path: 'register', component: RegisterComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: ''}

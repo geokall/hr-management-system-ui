@@ -35,21 +35,24 @@ export class InfoMenuComponent implements OnInit {
     this.menuItems = [
       {
         label: 'Personal',
-        // icon: 'pi pi-fw pi-home',
-        routerLink: ['/user-personal'],
         routerLinkActiveOptions: {exact: true},
-        visible: this.auth.isLoggedIn()
+        visible: this.auth.isLoggedIn(),
+        command: event => {
+
+          this.activeItem = this.menuItems[0];
+        }
       },
       {
         label: 'Job',
-        // icon: 'pi pi-fw pi-calendar',
-        routerLink: ['/user-job'],
         routerLinkActiveOptions: {exact: true},
-        visible: this.auth.isLoggedIn()
+        visible: this.auth.isLoggedIn(),
+        command: event => {
+          this.activeItem = this.menuItems[1];
+        }
       }
     ]
 
-    // this.activeItem = this.menuItems[0];
+    this.activeItem = this.menuItems[0];
   }
 
   initForm(): void {
