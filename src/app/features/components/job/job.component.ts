@@ -43,6 +43,7 @@ export class JobComponent implements OnInit {
         hireDate: new FormControl(null),
         ethnicity: new FormControl(null),
         jobCategory: new FormControl(null),
+        jobDescription: new FormControl(null),
       })
     })
 
@@ -65,5 +66,9 @@ export class JobComponent implements OnInit {
 
   get jobCategory(): FormControl {
     return this.jobInformation.get('jobCategory') as FormControl;
+  }
+
+  get jobDescription(): FormControl {
+    return this.jobInformation.get('jobDescription') as FormControl;
   }
 }
