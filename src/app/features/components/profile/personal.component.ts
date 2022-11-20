@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from "../../../core/shared/services/api.service";
-import {MenuItem, MessageService} from "primeng/api";
+import {MessageService} from "primeng/api";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {environment} from "../../../../environments/environment";
@@ -14,10 +14,10 @@ import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-statu
 })
 export class PersonalComponent implements OnInit {
 
-  @Input() activeItem: MenuItem;
-  @Input() menuItems: MenuItem[];
+  @Input() personalForm: FormGroup;
+  @Input() jobForm: FormGroup;
+  @Input() selected: boolean;
 
-  profileForm: FormGroup;
   userInfoView: boolean = false;
   profileEdit: boolean = false;
   loading: boolean = false;
@@ -50,7 +50,7 @@ export class PersonalComponent implements OnInit {
   }
 
   initForm(): void {
-    this.profileForm = new FormGroup({
+    this.personalForm = new FormGroup({
       basicInformation: new FormGroup({
         id: new FormControl(null),
         role: new FormControl(null),
@@ -84,7 +84,7 @@ export class PersonalComponent implements OnInit {
 
   getUserInfo() {
     this.api.getUserInfo(this.auth.getId()).subscribe(userInfo => {
-      this.profileForm.reset(userInfo);
+      this.personalForm.reset(userInfo);
 
       this.userInfoView = true;
     })
@@ -95,7 +95,7 @@ export class PersonalComponent implements OnInit {
   updateProfile() {
     this.saving = true;
 
-    let userDTO = this.profileForm.value;
+    let userDTO = this.personalForm.value;
     this.api.updateUserInfo(this.auth.getId(), userDTO).subscribe(result => {
         this.successModal = true;
         this.saving = false;
@@ -124,7 +124,7 @@ export class PersonalComponent implements OnInit {
   }
 
   get basicInformation(): FormGroup {
-    return this.profileForm.get('basicInformation') as FormGroup;
+    return this.personalForm.get('basicInformation') as FormGroup;
   }
 
   get username(): FormControl {

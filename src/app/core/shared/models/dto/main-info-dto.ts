@@ -2,6 +2,9 @@ import {ManagerDTO} from "./manager-dto";
 import {DirectReportDTO} from "./direct-report-dto";
 
 export interface MainInfoDTO {
+  id: number;
+  name: string;
+  surname: string;
   workNumber: string;
   mobileNumber: string;
   businessEmail: string;

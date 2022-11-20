@@ -19,6 +19,16 @@ export class InfoMenuComponent implements OnInit {
 
   basicInfoForm: FormGroup;
 
+  personalForm: FormGroup;
+  jobForm: FormGroup;
+
+  activeIndex: number = 0;
+
+  personalSelected: boolean = false;
+  jobSelected: boolean = false;
+  personHeader: string = 'Personal';
+  jobHeader: string = 'Job';
+
   constructor(private fb: FormBuilder,
               private api: ApiService,
               private auth: AuthService,
@@ -26,37 +36,15 @@ export class InfoMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initMenuItems();
     this.initForm();
     this.retrieveMainInfo();
   }
 
-  initMenuItems(): void {
-    this.menuItems = [
-      {
-        label: 'Personal',
-        routerLinkActiveOptions: {exact: true},
-        visible: this.auth.isLoggedIn(),
-        command: event => {
-
-          this.activeItem = this.menuItems[0];
-        }
-      },
-      {
-        label: 'Job',
-        routerLinkActiveOptions: {exact: true},
-        visible: this.auth.isLoggedIn(),
-        command: event => {
-          this.activeItem = this.menuItems[1];
-        }
-      }
-    ]
-
-    this.activeItem = this.menuItems[0];
-  }
-
   initForm(): void {
     this.basicInfoForm = this.fb.group({
+      id: new FormControl(null),
+      name: new FormControl(null),
+      surname: new FormControl(null),
       workNumber: new FormControl(null),
       mobileNumber: new FormControl(null),
       businessEmail: new FormControl(null),
@@ -94,6 +82,18 @@ export class InfoMenuComponent implements OnInit {
           detail: error.error.errorMessage
         });
       })
+  }
+
+  get id(): FormControl {
+    return this.basicInfoForm.get('id') as FormControl;
+  }
+
+  get name(): FormControl {
+    return this.basicInfoForm.get('name') as FormControl;
+  }
+
+  get surname(): FormControl {
+    return this.basicInfoForm.get('surname') as FormControl;
   }
 
   get workNumber(): FormControl {
@@ -146,5 +146,20 @@ export class InfoMenuComponent implements OnInit {
 
   get directReports(): FormArray {
     return this.basicInfoForm.get('directReports') as FormArray;
+  }
+
+  selectTab() {
+    if (this.activeIndex == 0) {
+      this.personalSelected = true;
+      this.jobSelected = false;
+    }
+    if (this.activeIndex == 1) {
+      this.jobSelected = true;
+      this.personalSelected = false;
+      console.log(this.personalForm)
+      console.log(this.jobForm)
+      // this.personalForm.reset();
+
+    }
   }
 }

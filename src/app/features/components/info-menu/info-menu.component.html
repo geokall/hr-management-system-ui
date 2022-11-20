@@ -119,16 +119,30 @@
 
   <div class="col-9">
 
-    <p-tabMenu [model]="menuItems"
-               [activeItem]="activeItem">
-    </p-tabMenu>
+    <p-panel [header]="name.value + ' ' + surname.value">
+      <p-tabView [(activeIndex)]="activeIndex" (onChange)="selectTab()">
 
-    <app-personal [activeItem]="activeItem"
-                  [menuItems]="menuItems">
-    </app-personal>
+        <p-tabPanel [header]="personHeader" [selected]="personalSelected">
+          <!--          <p-progressSpinner *ngIf="!this.basicInfoForm"></p-progressSpinner>-->
 
-    <app-job>
-    </app-job>
+          <app-personal [selected]="personalSelected"
+                        [jobForm]="jobForm"
+                        [personalForm]="personalForm">
+          </app-personal>
+
+        </p-tabPanel>
+
+        <p-tabPanel [header]="jobHeader" [selected]="jobSelected">
+          <!--          <p-progressSpinner *ngIf="!this.jobForm"></p-progressSpinner>-->
+
+          <app-job [selected]="jobSelected"
+                   [jobForm]="jobForm"
+                   [personalForm]="personalForm">
+          </app-job>
+        </p-tabPanel>
+
+      </p-tabView>
+    </p-panel>
 
   </div>
 

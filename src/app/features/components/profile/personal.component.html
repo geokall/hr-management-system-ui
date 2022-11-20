@@ -1,6 +1,6 @@
 <div class="grid">
   <div class="col-12 lg:col-12 lg:col-offset-0">
-    <p-card [formGroup]="profileForm">
+    <p-card [formGroup]="personalForm">
 
       <ng-template pTemplate="header">
 
@@ -187,14 +187,14 @@
       <!--      end-->
       <ng-template pTemplate="footer">
         <p-button *ngIf="isEditMode == false" (onClick)="updateProfile()"
-                  [disabled]="profileForm.invalid || profileForm.untouched"
+                  [disabled]="personalForm.invalid || personalForm.untouched"
                   [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
                   label="Αποθήκευση">
         </p-button>
-        <p-button *ngIf="isEditMode == false" (onClick)="onClear()" [disabled]="profileForm.untouched"
+        <p-button *ngIf="isEditMode == false" (onClick)="onClear()" [disabled]="personalForm.untouched"
                   [style]="{'margin-left': '.5em'}"
-                  [icon]="!profileForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
-                  [label]="!profileForm.get('id')?.value ? 'Καθαρισμός': 'Επαναφορά'"
+                  [icon]="!personalForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
+                  [label]="!personalForm.get('id')?.value ? 'Καθαρισμός': 'Επαναφορά'"
                   styleClass="p-button-secondary">
         </p-button>
       </ng-template>
@@ -204,7 +204,7 @@
   </div>
 
   <ng-container *ngIf="showDebug">
-    <pre>{{profileForm.value | json}}</pre>
+    <pre>{{personalForm.value | json}}</pre>
   </ng-container>
 
 </div>
