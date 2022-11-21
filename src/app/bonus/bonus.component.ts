@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {ApiService} from "../core/shared/services/api.service";
 
 @Component({
@@ -12,13 +12,14 @@ export class BonusComponent implements OnInit {
   @Input() jobForm: FormGroup;
 
   newBonusDialog: boolean | undefined;
-  editable: boolean | undefined;
-  deleteBonus: boolean | undefined;
+  editable: boolean | undefined = false;
+  deleteBonus: boolean | undefined = false;
 
-  bonuses: any = null;
-  isLoading = false;
+  bonus: any = null;
+  isLoading: boolean = false;
 
-  constructor(private api: ApiService) {
+  constructor(private fb: FormBuilder,
+              private api: ApiService) {
   }
 
   ngOnInit(): void {
@@ -57,5 +58,13 @@ export class BonusComponent implements OnInit {
 
   removeBonus() {
 
+  }
+
+  get jobInformation(): FormGroup {
+    return this.jobForm.get('jobInformation') as FormGroup;
+  }
+
+  get bonuses(): FormArray {
+    return this.jobInformation.get('bonuses') as FormArray;
   }
 }

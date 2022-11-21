@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {EthnicityEnum} from "../../../core/shared/models/enums/ethnicity-enum";
 import {JobCategoryEnum} from "../../../core/shared/models/enums/job-category-enum";
 
@@ -29,7 +29,7 @@ export class JobComponent implements OnInit {
       return {key: item, value: JobCategoryEnum[item]}
     });
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -44,6 +44,7 @@ export class JobComponent implements OnInit {
         ethnicity: new FormControl(null),
         jobCategory: new FormControl(null),
         jobDescription: new FormControl(null),
+        bonuses: this.fb.array([])
       })
     })
 
