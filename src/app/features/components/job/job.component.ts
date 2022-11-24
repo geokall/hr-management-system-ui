@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {EthnicityEnum} from "../../../core/shared/models/enums/ethnicity-enum";
 import {JobCategoryEnum} from "../../../core/shared/models/enums/job-category-enum";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-job',
@@ -9,6 +10,8 @@ import {JobCategoryEnum} from "../../../core/shared/models/enums/job-category-en
   styleUrls: ['./job.component.scss']
 })
 export class JobComponent implements OnInit {
+
+  env = environment;
 
   jobForm: FormGroup;
 

@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <p-panel header="test" [toggleable]="true">
   <button pButton label="Add bonus" icon="pi pi-plus" class="p-button-secondary"
           (click)="openNewBonusDialog()">
@@ -45,17 +47,35 @@
 <p-dialog [(visible)]="newBonusDialog" [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid"
           (onHide)="hideOrganizationDialog()">
   <ng-template pTemplate="header">
-    <span *ngIf="!editable && !deleteBonus">Create new</span>
+    <span *ngIf="!editable && !deleteBonus">Create bonus</span>
     <span *ngIf="editable && !deleteBonus">Edit bonus</span>
     <span *ngIf="deleteBonus">Delete bonus</span>
   </ng-template>
 
   <!--  <p-messages [(value)]="formErrors" [enableService]="false"></p-messages>-->
 
-  <form [formGroup]="jobForm">
-    <label *ngIf="!deleteBonus">whatever</label>
-    <input *ngIf="!deleteBonus" type="text" pInputText id="name" class="p-inputtext-md p-inputtext"
-           formControlName="organizationName">
+  <form [formGroup]="bonusForm">
+
+    <div class="field">
+      <label for="bonusDate" class="block">Bonus Date</label>
+      <p-calendar formControlName="bonusDate"
+                  id="bonusDate"
+                  dateFormat="dd/mm/yy"
+                  [showIcon]="true"
+                  dataType="string"
+                  inputId="bonusDate">
+      </p-calendar>
+    </div>
+
+    <div class="field">
+      <label for="amount">Amount</label>
+      <p-inputNumber id="amount" formControlName="amount" inputId="amount" mode="currency" currency="EUR">
+      </p-inputNumber>
+    </div>
+
+    <label *ngIf="!deleteBonus">Comment</label>
+    <input *ngIf="!deleteBonus" type="text" pInputText id="comment" class="p-inputtext-md p-inputtext"
+           formControlName="comment">
     <!--    <div *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)">-->
     <!--      <small *ngIf="organizationName.errors?.['required']" class="text-danger">{{"THIS_FIELD_IS_REQUIRED" | translate}}.</small>-->
     <!--    </div>-->
@@ -78,4 +98,7 @@
 
     </div>
   </form>
+
+  <pre *ngIf="env.debug">{{bonusForm.value | json}}</pre>
+
 </p-dialog>

@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ApiService} from "../core/shared/services/api.service";
+import {BonusDTO} from "../core/shared/models/dto/bonus-dto";
+import {environment} from "../../environments/environment";
+import {AuthService} from "../core/shared/services/auth.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-bonus',
@@ -9,20 +13,32 @@ import {ApiService} from "../core/shared/services/api.service";
 })
 export class BonusComponent implements OnInit {
 
+  env = environment;
+
   @Input() jobForm: FormGroup;
+
+  bonusForm: FormGroup;
 
   newBonusDialog: boolean | undefined;
   editable: boolean | undefined = false;
   deleteBonus: boolean | undefined = false;
 
-  bonus: any = null;
+  bonus: BonusDTO[] = [];
   isLoading: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private api: ApiService) {
+              private api: ApiService,
+              private auth: AuthService,
+              private messageService: MessageService) {
   }
 
   ngOnInit(): void {
+    this.bonusForm = new FormGroup({
+      id: new FormControl(null),
+      bonusDate: new FormControl(null),
+      amount: new FormControl(null),
+      comment: new FormControl(null)
+    })
   }
 
   openNewBonusDialog() {
@@ -33,7 +49,7 @@ export class BonusComponent implements OnInit {
 
   hideOrganizationDialog() {
     this.newBonusDialog = false;
-    this.jobForm.reset();
+    this.bonusForm.reset();
   }
 
   addBonus() {
@@ -48,8 +64,19 @@ export class BonusComponent implements OnInit {
 
   }
 
-  saveBonus() {
+  saveBonus(): void {
+    this.editable = false;
+    this.deleteBonus = false;
+    let bonusForm = this.bonusForm.value;
+    let userId = this.auth.getId();
+    this.api.updateUserBonus(userId, bonusForm).subscribe(result => {
+      this.messageService.add({
+        severity: 'success',
+        detail: 'Bonus has been updated successfully.',
+      });
+    }, error => {
 
+    })
   }
 
   updateBonus() {
@@ -60,11 +87,11 @@ export class BonusComponent implements OnInit {
 
   }
 
-  get jobInformation(): FormGroup {
-    return this.jobForm.get('jobInformation') as FormGroup;
+  get amount(): FormControl {
+    return this.bonusForm.get('amount') as FormControl;
   }
 
-  get bonuses(): FormArray {
-    return this.jobInformation.get('bonuses') as FormArray;
+  get comment(): FormControl {
+    return this.bonusForm.get('comment') as FormControl;
   }
 }
