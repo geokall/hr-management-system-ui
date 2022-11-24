@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ApiService} from "../core/shared/services/api.service";
-import {BonusDTO} from "../core/shared/models/dto/bonus-dto";
 import {environment} from "../../environments/environment";
 import {AuthService} from "../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
@@ -15,15 +14,13 @@ export class BonusComponent implements OnInit {
 
   env = environment;
 
-  @Input() jobForm: FormGroup;
-
   bonusForm: FormGroup;
 
   newBonusDialog: boolean | undefined;
   editable: boolean | undefined = false;
   deleteBonus: boolean | undefined = false;
 
-  bonus: BonusDTO[] = [];
+  bonuses: any;
   isLoading: boolean = false;
 
   constructor(private fb: FormBuilder,
@@ -33,6 +30,11 @@ export class BonusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initForm();
+    this.getUserJobInfo();
+  }
+
+  initForm() {
     this.bonusForm = new FormGroup({
       id: new FormControl(null),
       bonusDate: new FormControl(null),
@@ -64,12 +66,25 @@ export class BonusComponent implements OnInit {
 
   }
 
+  getUserJobInfo(): void {
+    this.api.fetchUserJobInfo(this.auth.getId()).subscribe(result => {
+      this.bonuses = result.bonuses;
+      this.isLoading = false;
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
+  }
+
   saveBonus(): void {
     this.editable = false;
     this.deleteBonus = false;
     let bonusForm = this.bonusForm.value;
     let userId = this.auth.getId();
     this.api.updateUserBonus(userId, bonusForm).subscribe(result => {
+
       this.messageService.add({
         severity: 'success',
         detail: 'Bonus has been updated successfully.',

@@ -5,7 +5,7 @@
           (click)="openNewBonusDialog()">
   </button>
 
-  <p-table #dt [loading]="isLoading" [showLoader]="false" responsiveLayout="scroll" [value]="bonus"
+  <p-table #dt [loading]="isLoading" [showLoader]="false" responsiveLayout="scroll" [value]="bonuses"
            [rowHover]="true" dataKey="id">
 
     <ng-template pTemplate="header">
@@ -21,7 +21,7 @@
     <ng-template pTemplate="body" let-bonus let-columns="columns">
       <tr>
         <td style="display: none;">{{bonus.id}}</td>
-        <td>{{bonus.date}}</td>
+        <td>{{bonus.bonusDate}}</td>
         <td>{{bonus.amount}}</td>
         <td>{{bonus.comment}}</td>
         <td>
