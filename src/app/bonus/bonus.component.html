@@ -22,7 +22,7 @@
       <tr>
         <td style="display: none;">{{bonus.id}}</td>
         <td>{{bonus.bonusDate}}</td>
-        <td>{{bonus.amount}}</td>
+        <td>{{bonus.amount | currency: 'EUR' : true}}</td>
         <td>{{bonus.comment}}</td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-button-outlined mr-2"
@@ -45,10 +45,9 @@
 </p-panel>
 
 <!--delete dialog-->
-<p-dialog [(visible)]="deleteDialog"
+<p-dialog *ngIf="deleteBonus" [(visible)]="deleteDialog"
           [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid"
-          (onHide)="hideDeleteDialog()"
-          *ngIf="deleteBonus">
+          (onHide)="hideDeleteDialog()">
 
   <ng-template pTemplate="header">
     <span *ngIf="deleteBonus">Delete bonus</span>
@@ -110,7 +109,7 @@
       <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
               (click)="hideOrganizationDialog()">
       </button>
-      <button *ngIf="!editable && !deleteBonus" pButton pRipple label="SAVE" icon="pi pi-check" class="p-button-text"
+      <button *ngIf="!editable && !deleteBonus" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
               (click)="saveBonus()">
       </button>
       <button *ngIf="editable && !deleteBonus" pButton pRipple label="Update" icon="pi pi-pencil" class="p-button-text"

@@ -53,6 +53,7 @@ export class BonusComponent implements OnInit {
 
   hideOrganizationDialog() {
     this.editDialog = false;
+    this.deleteDialog = false;
     this.bonusForm.reset();
   }
 
@@ -62,14 +63,9 @@ export class BonusComponent implements OnInit {
     this.bonusForm.reset();
   }
 
-  addBonus() {
-
-  }
-
   editBonusRow(bonus: any) {
     this.editable = true;
     this.deleteBonus = false;
-    // this.bonusForm.get('organizationType').disable()
     this.bonusForm.patchValue(bonus);
     this.editDialog = true;
   }
@@ -165,13 +161,5 @@ export class BonusComponent implements OnInit {
           detail: error.error.errorMessage
         });
       })
-  }
-
-  get amount(): FormControl {
-    return this.bonusForm.get('amount') as FormControl;
-  }
-
-  get comment(): FormControl {
-    return this.bonusForm.get('comment') as FormControl;
   }
 }
