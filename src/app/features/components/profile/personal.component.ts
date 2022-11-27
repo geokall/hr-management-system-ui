@@ -86,7 +86,7 @@ export class PersonalComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.api.getUserInfo(this.auth.getId()).subscribe(userInfo => {
+    this.api.getPersonalInfo(this.auth.getId()).subscribe(userInfo => {
       this.personalForm.patchValue(userInfo);
 
       this.userInfoView = true;
@@ -100,7 +100,7 @@ export class PersonalComponent implements OnInit {
     this.saving = true;
 
     let userDTO = this.personalForm.value;
-    this.api.updateUserInfo(this.auth.getId(), userDTO).subscribe(result => {
+    this.api.updateUserPersonalInfo(this.auth.getId(), userDTO).subscribe(result => {
         this.successModal = true;
         this.saving = false;
         this.userInfoView = false;

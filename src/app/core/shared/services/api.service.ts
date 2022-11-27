@@ -38,22 +38,22 @@ export class ApiService {
     return this.http.put<any>(url, null);
   }
 
-  getUserInfo(id: number): Observable<PersonalInfoDTO> {
-    const url = `${environment.apiUrl}/user/personal-info/${id}`;
+  getPersonalInfo(id: number): Observable<PersonalInfoDTO> {
+    const url = `${environment.apiUrl}/personal/fetch-info/${id}`;
 
     return this.http.get<PersonalInfoDTO>(url);
+  }
+
+  updateUserPersonalInfo(id: number, userDTO: PersonalInfoDTO): Observable<any> {
+    const url = `${environment.apiUrl}/personal/update-info/${id}`;
+
+    return this.http.put<PersonalInfoDTO>(url, userDTO);
   }
 
   getMainInfo(id: number): Observable<MainInfoDTO> {
     const url = `${environment.apiUrl}/user/main-info/${id}`;
 
     return this.http.get<MainInfoDTO>(url);
-  }
-
-  updateUserInfo(id: number, userDTO: PersonalInfoDTO): Observable<any> {
-    const url = `${environment.apiUrl}/user/update-info/${id}`;
-
-    return this.http.put<PersonalInfoDTO>(url, userDTO);
   }
 
   createUserBonus(id: number, bonusDTO: BonusDTO): Observable<any> {
@@ -75,13 +75,13 @@ export class ApiService {
   }
 
   fetchUserJobInfo(id: number): Observable<JobInfoDTO> {
-    const url = `${environment.apiUrl}/job/fetch-job-information/${id}`;
+    const url = `${environment.apiUrl}/job/fetch-information/${id}`;
 
     return this.http.get<JobInfoDTO>(url);
   }
 
   updateUserJobInformation(id: number, jobInformationDTO: JobInformationDTO): Observable<any> {
-    const url = `${environment.apiUrl}/job/update-job-info/${id}`;
+    const url = `${environment.apiUrl}/job/update-info/${id}`;
 
     return this.http.put<BonusDTO>(url, jobInformationDTO);
   }
