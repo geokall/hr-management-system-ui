@@ -75,7 +75,7 @@ export class ApiService {
   }
 
   fetchUserJobInfo(id: number): Observable<JobInfoDTO> {
-    const url = `${environment.apiUrl}/job/fetch/${id}`;
+    const url = `${environment.apiUrl}/job/fetch-job-information/${id}`;
 
     return this.http.get<JobInfoDTO>(url);
   }
