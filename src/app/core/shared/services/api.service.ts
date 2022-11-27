@@ -55,10 +55,22 @@ export class ApiService {
     return this.http.put<PersonalInfoDTO>(url, userDTO);
   }
 
+  createUserBonus(id: number, bonusDTO: BonusDTO): Observable<any> {
+    const url = `${environment.apiUrl}/job/create-bonus/${id}`;
+
+    return this.http.post<BonusDTO>(url, bonusDTO);
+  }
+
   updateUserBonus(id: number, bonusDTO: BonusDTO): Observable<any> {
     const url = `${environment.apiUrl}/job/update-bonus/${id}`;
 
     return this.http.put<BonusDTO>(url, bonusDTO);
+  }
+
+  deleteUserBonus(id: number): Observable<any> {
+    const url = `${environment.apiUrl}/job/delete-bonus/${id}`;
+
+    return this.http.delete<BonusDTO>(url);
   }
 
   fetchUserJobInfo(id: number): Observable<JobInfoDTO> {

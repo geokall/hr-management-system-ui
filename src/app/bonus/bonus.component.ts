@@ -4,6 +4,7 @@ import {ApiService} from "../core/shared/services/api.service";
 import {environment} from "../../environments/environment";
 import {AuthService} from "../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
+import {BonusDTO} from "../core/shared/models/dto/bonus-dto";
 
 @Component({
   selector: 'app-bonus',
@@ -16,7 +17,8 @@ export class BonusComponent implements OnInit {
 
   bonusForm: FormGroup;
 
-  newBonusDialog: boolean | undefined;
+  editDialog: boolean | undefined;
+  deleteDialog: boolean | undefined;
   editable: boolean | undefined = false;
   deleteBonus: boolean | undefined = false;
 
@@ -46,11 +48,17 @@ export class BonusComponent implements OnInit {
   openNewBonusDialog() {
     this.editable = false;
     this.deleteBonus = false;
-    this.newBonusDialog = true;
+    this.editDialog = true;
   }
 
   hideOrganizationDialog() {
-    this.newBonusDialog = false;
+    this.editDialog = false;
+    this.bonusForm.reset();
+  }
+
+  hideDeleteDialog() {
+    this.editDialog = false;
+    this.deleteDialog = false;
     this.bonusForm.reset();
   }
 
@@ -59,11 +67,18 @@ export class BonusComponent implements OnInit {
   }
 
   editBonusRow(bonus: any) {
-
+    this.editable = true;
+    this.deleteBonus = false;
+    // this.bonusForm.get('organizationType').disable()
+    this.bonusForm.patchValue(bonus);
+    this.editDialog = true;
   }
 
   deleteBonusRow(bonus: any) {
-
+    this.deleteBonus = true;
+    this.editable = false;
+    this.bonusForm.patchValue(bonus);
+    this.deleteDialog = true;
   }
 
   getUserJobInfo(): void {
@@ -81,25 +96,75 @@ export class BonusComponent implements OnInit {
   saveBonus(): void {
     this.editable = false;
     this.deleteBonus = false;
+
     let bonusForm = this.bonusForm.value;
     let userId = this.auth.getId();
-    this.api.updateUserBonus(userId, bonusForm).subscribe(result => {
+
+    this.api.createUserBonus(userId, bonusForm).subscribe(result => {
+      this.editDialog = false;
+
+      this.getUserJobInfo();
+      this.bonusForm.reset();
 
       this.messageService.add({
         severity: 'success',
-        detail: 'Bonus has been updated successfully.',
+        detail: 'Bonus updated successfully.',
       });
     }, error => {
+      this.editDialog = false;
 
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
     })
   }
 
   updateBonus() {
+    let bonusDTO = this.bonusForm.value as BonusDTO;
 
+    this.api.updateUserBonus(bonusDTO.id, bonusDTO).subscribe(bonus => {
+        this.editDialog = false;
+
+        this.bonusForm.reset();
+        this.getUserJobInfo();
+
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Updated bonus successfully.'
+        });
+      },
+      error => {
+        this.editDialog = false;
+
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
   }
 
-  removeBonus() {
+  removeBonus(): void {
+    let bonus = this.bonusForm.value;
 
+    this.api.deleteUserBonus(bonus.id).subscribe(bonus => {
+        this.deleteDialog = false;
+        this.getUserJobInfo();
+        this.bonusForm.reset();
+
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Bonus deleted successfully.',
+        });
+      },
+      error => {
+        this.deleteDialog = false;
+
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
   }
 
   get amount(): FormControl {
