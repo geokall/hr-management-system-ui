@@ -3,6 +3,10 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {EthnicityEnum} from "../../../core/shared/models/enums/ethnicity-enum";
 import {JobCategoryEnum} from "../../../core/shared/models/enums/job-category-enum";
 import {environment} from "../../../../environments/environment";
+import {ApiService} from "../../../core/shared/services/api.service";
+import {AuthService} from "../../../core/shared/services/auth.service";
+import {MessageService} from "primeng/api";
+import {JobInformationDTO} from "../../../core/shared/models/dto/job-information-dto";
 
 @Component({
   selector: 'app-job',
@@ -32,23 +36,28 @@ export class JobComponent implements OnInit {
       return {key: item, value: JobCategoryEnum[item]}
     });
 
-  constructor(private fb: FormBuilder) {
+  isEditMode: boolean = false;
+  saving: boolean = false;
+
+  constructor(private fb: FormBuilder,
+              private api: ApiService,
+              private auth: AuthService,
+              private messageService: MessageService) {
   }
 
   ngOnInit(): void {
     this.initForm();
+    this.fetchJobInfo();
   }
 
   initForm(): void {
     this.jobForm = new FormGroup({
-      jobInformation: new FormGroup({
-        id: new FormControl(null),
+      id: new FormControl(null),
         hireDate: new FormControl(null),
         ethnicity: new FormControl(null),
-        jobCategory: new FormControl(null),
-        jobDescription: new FormControl(null),
-        bonuses: this.fb.array([])
-      })
+      jobCategory: new FormControl(null),
+      jobDescription: new FormControl(null),
+      bonuses: this.fb.array([])
     })
 
     //to be added on fetch endpoint
@@ -56,23 +65,54 @@ export class JobComponent implements OnInit {
     this.jobFormValue.emit(null)
   }
 
-  get jobInformation(): FormGroup {
-    return this.jobForm.get('jobInformation') as FormGroup;
+  fetchJobInfo() {
+    this.api.fetchUserJobInfo(this.auth.getId()).subscribe(result => {
+      this.jobForm.reset(result);
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
+  }
+
+  updateJobInfo() {
+    let dto = this.jobForm.value as JobInformationDTO;
+
+    this.api.updateUserJobInformation(this.auth.getId(), dto).subscribe(result => {
+      this.jobForm.reset();
+      this.fetchJobInfo();
+
+      this.messageService.add({
+        severity: 'success',
+        detail: 'Job information updated successfully.',
+      });
+    }, error => {
+
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
+  }
+
+  onClear(): void {
+    // this.form.reset(this.studentForm);
   }
 
   get hireDate(): FormControl {
-    return this.jobInformation.get('hireDate') as FormControl;
+    return this.jobForm.get('hireDate') as FormControl;
   }
 
   get ethnicity(): FormControl {
-    return this.jobInformation.get('ethnicity') as FormControl;
+    return this.jobForm.get('ethnicity') as FormControl;
   }
 
   get jobCategory(): FormControl {
-    return this.jobInformation.get('jobCategory') as FormControl;
+    return this.jobForm.get('jobCategory') as FormControl;
   }
 
   get jobDescription(): FormControl {
-    return this.jobInformation.get('jobDescription') as FormControl;
+    return this.jobForm.get('jobDescription') as FormControl;
   }
 }

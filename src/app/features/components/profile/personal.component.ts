@@ -103,14 +103,15 @@ export class PersonalComponent implements OnInit {
     this.api.updateUserInfo(this.auth.getId(), userDTO).subscribe(result => {
         this.successModal = true;
         this.saving = false;
+        this.userInfoView = false;
+        this.profileEdit = false;
+
+        this.getUserInfo();
 
         this.messageService.add({
           severity: 'success',
           detail: "Η ενημέρωση έγινε με επιτυχία.",
         });
-        this.userInfoView = false;
-        this.getUserInfo();
-        this.profileEdit = false;
       },
       error => {
         this.saving = false;

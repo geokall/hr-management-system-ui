@@ -22,10 +22,10 @@
       </div>
 
       <div class="field">
-        <label for="birthDate" class="block">Birth Date</label>
+        <label for="hireDate" class="block">Hire Date</label>
         <p-calendar
           [formControl]="hireDate"
-          id="birthDate"
+          id="hireDate"
           dateFormat="dd/mm/yy"
           [showIcon]="true"
           dataType="string"
@@ -67,6 +67,19 @@
 
       </div>
 
+      <ng-template pTemplate="footer">
+        <p-button *ngIf="isEditMode == false" (onClick)="updateJobInfo()"
+                  [disabled]="jobForm.pristine && jobForm.untouched"
+                  [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
+                  label="Save changes">
+        </p-button>
+        <p-button *ngIf="isEditMode == false" (onClick)="onClear()" [disabled]="jobForm.untouched"
+                  [style]="{'margin-left': '.5em'}"
+                  [icon]="!jobForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
+                  [label]="!jobForm.get('id')?.value ? 'Clear': 'Refresh'"
+                  styleClass="p-button-secondary">
+        </p-button>
+      </ng-template>
 
     </p-card>
   </div>

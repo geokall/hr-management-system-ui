@@ -1,4 +1,7 @@
 export interface JobInformationDTO {
   id: number;
-  hireDate: string;
+  hireDate: Date;
+  ethnicity: string;
+  jobCategory: string;
+  jobDescription: string;
 }
