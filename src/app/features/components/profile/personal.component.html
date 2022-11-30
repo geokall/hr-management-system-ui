@@ -184,17 +184,17 @@
       <i class="pi pi-user inline-block"></i>
       <h3 class="next-more">Education</h3>
 
-      <!--      end-->
       <ng-template pTemplate="footer">
         <p-button *ngIf="isEditMode == false" (onClick)="updateProfile()"
-                  [disabled]="personalForm.invalid || personalForm.untouched"
+                  [disabled]="personalForm.pristine && personalForm.untouched"
                   [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
-                  label="Αποθήκευση">
+                  label="Save changes">
         </p-button>
-        <p-button *ngIf="isEditMode == false" (onClick)="onClear()" [disabled]="personalForm.untouched"
+        <p-button *ngIf="isEditMode == false" (onClick)="onClear()"
+                  [disabled]="personalForm.pristine && personalForm.untouched"
                   [style]="{'margin-left': '.5em'}"
                   [icon]="!personalForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
-                  [label]="!personalForm.get('id')?.value ? 'Καθαρισμός': 'Επαναφορά'"
+                  [label]="!personalForm.get('id')?.value ? 'Clear': 'Refresh'"
                   styleClass="p-button-secondary">
         </p-button>
       </ng-template>

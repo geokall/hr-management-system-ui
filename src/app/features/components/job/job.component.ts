@@ -53,8 +53,8 @@ export class JobComponent implements OnInit {
   initForm(): void {
     this.jobForm = new FormGroup({
       id: new FormControl(null),
-        hireDate: new FormControl(null),
-        ethnicity: new FormControl(null),
+      hireDate: new FormControl(null),
+      ethnicity: new FormControl(null),
       jobCategory: new FormControl(null),
       jobDescription: new FormControl(null),
       bonuses: this.fb.array([])

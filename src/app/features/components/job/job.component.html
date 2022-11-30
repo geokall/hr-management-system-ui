@@ -73,7 +73,8 @@
                   [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
                   label="Save changes">
         </p-button>
-        <p-button *ngIf="isEditMode == false" (onClick)="onClear()" [disabled]="jobForm.untouched"
+        <p-button *ngIf="isEditMode == false" (onClick)="onClear()"
+                  [disabled]="jobForm.pristine && jobForm.untouched"
                   [style]="{'margin-left': '.5em'}"
                   [icon]="!jobForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
                   [label]="!jobForm.get('id')?.value ? 'Clear': 'Refresh'"
