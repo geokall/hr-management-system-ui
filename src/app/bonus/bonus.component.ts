@@ -23,6 +23,8 @@ export class BonusComponent implements OnInit {
   deleteBonus: boolean | undefined = false;
 
   bonuses: any;
+  bonusButtonHeader: string = 'Add bonus';
+  bonusHeader: string = 'Bonus';
   isLoading: boolean = false;
 
   constructor(private fb: FormBuilder,

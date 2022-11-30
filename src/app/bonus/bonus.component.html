@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 
-<p-panel header="test" [toggleable]="true">
-  <button pButton label="Add bonus" icon="pi pi-plus" class="p-button-secondary"
+<p-panel [header]=bonusHeader [toggleable]="true">
+  <button pButton [label]=bonusButtonHeader icon="pi pi-plus" class="p-button-secondary"
           (click)="openNewBonusDialog()">
   </button>
 

@@ -109,7 +109,7 @@ export class PersonalComponent implements OnInit {
 
         this.messageService.add({
           severity: 'success',
-          detail: "Η ενημέρωση έγινε με επιτυχία.",
+          detail: 'Personal information updated successfully.',
         });
       },
       error => {
@@ -118,7 +118,7 @@ export class PersonalComponent implements OnInit {
 
         this.messageService.add({
           severity: 'error',
-          detail: "Υπήρξε κάποιο σφάλμα!",
+          detail: error.error.errorMessage
         });
       })
   }
