@@ -80,7 +80,6 @@ export class PersonalComponent implements OnInit {
       linkedinUrl: new FormControl(null),
       twitterUrl: new FormControl(null),
       facebookUrl: new FormControl(null)
-
     })
   }
 

@@ -47,7 +47,8 @@ import {InfoMenuComponent} from "./components/info-menu/info-menu.component";
 import {MenubarModule} from "primeng/menubar";
 import {JobComponent} from "./components/job/job.component";
 import {UserInvitationComponent} from "./components/user-invitation/user-invitation.component";
-import {BonusComponent} from "../bonus/bonus.component";
+import {BonusComponent} from "./components/bonus/bonus.component";
+import {EducationComponent} from "./components/education/education.component";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {BonusComponent} from "../bonus/bonus.component";
     InfoMenuComponent,
     JobComponent,
     UserInvitationComponent,
-    BonusComponent
+    BonusComponent,
+    EducationComponent
   ],
   imports: [
     CommonModule,

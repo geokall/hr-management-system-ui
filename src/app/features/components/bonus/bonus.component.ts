@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {ApiService} from "../core/shared/services/api.service";
-import {environment} from "../../environments/environment";
-import {AuthService} from "../core/shared/services/auth.service";
+import {ApiService} from "../../../core/shared/services/api.service";
+import {environment} from "../../../../environments/environment";
+import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
-import {BonusDTO} from "../core/shared/models/dto/bonus-dto";
+import {BonusDTO} from "../../../core/shared/models/dto/bonus-dto";
 
 @Component({
   selector: 'app-bonus',
