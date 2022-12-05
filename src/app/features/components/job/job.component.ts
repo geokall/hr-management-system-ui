@@ -7,6 +7,7 @@ import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
 import {JobInformationDTO} from "../../../core/shared/models/dto/job-information-dto";
+import {BonusDTO} from "../../../core/shared/models/dto/bonus-dto";
 
 @Component({
   selector: 'app-job',
@@ -14,10 +15,11 @@ import {JobInformationDTO} from "../../../core/shared/models/dto/job-information
   styleUrls: ['./job.component.scss']
 })
 export class JobComponent implements OnInit {
-
   env = environment;
 
   jobForm: FormGroup;
+
+  bonusResponse: BonusDTO[];
 
   @Input() selected: boolean;
 
@@ -68,6 +70,7 @@ export class JobComponent implements OnInit {
   fetchJobInfo() {
     this.api.fetchUserJobInfo(this.auth.getId()).subscribe(result => {
       this.jobForm.reset(result);
+      this.bonusResponse = result.bonuses;
     }, error => {
       this.messageService.add({
         severity: 'error',

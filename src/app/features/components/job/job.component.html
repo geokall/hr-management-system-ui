@@ -11,7 +11,9 @@
 
         <div class="line"></div>
 
-        <app-bonus></app-bonus>
+        <app-bonus *ngIf="bonusResponse"
+                   [bonusResponse]="bonusResponse">
+        </app-bonus>
 
       </ng-template>
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {environment} from "../../../../environments/environment";
@@ -12,6 +12,8 @@ import {BonusDTO} from "../../../core/shared/models/dto/bonus-dto";
   styleUrls: ['./bonus.component.scss']
 })
 export class BonusComponent implements OnInit {
+
+  @Input() bonusResponse: BonusDTO[];
 
   env = environment;
 
@@ -35,7 +37,7 @@ export class BonusComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.getUserJobInfo();
+    this.setBonusResponseByParent();
   }
 
   initForm() {
@@ -45,6 +47,10 @@ export class BonusComponent implements OnInit {
       amount: new FormControl(null),
       comment: new FormControl(null)
     })
+  }
+
+  setBonusResponseByParent() {
+    this.bonuses = this.bonusResponse;
   }
 
   openNewBonusDialog() {
