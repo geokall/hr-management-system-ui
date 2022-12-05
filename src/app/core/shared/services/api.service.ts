@@ -8,6 +8,7 @@ import {PersonalInfoDTO} from "../models/dto/personal-info-dto";
 import {MainInfoDTO} from "../models/dto/main-info-dto";
 import {BonusDTO} from "../models/dto/bonus-dto";
 import {JobInformationDTO} from "../models/dto/job-information-dto";
+import {EducationDTO} from "../models/dto/education-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +72,24 @@ export class ApiService {
     const url = `${environment.apiUrl}/job/delete-bonus/${id}`;
 
     return this.http.delete<BonusDTO>(url);
+  }
+
+  createUserEducation(id: number, educationDTO: EducationDTO): Observable<any> {
+    const url = `${environment.apiUrl}/job/create-education/${id}`;
+
+    return this.http.post<EducationDTO>(url, educationDTO);
+  }
+
+  updateUserEducation(id: number, educationDTO: EducationDTO): Observable<any> {
+    const url = `${environment.apiUrl}/job/update-education/${id}`;
+
+    return this.http.put<EducationDTO>(url, educationDTO);
+  }
+
+  deleteUserEducation(id: number): Observable<any> {
+    const url = `${environment.apiUrl}/job/delete-education/${id}`;
+
+    return this.http.delete<EducationDTO>(url);
   }
 
   fetchUserJobInfo(id: number): Observable<JobInformationDTO> {
