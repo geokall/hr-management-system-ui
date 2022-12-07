@@ -59,7 +59,7 @@ export class BonusComponent implements OnInit {
     this.editDialog = true;
   }
 
-  hideOrganizationDialog() {
+  hideDialog() {
     this.editDialog = false;
     this.deleteDialog = false;
     this.bonusForm.reset();
@@ -71,17 +71,17 @@ export class BonusComponent implements OnInit {
     this.bonusForm.reset();
   }
 
-  editBonusRow(bonus: any) {
+  editRow(row: any) {
     this.editable = true;
     this.deleteBonus = false;
-    this.bonusForm.patchValue(bonus);
+    this.bonusForm.patchValue(row);
     this.editDialog = true;
   }
 
-  deleteBonusRow(bonus: any) {
+  deleteRow(row: any) {
     this.deleteBonus = true;
     this.editable = false;
-    this.bonusForm.patchValue(bonus);
+    this.bonusForm.patchValue(row);
     this.deleteDialog = true;
   }
 

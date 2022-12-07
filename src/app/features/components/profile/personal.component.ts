@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {environment} from "../../../../environments/environment";
 import {GenderEnum} from "../../../core/shared/models/enums/gender-enum";
 import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-status-enum";
+import {EducationDTO} from "../../../core/shared/models/dto/education-dto";
 
 @Component({
   selector: 'app-personal',
@@ -28,6 +29,8 @@ export class PersonalComponent implements OnInit {
   saving: boolean = false;
   successModal: boolean = false;
 
+  educationResponse: EducationDTO[];
+
   genders: any[] = Object.keys(GenderEnum)
     .map((item) => {
       // @ts-ignore
@@ -42,7 +45,8 @@ export class PersonalComponent implements OnInit {
 
   showDebug = environment.debug;
 
-  constructor(private api: ApiService,
+  constructor(private fb: FormBuilder,
+              private api: ApiService,
               private auth: AuthService,
               private messageService: MessageService) {
   }
@@ -79,7 +83,8 @@ export class PersonalComponent implements OnInit {
       country: new FormControl(null),
       linkedinUrl: new FormControl(null),
       twitterUrl: new FormControl(null),
-      facebookUrl: new FormControl(null)
+      facebookUrl: new FormControl(null),
+      educations: this.fb.array([])
     })
   }
 
@@ -88,6 +93,8 @@ export class PersonalComponent implements OnInit {
       this.personalForm.patchValue(userInfo);
 
       this.userInfoView = true;
+
+      this.educationResponse = userInfo.educations;
 
       this.personalFormOutput.emit(this.personalForm);
       this.personalFormValue.emit(userInfo);

@@ -26,10 +26,10 @@
         <td>{{bonus.comment}}</td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-button-outlined mr-2"
-                  (click)="editBonusRow(bonus)">
+                  (click)="editRow(bonus)">
           </button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-outlined"
-                  (click)="deleteBonusRow(bonus)">
+                  (click)="deleteRow(bonus)">
           </button>
         </td>
       </tr>
@@ -57,7 +57,7 @@
 
   <div class="p-dialog-footer">
     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-            (click)="hideOrganizationDialog()">
+            (click)="hideDialog()">
     </button>
 
     <button *ngIf="deleteBonus" pButton pRipple label="Delete" icon="pi pi-trash"
@@ -71,7 +71,7 @@
 
 <!--update dialog-->
 <p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid"
-          (onHide)="hideOrganizationDialog()">
+          (onHide)="hideDialog()">
   <ng-template pTemplate="header">
     <span *ngIf="!editable && !deleteBonus">Create bonus</span>
     <span *ngIf="editable && !deleteBonus">Edit bonus</span>
@@ -107,7 +107,7 @@
 
     <div class="p-dialog-footer">
       <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-              (click)="hideOrganizationDialog()">
+              (click)="hideDialog()">
       </button>
       <button *ngIf="!editable && !deleteBonus" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
               (click)="saveBonus()">

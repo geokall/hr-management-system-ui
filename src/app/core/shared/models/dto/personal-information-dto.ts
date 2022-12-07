@@ -1,3 +1,5 @@
+import {EducationDTO} from "./education-dto";
+
 export interface PersonalInformationDTO {
   id: number;
   role: string;
@@ -13,5 +15,6 @@ export interface PersonalInformationDTO {
   employeeStatus: string;
   jobStatus: string;
   maritalStatus: string;
+  educations: EducationDTO[];
 
 }

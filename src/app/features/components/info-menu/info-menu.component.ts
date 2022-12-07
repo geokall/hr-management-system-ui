@@ -3,7 +3,7 @@ import {MenuItem, MessageService} from "primeng/api";
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
-import {PersonalInfoDTO} from "../../../core/shared/models/dto/personal-info-dto";
+import {PersonalInformationDTO} from "../../../core/shared/models/dto/personal-information-dto";
 
 @Component({
   selector: 'app-info-menu',
@@ -21,7 +21,7 @@ export class InfoMenuComponent implements OnInit {
   basicInfoForm: FormGroup;
 
   personalForm: FormGroup;
-  personalFormValue: PersonalInfoDTO;
+  personalFormValue: PersonalInformationDTO;
 
   jobForm: FormGroup;
   jobFormValue: any;
@@ -175,7 +175,7 @@ export class InfoMenuComponent implements OnInit {
     this.personalForm = personalForm;
   }
 
-  transferPersonalFormValue(userInfo: PersonalInfoDTO) {
+  transferPersonalFormValue(userInfo: PersonalInformationDTO) {
     this.personalFormValue = userInfo;
   }
 

@@ -4,11 +4,11 @@ import {JwtResponseDTO} from "../models/jwt/jwt-response-dto";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {RegisterDTO} from "../models/dto/register-dto";
-import {PersonalInfoDTO} from "../models/dto/personal-info-dto";
 import {MainInfoDTO} from "../models/dto/main-info-dto";
 import {BonusDTO} from "../models/dto/bonus-dto";
 import {JobInformationDTO} from "../models/dto/job-information-dto";
 import {EducationDTO} from "../models/dto/education-dto";
+import {PersonalInformationDTO} from "../models/dto/personal-information-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -38,16 +38,16 @@ export class ApiService {
     return this.http.put<any>(url, null);
   }
 
-  getPersonalInfo(id: number): Observable<PersonalInfoDTO> {
+  getPersonalInfo(id: number): Observable<PersonalInformationDTO> {
     const url = `${environment.apiUrl}/personal/fetch-info/${id}`;
 
-    return this.http.get<PersonalInfoDTO>(url);
+    return this.http.get<PersonalInformationDTO>(url);
   }
 
-  updateUserPersonalInfo(id: number, userDTO: PersonalInfoDTO): Observable<any> {
+  updateUserPersonalInfo(id: number, userDTO: PersonalInformationDTO): Observable<any> {
     const url = `${environment.apiUrl}/personal/update-info/${id}`;
 
-    return this.http.put<PersonalInfoDTO>(url, userDTO);
+    return this.http.put<PersonalInformationDTO>(url, userDTO);
   }
 
   getMainInfo(id: number): Observable<MainInfoDTO> {
@@ -75,19 +75,19 @@ export class ApiService {
   }
 
   createUserEducation(id: number, educationDTO: EducationDTO): Observable<any> {
-    const url = `${environment.apiUrl}/job/create-education/${id}`;
+    const url = `${environment.apiUrl}/personal/create-education/${id}`;
 
     return this.http.post<EducationDTO>(url, educationDTO);
   }
 
   updateUserEducation(id: number, educationDTO: EducationDTO): Observable<any> {
-    const url = `${environment.apiUrl}/job/update-education/${id}`;
+    const url = `${environment.apiUrl}/personal/update-education/${id}`;
 
     return this.http.put<EducationDTO>(url, educationDTO);
   }
 
   deleteUserEducation(id: number): Observable<any> {
-    const url = `${environment.apiUrl}/job/delete-education/${id}`;
+    const url = `${environment.apiUrl}/personal/delete-education/${id}`;
 
     return this.http.delete<EducationDTO>(url);
   }

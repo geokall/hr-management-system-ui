@@ -184,6 +184,10 @@
       <i class="pi pi-user inline-block"></i>
       <h3 class="next-more">Education</h3>
 
+      <app-education *ngIf="educationResponse"
+                     [educationResponse]="educationResponse">
+      </app-education>
+
       <ng-template pTemplate="footer">
         <p-button *ngIf="isEditMode == false" (onClick)="updateProfile()"
                   [disabled]="personalForm.pristine && personalForm.untouched"
