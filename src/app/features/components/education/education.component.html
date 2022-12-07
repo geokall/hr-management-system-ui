@@ -56,10 +56,10 @@
           (onHide)="hideDeleteDialog()">
 
   <ng-template pTemplate="header">
-    <span *ngIf="deleteEducation">Delete bonus</span>
+    <span *ngIf="deleteEducation">Delete education</span>
   </ng-template>
 
-  <p *ngIf="deleteEducation">Are you sure you want to delete this bonus?</p>
+  <p *ngIf="deleteEducation">Are you sure you want to delete this education?</p>
 
   <div class="p-dialog-footer">
     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
@@ -75,58 +75,88 @@
 
 </p-dialog>
 
-<!--update dialog-->
-<!--<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid"-->
-<!--          (onHide)="hideDialog()">-->
-<!--  <ng-template pTemplate="header">-->
-<!--    <span *ngIf="!editable && !deleteEducation">Create education</span>-->
-<!--    <span *ngIf="editable && !deleteEducation">Edit education</span>-->
-<!--  </ng-template>-->
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid"
+          (onHide)="hideDialog()">
+  <ng-template pTemplate="header">
+    <span *ngIf="!editable && !deleteEducation">Create education</span>
+    <span *ngIf="editable && !deleteEducation">Edit education</span>
+  </ng-template>
 
-<!--  &lt;!&ndash;  <p-messages [(value)]="formErrors" [enableService]="false"></p-messages>&ndash;&gt;-->
+  <!--  <p-messages [(value)]="formErrors" [enableService]="false"></p-messages>-->
 
-<!--  <form [formGroup]="educationForm">-->
+  <form [formGroup]="educationForm">
 
-<!--    <div class="field">-->
-<!--      <label for="bonusDate" class="block">Bonus Date</label>-->
-<!--      <p-calendar formControlName="bonusDate"-->
-<!--                  id="bonusDate"-->
-<!--                  dateFormat="dd/mm/yy"-->
-<!--                  [showIcon]="true"-->
-<!--                  dataType="string"-->
-<!--                  inputId="bonusDate">-->
-<!--      </p-calendar>-->
-<!--    </div>-->
+    <div class="field">
+      <label for="college" class="block">College</label>
+      <input class="p-inputtext-sm" id="college" type="text" pInputText
+             [formControl]="college">
+    </div>
 
-<!--    <div class="field">-->
-<!--      <label for="amount">Amount</label>-->
-<!--      <p-inputNumber id="amount" formControlName="amount" inputId="amount" mode="currency" currency="EUR">-->
-<!--      </p-inputNumber>-->
-<!--    </div>-->
+    <div class="field">
+      <label for="degree" class="block">Degree</label>
+      <p-dropdown [options]="degrees"
+                  [formControl]="degree"
+                  placeholder="-Select-"
+                  id="degree"
+                  optionValue="key"
+                  optionLabel="value">
+      </p-dropdown>
+    </div>
 
-<!--    <label>Comment</label>-->
-<!--    <input type="text" pInputText id="comment" class="p-inputtext-md p-inputtext"-->
-<!--           formControlName="comment">-->
-<!--    &lt;!&ndash;    <div *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)">&ndash;&gt;-->
-<!--    &lt;!&ndash;      <small *ngIf="organizationName.errors?.['required']" class="text-danger">{{"THIS_FIELD_IS_REQUIRED" | translate}}.</small>&ndash;&gt;-->
-<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+    <div class="field">
+      <label for="specialization" class="block">Specialization</label>
+      <input class="p-inputtext-sm" id="specialization" type="text" pInputText
+             [formControl]="specialization">
+    </div>
 
-<!--    <div class="p-dialog-footer">-->
-<!--      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"-->
-<!--              (click)="hideDialog()">-->
-<!--      </button>-->
-<!--      <button *ngIf="!editable && !deleteEducation" pButton pRipple label="Save" -->
-<!--              icon="pi pi-check" class="p-button-text"-->
-<!--              (click)="saveBonus()">-->
-<!--      </button>-->
-<!--      <button *ngIf="editable && !deleteEducation" pButton pRipple label="Update" -->
-<!--              icon="pi pi-pencil" class="p-button-text"-->
-<!--              (click)="updateBonus()">-->
-<!--      </button>-->
+    <div class="field">
+      <label for="gpa" class="block">GPA</label>
+      <input class="p-inputtext-sm" id="gpa" type="text" pInputText
+             [formControl]="gpa">
+    </div>
 
-<!--    </div>-->
-<!--  </form>-->
+    <div class="formgroup-inline">
 
-<!--  <pre *ngIf="env.debug">{{bonusForm.value | json}}</pre>-->
+      <div class="field">
+        <label for="studyFrom" class="block">Study From</label>
+        <p-calendar formControlName="studyFrom"
+                    id="studyFrom"
+                    dateFormat="dd/mm/yy"
+                    [showIcon]="true"
+                    dataType="string"
+                    inputId="studyFrom">
+        </p-calendar>
+      </div>
 
-<!--</p-dialog>-->
+      <div class="field">
+        <label for="studyTo" class="block">Study To</label>
+        <p-calendar formControlName="studyTo"
+                    id="studyTo"
+                    dateFormat="dd/mm/yy"
+                    [showIcon]="true"
+                    dataType="string"
+                    inputId="studyTo">
+        </p-calendar>
+      </div>
+
+    </div>
+
+    <div class="p-dialog-footer">
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+              (click)="hideDialog()">
+      </button>
+      <button *ngIf="!editable && !deleteEducation" pButton pRipple label="Save"
+              icon="pi pi-check" class="p-button-text"
+              (click)="saveEducation()">
+      </button>
+      <button *ngIf="editable && !deleteEducation" pButton pRipple label="Update"
+              icon="pi pi-pencil" class="p-button-text"
+              (click)="updateEducation()">
+      </button>
+
+    </div>
+  </form>
+
+  <pre *ngIf="env.debug">{{educationForm.value | json}}</pre>
+
+</p-dialog>

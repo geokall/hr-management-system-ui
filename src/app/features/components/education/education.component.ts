@@ -5,6 +5,7 @@ import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
 import {EducationDTO} from "../../../core/shared/models/dto/education-dto";
+import {DegreeEnum} from "../../../core/shared/models/enums/degree-enum";
 
 @Component({
   selector: 'app-education',
@@ -29,6 +30,12 @@ export class EducationComponent implements OnInit {
   isLoading: boolean = false;
 
   educations: any;
+
+  degrees: any[] = Object.keys(DegreeEnum)
+    .map((item) => {
+      // @ts-ignore
+      return {key: item, value: DegreeEnum[item]}
+    });
 
   constructor(private fb: FormBuilder,
               private api: ApiService,
@@ -55,6 +62,18 @@ export class EducationComponent implements OnInit {
 
   setEducationResponseByParent() {
     this.educations = this.educationResponse;
+  }
+
+  fetchPersonalInfo() {
+    this.api.getPersonalInfo(this.auth.getId()).subscribe(result => {
+      this.educations = result.educations;
+      this.isLoading = false;
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
   }
 
   openNewDialog() {
@@ -89,78 +108,93 @@ export class EducationComponent implements OnInit {
     this.deleteDialog = true;
   }
 
-  // saveBonus(): void {
-  //   this.editable = false;
-  //   this.deleteBonus = false;
-  //
-  //   let bonusForm = this.bonusForm.value;
-  //   let userId = this.auth.getId();
-  //
-  //   this.api.createUserBonus(userId, bonusForm).subscribe(result => {
-  //     this.editDialog = false;
-  //
-  //     this.getUserJobInfo();
-  //     this.bonusForm.reset();
-  //
-  //     this.messageService.add({
-  //       severity: 'success',
-  //       detail: 'Bonus updated successfully.',
-  //     });
-  //   }, error => {
-  //     this.editDialog = false;
-  //
-  //     this.messageService.add({
-  //       severity: 'error',
-  //       detail: error.error.errorMessage
-  //     });
-  //   })
-  // }
-  //
-  // updateBonus() {
-  //   let bonusDTO = this.bonusForm.value as BonusDTO;
-  //
-  //   this.api.updateUserBonus(bonusDTO.id, bonusDTO).subscribe(bonus => {
-  //       this.editDialog = false;
-  //
-  //       this.bonusForm.reset();
-  //       this.getUserJobInfo();
-  //
-  //       this.messageService.add({
-  //         severity: 'success',
-  //         detail: 'Updated bonus successfully.'
-  //       });
-  //     },
-  //     error => {
-  //       this.editDialog = false;
-  //
-  //       this.messageService.add({
-  //         severity: 'error',
-  //         detail: error.error.errorMessage
-  //       });
-  //     })
-  // }
-  //
+  saveEducation(): void {
+    this.editable = false;
+    this.deleteEducation = false;
+
+    let educationDTO = this.educationForm.value as EducationDTO;
+
+    this.api.createUserEducation(this.auth.getId(), educationDTO).subscribe(result => {
+      this.editDialog = false;
+
+      this.fetchPersonalInfo();
+      this.educationForm.reset();
+
+      this.messageService.add({
+        severity: 'success',
+        detail: 'Education updated successfully.',
+      });
+    }, error => {
+      this.editDialog = false;
+
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
+  }
+
+  updateEducation() {
+    let educationDTO = this.educationForm.value as EducationDTO;
+
+    this.api.updateUserEducation(educationDTO.id, educationDTO).subscribe(response => {
+        this.editDialog = false;
+
+        this.educationForm.reset();
+        this.fetchPersonalInfo();
+
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Updated education successfully.'
+        });
+      },
+      error => {
+        this.editDialog = false;
+
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
+  }
+
   removeEducation(): void {
-    //   let bonus = this.bonusForm.value;
-    //
-    //   this.api.deleteUserBonus(bonus.id).subscribe(bonus => {
-    //       this.deleteDialog = false;
-    //       this.getUserJobInfo();
-    //       this.bonusForm.reset();
-    //
-    //       this.messageService.add({
-    //         severity: 'success',
-    //         detail: 'Bonus deleted successfully.',
-    //       });
-    //     },
-    //     error => {
-    //       this.deleteDialog = false;
-    //
-    //       this.messageService.add({
-    //         severity: 'error',
-    //         detail: error.error.errorMessage
-    //       });
-    //     })
+    let educationDTO = this.educationForm.value;
+
+    this.api.deleteUserEducation(educationDTO.id).subscribe(response => {
+        this.deleteDialog = false;
+        this.fetchPersonalInfo();
+        this.educationForm.reset();
+
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Education deleted successfully.',
+        });
+      },
+      error => {
+        this.deleteDialog = false;
+
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
+  }
+
+  get degree(): FormControl {
+    return this.educationForm.get('degree') as FormControl;
+  }
+
+  get college(): FormControl {
+    return this.educationForm.get('college') as FormControl;
+  }
+
+  get specialization(): FormControl {
+    return this.educationForm.get('specialization') as FormControl;
+  }
+
+  get gpa(): FormControl {
+    return this.educationForm.get('gpa') as FormControl;
   }
 
 }

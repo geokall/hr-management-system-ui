@@ -109,10 +109,14 @@
       <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
               (click)="hideDialog()">
       </button>
-      <button *ngIf="!editable && !deleteBonus" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+
+      <button *ngIf="!editable && !deleteBonus" pButton pRipple label="Save"
+              icon="pi pi-check" class="p-button-text"
               (click)="saveBonus()">
       </button>
-      <button *ngIf="editable && !deleteBonus" pButton pRipple label="Update" icon="pi pi-pencil" class="p-button-text"
+
+      <button *ngIf="editable && !deleteBonus" pButton pRipple label="Update"
+              icon="pi pi-pencil" class="p-button-text"
               (click)="updateBonus()">
       </button>
 
