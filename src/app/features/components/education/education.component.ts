@@ -65,8 +65,8 @@ export class EducationComponent implements OnInit {
   }
 
   fetchPersonalInfo() {
-    this.api.getPersonalInfo(this.auth.getId()).subscribe(result => {
-      this.educations = result.educations;
+    this.api.getUserEducations(this.auth.getId()).subscribe(result => {
+      this.educations = result;
       this.isLoading = false;
     }, error => {
       this.messageService.add({

@@ -44,6 +44,12 @@ export class ApiService {
     return this.http.get<PersonalInformationDTO>(url);
   }
 
+  getUserEducations(id: number): Observable<EducationDTO[]> {
+    const url = `${environment.apiUrl}/personal/fetch-education/${id}`;
+
+    return this.http.get<EducationDTO[]>(url);
+  }
+
   updateUserPersonalInfo(id: number, userDTO: PersonalInformationDTO): Observable<any> {
     const url = `${environment.apiUrl}/personal/update-info/${id}`;
 
