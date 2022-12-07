@@ -104,6 +104,12 @@ export class ApiService {
     return this.http.get<JobInformationDTO>(url);
   }
 
+  fetchUserBonus(id: number): Observable<BonusDTO[]> {
+    const url = `${environment.apiUrl}/job/fetch-bonus/${id}`;
+
+    return this.http.get<BonusDTO[]>(url);
+  }
+
   updateUserJobInformation(id: number, jobInformationDTO: JobInformationDTO): Observable<any> {
     const url = `${environment.apiUrl}/job/update-info/${id}`;
 

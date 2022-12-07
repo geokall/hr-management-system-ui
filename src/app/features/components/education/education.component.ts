@@ -64,7 +64,7 @@ export class EducationComponent implements OnInit {
     this.educations = this.educationResponse;
   }
 
-  fetchPersonalInfo() {
+  fetchUserEducations() {
     this.api.getUserEducations(this.auth.getId()).subscribe(result => {
       this.educations = result;
       this.isLoading = false;
@@ -117,7 +117,7 @@ export class EducationComponent implements OnInit {
     this.api.createUserEducation(this.auth.getId(), educationDTO).subscribe(result => {
       this.editDialog = false;
 
-      this.fetchPersonalInfo();
+      this.fetchUserEducations();
       this.educationForm.reset();
 
       this.messageService.add({
@@ -141,7 +141,7 @@ export class EducationComponent implements OnInit {
         this.editDialog = false;
 
         this.educationForm.reset();
-        this.fetchPersonalInfo();
+        this.fetchUserEducations();
 
         this.messageService.add({
           severity: 'success',
@@ -163,7 +163,7 @@ export class EducationComponent implements OnInit {
 
     this.api.deleteUserEducation(educationDTO.id).subscribe(response => {
         this.deleteDialog = false;
-        this.fetchPersonalInfo();
+        this.fetchUserEducations();
         this.educationForm.reset();
 
         this.messageService.add({

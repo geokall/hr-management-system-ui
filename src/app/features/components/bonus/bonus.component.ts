@@ -85,9 +85,9 @@ export class BonusComponent implements OnInit {
     this.deleteDialog = true;
   }
 
-  getUserJobInfo(): void {
-    this.api.fetchUserJobInfo(this.auth.getId()).subscribe(result => {
-      this.bonuses = result.bonuses;
+  getUserBonuses(): void {
+    this.api.fetchUserBonus(this.auth.getId()).subscribe(result => {
+      this.bonuses = result;
       this.isLoading = false;
     }, error => {
       this.messageService.add({
@@ -107,7 +107,7 @@ export class BonusComponent implements OnInit {
     this.api.createUserBonus(userId, bonusForm).subscribe(result => {
       this.editDialog = false;
 
-      this.getUserJobInfo();
+      this.getUserBonuses();
       this.bonusForm.reset();
 
       this.messageService.add({
@@ -131,7 +131,7 @@ export class BonusComponent implements OnInit {
         this.editDialog = false;
 
         this.bonusForm.reset();
-        this.getUserJobInfo();
+        this.getUserBonuses();
 
         this.messageService.add({
           severity: 'success',
@@ -153,7 +153,7 @@ export class BonusComponent implements OnInit {
 
     this.api.deleteUserBonus(bonus.id).subscribe(bonus => {
         this.deleteDialog = false;
-        this.getUserJobInfo();
+        this.getUserBonuses();
         this.bonusForm.reset();
 
         this.messageService.add({
