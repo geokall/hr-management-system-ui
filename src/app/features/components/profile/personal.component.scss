@@ -2,9 +2,6 @@ $blue: #067EF3;
 $darkblue: #0158ad;
 $black: hsl(0, 0%, 0%);
 $grey: #495057;
-$green: #00c16e;
-$lightgreen: #66D9A8;
-$darkgreen: #037f4a;
 $navcolor: #343a40;
 
 $system-color-blue: #405870;
@@ -44,7 +41,7 @@ $system-color-gray: #ced4da;
     transition: transform 0.2s ease-out;
 
     &:hover {
-      color: $green;
+      color: $navcolor;
       transform: scale3d(1.2, 1.2, 1.2);
     }
   }
@@ -169,17 +166,17 @@ $system-color-gray: #ced4da;
   }
 }
 
-.p-inputtext:enabled:focus,
-.p-inputtext:enabled:hover {
-  -webkit-box-shadow: 0 0 2px 1px $green;
-  -moz-box-shadow: 0 0 2px 1px $green;
-  box-shadow: 0 0 2px 1px $green;
-  border: 1px solid $green;
-}
-
-.p-inputtext.ng-dirty.ng-invalid {
-  border-color: #f44336;
-}
+//.p-inputtext:enabled:focus,
+//.p-inputtext:enabled:hover {
+//  -webkit-box-shadow: 0 0 2px 1px $system-color-blue;
+//  -moz-box-shadow: 0 0 2px 1px $system-color-blue;
+//  box-shadow: 0 0 2px 1px $system-color-blue;
+//  border: 1px solid $system-color-blue;
+//}
+//
+//.p-inputtext.ng-dirty.ng-invalid {
+//  border-color: #f44336;
+//}
 
 :host ::ng-deep .p-button {
   background-color: $system-color-blue;

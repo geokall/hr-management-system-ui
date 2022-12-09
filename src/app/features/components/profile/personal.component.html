@@ -111,7 +111,8 @@
       </div>
 
       <div class="field">
-        <input class="p-inputtext-sm" placeholder="Country" type="text" pInputText [formControl]="country">
+        <input class="p-inputtext-sm" placeholder="Country" type="text"
+               pInputText [formControl]="country">
       </div>
 
       <div class="line"></div>
@@ -120,7 +121,7 @@
       <i class="pi pi-user inline-block"></i>
       <h3 class="next-more">Contact</h3>
 
-      <label class="block">Phone</label>
+      <label class="block"><strong>Phone</strong></label>
       <div style="padding-top: 10px"></div>
 
       <div class="field">
@@ -144,7 +145,7 @@
         </p-inputNumber>
       </div>
 
-      <label class="block">Email</label>
+      <label class="block"><strong>Email</strong></label>
       <div style="padding-top: 10px"></div>
 
       <div class="field">
@@ -181,8 +182,8 @@
       <div class="line"></div>
       <div style="padding-top: 10px"></div>
 
-      <i class="pi pi-user inline-block"></i>
-      <h3 class="next-more">Education</h3>
+      <!--      <i class="pi pi-user inline-block"></i>-->
+      <!--      <h3 class="next-more">Education</h3>-->
 
       <app-education *ngIf="educationResponse"
                      [educationResponse]="educationResponse">
@@ -212,9 +213,3 @@
   </ng-container>
 
 </div>
-
-<ng-template #loadingList>
-  <div class="col-8">
-    <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
-  </div>
-</ng-template>

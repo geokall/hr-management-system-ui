@@ -11,23 +11,23 @@
 
         <div class="line"></div>
 
-        <app-bonus *ngIf="bonusResponse"
-                   [bonusResponse]="bonusResponse">
-        </app-bonus>
-
       </ng-template>
+
+      <app-bonus *ngIf="bonusResponse"
+                 [bonusResponse]="bonusResponse">
+      </app-bonus>
+
+      <div style="padding-top: 20px"></div>
 
       <div class="card">
         <i class="pi pi-user inline-block"></i>
-        <h4 class="next-more">Bonus</h4>
+        <h4 class="next-more">Job Information</h4>
 
-      </div>
-
-      <div class="field">
-        <label for="hireDate" class="block">Hire Date</label>
-        <p-calendar
-          [formControl]="hireDate"
-          id="hireDate"
+        <div class="field">
+          <label for="hireDate" class="block">Hire Date</label>
+          <p-calendar
+            [formControl]="hireDate"
+            id="hireDate"
           dateFormat="dd/mm/yy"
           [showIcon]="true"
           dataType="string"
@@ -61,11 +61,13 @@
 
       </div>
 
-      <div class="field">
-        <label for="jobDescription" class="block">Job Description</label>
-        <textarea pInputTextarea id="jobDescription" rows="5" cols="50"
-                  [formControl]="jobDescription">
+        <div class="field">
+          <label for="jobDescription" class="block">Job Description</label>
+          <textarea pInputTextarea id="jobDescription" rows="5" cols="50"
+                    [formControl]="jobDescription">
         </textarea>
+
+        </div>
 
       </div>
 

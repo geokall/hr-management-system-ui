@@ -52,7 +52,7 @@
 
 <!--delete dialog-->
 <p-dialog *ngIf="deleteEducation" [(visible)]="deleteDialog"
-          [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid"
+          [style]="{width: '450px'}" [modal]="true"
           (onHide)="hideDeleteDialog()">
 
   <ng-template pTemplate="header">
@@ -75,8 +75,9 @@
 
 </p-dialog>
 
-<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid"
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" [modal]="true"
           (onHide)="hideDialog()">
+
   <ng-template pTemplate="header">
     <span *ngIf="!editable && !deleteEducation">Create education</span>
     <span *ngIf="editable && !deleteEducation">Edit education</span>
@@ -84,7 +85,7 @@
 
   <!--  <p-messages [(value)]="formErrors" [enableService]="false"></p-messages>-->
 
-  <form [formGroup]="educationForm">
+  <form [formGroup]="educationForm" style="padding-top: 10px">
 
     <div class="field">
       <label for="college" class="block">College</label>
@@ -140,23 +141,21 @@
       </div>
 
     </div>
-
-    <div class="p-dialog-footer">
-      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-              (click)="hideDialog()">
-      </button>
-      <button *ngIf="!editable && !deleteEducation" pButton pRipple label="Save"
-              icon="pi pi-check" class="p-button-text"
-              (click)="saveEducation()">
-      </button>
-      <button *ngIf="editable && !deleteEducation" pButton pRipple label="Update"
-              icon="pi pi-pencil" class="p-button-text"
-              (click)="updateEducation()">
-      </button>
-
-    </div>
   </form>
 
-  <pre *ngIf="env.debug">{{educationForm.value | json}}</pre>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancel" icon="pi pi-times"
+              (onClick)="hideDialog()">
+    </p-button>
+    <p-button *ngIf="!editable && !deleteEducation" label="Save"
+              icon="pi pi-check" class="p-button-text"
+              (click)="saveEducation()">
+    </p-button>
+    <p-button *ngIf="editable && !deleteEducation" label="Update"
+              icon="pi pi-check" class="p-button-text"
+              (click)="updateEducation()">
+    </p-button>
+
+  </ng-template>
 
 </p-dialog>

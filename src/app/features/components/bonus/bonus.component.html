@@ -79,7 +79,7 @@
 
   <!--  <p-messages [(value)]="formErrors" [enableService]="false"></p-messages>-->
 
-  <form [formGroup]="bonusForm">
+  <form [formGroup]="bonusForm" style="padding-top: 10px">
 
     <div class="field">
       <label for="bonusDate" class="block">Bonus Date</label>
@@ -105,24 +105,21 @@
     <!--      <small *ngIf="organizationName.errors?.['required']" class="text-danger">{{"THIS_FIELD_IS_REQUIRED" | translate}}.</small>-->
     <!--    </div>-->
 
-    <div class="p-dialog-footer">
-      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-              (click)="hideDialog()">
-      </button>
-
-      <button *ngIf="!editable && !deleteBonus" pButton pRipple label="Save"
-              icon="pi pi-check" class="p-button-text"
-              (click)="saveBonus()">
-      </button>
-
-      <button *ngIf="editable && !deleteBonus" pButton pRipple label="Update"
-              icon="pi pi-pencil" class="p-button-text"
-              (click)="updateBonus()">
-      </button>
-
-    </div>
   </form>
 
-  <pre *ngIf="env.debug">{{bonusForm.value | json}}</pre>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancel" icon="pi pi-times"
+              (onClick)="hideDialog()">
+    </p-button>
+    <p-button *ngIf="!editable && !deleteBonus" label="Save"
+              icon="pi pi-check" class="p-button-text"
+              (click)="saveBonus()">
+    </p-button>
+    <p-button *ngIf="editable && !deleteBonus" label="Update"
+              icon="pi pi-check" class="p-button-text"
+              (click)="updateBonus()">
+    </p-button>
+
+  </ng-template>
 
 </p-dialog>
