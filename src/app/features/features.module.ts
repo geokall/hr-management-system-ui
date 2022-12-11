@@ -49,6 +49,7 @@ import {JobComponent} from "./components/job/job.component";
 import {UserInvitationComponent} from "./components/user-invitation/user-invitation.component";
 import {BonusComponent} from "./components/bonus/bonus.component";
 import {EducationComponent} from "./components/education/education.component";
+import {WorkInformationComponent} from "./components/work-information/work-information.component";
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import {EducationComponent} from "./components/education/education.component";
     JobComponent,
     UserInvitationComponent,
     BonusComponent,
-    EducationComponent
+    EducationComponent,
+    WorkInformationComponent
   ],
   imports: [
     CommonModule,

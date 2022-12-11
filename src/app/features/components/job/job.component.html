@@ -69,6 +69,10 @@
 
         </div>
 
+        <app-work-information *ngIf="workInformationResponse"
+                              [workInformationResponse]="workInformationResponse">
+        </app-work-information>
+
       </div>
 
       <ng-template pTemplate="footer">

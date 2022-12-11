@@ -1,0 +1,150 @@
+import {Component, Input, OnInit} from '@angular/core';
+import {environment} from "../../../../environments/environment";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {WorkInformationDTO} from "../../../core/shared/models/dto/work-information-dto";
+import {ApiService} from "../../../core/shared/services/api.service";
+import {AuthService} from "../../../core/shared/services/auth.service";
+import {MessageService} from "primeng/api";
+
+@Component({
+  selector: 'app-work-information',
+  templateUrl: './work-information.component.html',
+  styleUrls: ['./work-information.component.scss']
+})
+export class WorkInformationComponent implements OnInit {
+
+  @Input() workInformationResponse: WorkInformationDTO[];
+
+  workButtonHeader: string = 'Add Work information';
+  workHeader: string = 'Work Information';
+
+  env = environment;
+
+  workForm: FormGroup;
+
+  editDialog: boolean | undefined;
+  deleteDialog: boolean | undefined;
+  editable: boolean | undefined = false;
+  deleteWork: boolean | undefined = false;
+  isLoading: boolean = false;
+
+  workInformations: any;
+
+  constructor(private fb: FormBuilder,
+              private api: ApiService,
+              private auth: AuthService,
+              private messageService: MessageService) {
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+    this.setWorkResponseByParent();
+  }
+
+  initForm() {
+    this.workForm = new FormGroup({
+      id: new FormControl(null),
+      jobTitle: new FormControl(null),
+      location: new FormGroup({
+        id: new FormControl(null),
+        name: new FormControl(null),
+      }),
+      division: new FormGroup({
+        id: new FormControl(null),
+        name: new FormControl(null),
+      }),
+      manager: new FormGroup({
+        id: new FormControl(null),
+        name: new FormControl(null),
+      }),
+      user: new FormGroup({
+        id: new FormControl(null),
+        name: new FormControl(null),
+      })
+    })
+  }
+
+  setWorkResponseByParent() {
+    this.workInformations = this.workInformationResponse;
+  }
+
+  openNewDialog() {
+    this.editable = false;
+    this.deleteWork = false;
+    this.editDialog = true;
+  }
+
+  hideDialog() {
+    this.editDialog = false;
+    this.deleteDialog = false;
+    this.workForm.reset();
+  }
+
+  hideDeleteDialog() {
+    this.editDialog = false;
+    this.deleteDialog = false;
+    this.workForm.reset();
+  }
+
+  editRow(row: any) {
+    this.editable = true;
+    this.deleteWork = false;
+    this.workForm.patchValue(row);
+    this.editDialog = true;
+  }
+
+  deleteRow(row: any) {
+    this.deleteWork = true;
+    this.editable = false;
+    this.workForm.patchValue(row);
+    this.deleteDialog = true;
+  }
+
+  saveWorkInformation() {
+
+  }
+
+  updateWorkInformation() {
+
+  }
+
+  removeWorkInformation() {
+
+  }
+
+  get jobTitle(): FormControl {
+    return this.workForm.get('jobTitle') as FormControl;
+  }
+
+  get location(): FormGroup {
+    return this.workForm.get('location') as FormGroup;
+  }
+
+  get locationName(): FormControl {
+    return this.locationName.get('name') as FormControl;
+  }
+
+  get division(): FormGroup {
+    return this.workForm.get('division') as FormGroup;
+  }
+
+  get divisionName(): FormControl {
+    return this.division.get('name') as FormControl;
+  }
+
+  get manager(): FormGroup {
+    return this.workForm.get('manager') as FormGroup;
+  }
+
+  get managerName(): FormControl {
+    return this.manager.get('name') as FormControl;
+  }
+
+  get user(): FormGroup {
+    return this.workForm.get('user') as FormGroup;
+  }
+
+  get userName(): FormControl {
+    return this.user.get('name') as FormControl;
+  }
+}
