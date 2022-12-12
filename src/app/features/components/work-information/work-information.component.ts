@@ -5,6 +5,7 @@ import {WorkInformationDTO} from "../../../core/shared/models/dto/work-informati
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
+import {IdNameDTO} from "../../../core/shared/models/dto/id-name-dto";
 
 @Component({
   selector: 'app-work-information',
@@ -30,6 +31,9 @@ export class WorkInformationComponent implements OnInit {
 
   workInformations: any;
 
+  locations: IdNameDTO[];
+  divisions: IdNameDTO[];
+
   constructor(private fb: FormBuilder,
               private api: ApiService,
               private auth: AuthService,
@@ -39,20 +43,16 @@ export class WorkInformationComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.setWorkResponseByParent();
+    this.fetchLocations();
+    this.fetchDivisions();
   }
 
   initForm() {
     this.workForm = new FormGroup({
       id: new FormControl(null),
       jobTitle: new FormControl(null),
-      location: new FormGroup({
-        id: new FormControl(null),
-        name: new FormControl(null),
-      }),
-      division: new FormGroup({
-        id: new FormControl(null),
-        name: new FormControl(null),
-      }),
+      location: new FormControl(null),
+      division: new FormControl(null),
       manager: new FormGroup({
         id: new FormControl(null),
         name: new FormControl(null),
@@ -66,6 +66,28 @@ export class WorkInformationComponent implements OnInit {
 
   setWorkResponseByParent() {
     this.workInformations = this.workInformationResponse;
+  }
+
+  fetchLocations() {
+    this.api.fetchLocations().subscribe(response => {
+      this.locations = response;
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
+  }
+
+  fetchDivisions() {
+    this.api.fetchDivisions().subscribe(response => {
+      this.divisions = response;
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
   }
 
   openNewDialog() {
@@ -110,6 +132,10 @@ export class WorkInformationComponent implements OnInit {
 
   removeWorkInformation() {
 
+  }
+
+  get effectiveDate(): FormControl {
+    return this.workForm.get('effectiveDate') as FormControl;
   }
 
   get jobTitle(): FormControl {

@@ -9,6 +9,7 @@ import {BonusDTO} from "../models/dto/bonus-dto";
 import {JobInformationDTO} from "../models/dto/job-information-dto";
 import {EducationDTO} from "../models/dto/education-dto";
 import {PersonalInformationDTO} from "../models/dto/personal-information-dto";
+import {IdNameDTO} from "../models/dto/id-name-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -114,5 +115,17 @@ export class ApiService {
     const url = `${environment.apiUrl}/job/update-info/${id}`;
 
     return this.http.put<BonusDTO>(url, jobInformationDTO);
+  }
+
+  fetchLocations(): Observable<IdNameDTO[]> {
+    const url = `${environment.apiUrl}/data/fetch-locations`;
+
+    return this.http.get<IdNameDTO[]>(url);
+  }
+
+  fetchDivisions(): Observable<IdNameDTO[]> {
+    const url = `${environment.apiUrl}/data/fetch-divisions`;
+
+    return this.http.get<IdNameDTO[]>(url);
   }
 }
