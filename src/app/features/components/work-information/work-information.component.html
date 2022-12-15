@@ -105,6 +105,12 @@
     </div>
 
     <div class="field">
+      <label for="jobTitle" class="block">Job title</label>
+      <input class="p-inputtext" id="jobTitle" type="text" pInputText
+             [formControl]="jobTitle">
+    </div>
+
+    <div class="field">
       <label for="location" class="block">Locations</label>
       <p-dropdown [options]="locations"
                   formControlName="location"
@@ -120,6 +126,16 @@
                   formControlName="division"
                   placeholder="-Select-"
                   id="division"
+                  optionLabel="name">
+      </p-dropdown>
+    </div>
+
+    <div class="field">
+      <label for="manager" class="block">Reports to</label>
+      <p-dropdown [options]="managers"
+                  formControlName="manager"
+                  placeholder="-Select-"
+                  id="manager"
                   optionLabel="name">
       </p-dropdown>
     </div>

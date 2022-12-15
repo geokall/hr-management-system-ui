@@ -10,6 +10,7 @@ import {JobInformationDTO} from "../models/dto/job-information-dto";
 import {EducationDTO} from "../models/dto/education-dto";
 import {PersonalInformationDTO} from "../models/dto/personal-information-dto";
 import {IdNameDTO} from "../models/dto/id-name-dto";
+import {WorkInformationDTO} from "../models/dto/work-information-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -127,5 +128,17 @@ export class ApiService {
     const url = `${environment.apiUrl}/data/fetch-divisions`;
 
     return this.http.get<IdNameDTO[]>(url);
+  }
+
+  fetchUsers(): Observable<IdNameDTO[]> {
+    const url = `${environment.apiUrl}/data/fetch-users`;
+
+    return this.http.get<IdNameDTO[]>(url);
+  }
+
+  createUserWorkInformation(id: number, workInformationDTO: WorkInformationDTO): Observable<any> {
+    const url = `${environment.apiUrl}/job/create-work-information/${id}`;
+
+    return this.http.post<WorkInformationDTO>(url, workInformationDTO);
   }
 }

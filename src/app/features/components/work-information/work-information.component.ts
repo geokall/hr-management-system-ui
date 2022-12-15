@@ -33,6 +33,7 @@ export class WorkInformationComponent implements OnInit {
 
   locations: IdNameDTO[];
   divisions: IdNameDTO[];
+  managers: IdNameDTO[];
 
   constructor(private fb: FormBuilder,
               private api: ApiService,
@@ -45,22 +46,17 @@ export class WorkInformationComponent implements OnInit {
     this.setWorkResponseByParent();
     this.fetchLocations();
     this.fetchDivisions();
+    this.fetchUsersToReport();
   }
 
   initForm() {
     this.workForm = new FormGroup({
       id: new FormControl(null),
+      effectiveDate: new FormControl(null),
       jobTitle: new FormControl(null),
       location: new FormControl(null),
       division: new FormControl(null),
-      manager: new FormGroup({
-        id: new FormControl(null),
-        name: new FormControl(null),
-      }),
-      user: new FormGroup({
-        id: new FormControl(null),
-        name: new FormControl(null),
-      })
+      manager: new FormControl(null)
     })
   }
 
@@ -82,6 +78,17 @@ export class WorkInformationComponent implements OnInit {
   fetchDivisions() {
     this.api.fetchDivisions().subscribe(response => {
       this.divisions = response;
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
+  }
+
+  fetchUsersToReport() {
+    this.api.fetchUsers().subscribe(response => {
+      this.managers = response;
     }, error => {
       this.messageService.add({
         severity: 'error',
@@ -123,7 +130,30 @@ export class WorkInformationComponent implements OnInit {
   }
 
   saveWorkInformation() {
+    this.editable = false;
+    this.deleteWork = false;
 
+    let workForm = this.workForm.value;
+    let userId = this.auth.getId();
+
+    this.api.createUserWorkInformation(userId, workForm).subscribe(result => {
+      this.editDialog = false;
+
+      this.fetchUsersToReport();
+      this.workForm.reset();
+
+      this.messageService.add({
+        severity: 'success',
+        detail: 'Work information updated successfully.',
+      });
+    }, error => {
+      this.editDialog = false;
+
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
   }
 
   updateWorkInformation() {
@@ -164,13 +194,5 @@ export class WorkInformationComponent implements OnInit {
 
   get managerName(): FormControl {
     return this.manager.get('name') as FormControl;
-  }
-
-  get user(): FormGroup {
-    return this.workForm.get('user') as FormGroup;
-  }
-
-  get userName(): FormControl {
-    return this.user.get('name') as FormControl;
   }
 }
