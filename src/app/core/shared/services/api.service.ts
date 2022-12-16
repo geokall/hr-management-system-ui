@@ -136,6 +136,12 @@ export class ApiService {
     return this.http.get<IdNameDTO[]>(url);
   }
 
+  fetchUserWorkInformations(): Observable<WorkInformationDTO[]> {
+    const url = `${environment.apiUrl}/data/fetch-work-information`;
+
+    return this.http.get<WorkInformationDTO[]>(url);
+  }
+
   createUserWorkInformation(id: number, workInformationDTO: WorkInformationDTO): Observable<any> {
     const url = `${environment.apiUrl}/job/create-work-information/${id}`;
 

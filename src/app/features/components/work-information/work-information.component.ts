@@ -29,7 +29,7 @@ export class WorkInformationComponent implements OnInit {
   deleteWork: boolean | undefined = false;
   isLoading: boolean = false;
 
-  workInformations: any;
+  workInformations: WorkInformationDTO[];
 
   locations: IdNameDTO[];
   divisions: IdNameDTO[];
@@ -89,6 +89,17 @@ export class WorkInformationComponent implements OnInit {
   fetchUsersToReport() {
     this.api.fetchUsers().subscribe(response => {
       this.managers = response;
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
+  }
+
+  fetchWorkInformations() {
+    this.api.fetchUserWorkInformations().subscribe(response => {
+      // this.managers = response;
     }, error => {
       this.messageService.add({
         severity: 'error',

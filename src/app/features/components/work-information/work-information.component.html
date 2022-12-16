@@ -24,11 +24,11 @@
     <ng-template pTemplate="body" let-work let-columns="columns">
       <tr>
         <td style="display: none;">{{work.id}}</td>
-        <td>{{work?.jobTitle}}</td>
+        <td>{{work?.effectiveDate}}</td>
         <td>{{work?.location.name}}</td>
         <td>{{work?.division.name}}</td>
+        <td>{{work?.jobTitle}}</td>
         <td>{{work?.manager.name}}</td>
-        <td>{{work?.user.name}}</td>
         <td>
           <button pButton pRipple icon="pi pi-pencil"
                   class="p-button-rounded p-button-warning p-button-outlined mr-2"

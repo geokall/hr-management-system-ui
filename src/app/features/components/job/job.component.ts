@@ -74,7 +74,7 @@ export class JobComponent implements OnInit {
       this.jobForm.reset(result);
 
       this.bonusResponse = result.bonuses;
-      this.workInformationResponse = [];
+      this.workInformationResponse = result.workInformations;
     }, error => {
       this.messageService.add({
         severity: 'error',
