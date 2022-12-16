@@ -136,8 +136,8 @@ export class ApiService {
     return this.http.get<IdNameDTO[]>(url);
   }
 
-  fetchUserWorkInformations(): Observable<WorkInformationDTO[]> {
-    const url = `${environment.apiUrl}/data/fetch-work-information`;
+  fetchUserWorkInformations(id: number): Observable<WorkInformationDTO[]> {
+    const url = `${environment.apiUrl}/job/fetch-work-information/${id}`;
 
     return this.http.get<WorkInformationDTO[]>(url);
   }
@@ -146,5 +146,17 @@ export class ApiService {
     const url = `${environment.apiUrl}/job/create-work-information/${id}`;
 
     return this.http.post<WorkInformationDTO>(url, workInformationDTO);
+  }
+
+  updateUserWorkInformation(id: number, workInformationDTO: WorkInformationDTO): Observable<any> {
+    const url = `${environment.apiUrl}/job/update-work-information/${id}`;
+
+    return this.http.put<WorkInformationDTO>(url, workInformationDTO);
+  }
+
+  deleteUserWorkInformation(id: number): Observable<any> {
+    const url = `${environment.apiUrl}/job/delete-work-information/${id}`;
+
+    return this.http.delete<WorkInformationDTO>(url);
   }
 }

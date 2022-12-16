@@ -97,9 +97,9 @@ export class WorkInformationComponent implements OnInit {
     })
   }
 
-  fetchWorkInformations() {
-    this.api.fetchUserWorkInformations().subscribe(response => {
-      // this.managers = response;
+  fetchUserWorkInformations() {
+    this.api.fetchUserWorkInformations(this.auth.getId()).subscribe(response => {
+      this.workInformations = response;
     }, error => {
       this.messageService.add({
         severity: 'error',
@@ -150,7 +150,7 @@ export class WorkInformationComponent implements OnInit {
     this.api.createUserWorkInformation(userId, workForm).subscribe(result => {
       this.editDialog = false;
 
-      this.fetchUsersToReport();
+      this.fetchUserWorkInformations();
       this.workForm.reset();
 
       this.messageService.add({
@@ -168,11 +168,50 @@ export class WorkInformationComponent implements OnInit {
   }
 
   updateWorkInformation() {
+    let workDTO = this.workForm.value as WorkInformationDTO;
 
+    this.api.updateUserWorkInformation(workDTO.id, workDTO).subscribe(response => {
+        this.editDialog = false;
+
+        this.workForm.reset();
+        this.fetchUserWorkInformations();
+
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Updated work information successfully.'
+        });
+      },
+      error => {
+        this.editDialog = false;
+
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
   }
 
   removeWorkInformation() {
+    let work = this.workForm.value;
 
+    this.api.deleteUserWorkInformation(work.id).subscribe(response => {
+        this.deleteDialog = false;
+        this.fetchUserWorkInformations();
+        this.workForm.reset();
+
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Work information deleted successfully.',
+        });
+      },
+      error => {
+        this.deleteDialog = false;
+
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
   }
 
   get effectiveDate(): FormControl {
