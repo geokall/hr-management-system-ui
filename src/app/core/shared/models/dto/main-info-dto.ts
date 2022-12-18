@@ -14,6 +14,6 @@ export interface MainInfoDTO {
   jobStatus: string;
   division: string;
   location: string;
-  manager: ManagerDTO;
+  directManager: ManagerDTO;
   directReports: DirectReportDTO[];
 }

@@ -15,6 +15,7 @@ import {IdNameDTO} from "../../../core/shared/models/dto/id-name-dto";
 export class WorkInformationComponent implements OnInit {
 
   @Input() workInformationResponse: WorkInformationDTO[];
+  @Input() directManager: any;
 
   workButtonHeader: string = 'Add Work information';
   workHeader: string = 'Work Information';
@@ -87,6 +88,7 @@ export class WorkInformationComponent implements OnInit {
   }
 
   fetchUsersToReport() {
+    //Pending to fetch only corrects
     this.api.fetchUsers().subscribe(response => {
       this.managers = response;
     }, error => {
@@ -153,6 +155,8 @@ export class WorkInformationComponent implements OnInit {
       this.fetchUserWorkInformations();
       this.workForm.reset();
 
+      this.updateDirectManagerInfo();
+
       this.messageService.add({
         severity: 'success',
         detail: 'Work information updated successfully.',
@@ -173,8 +177,11 @@ export class WorkInformationComponent implements OnInit {
     this.api.updateUserWorkInformation(workDTO.id, workDTO).subscribe(response => {
         this.editDialog = false;
 
-        this.workForm.reset();
         this.fetchUserWorkInformations();
+
+        this.workForm.reset();
+
+        this.updateDirectManagerInfo();
 
         this.messageService.add({
           severity: 'success',
@@ -199,6 +206,8 @@ export class WorkInformationComponent implements OnInit {
         this.fetchUserWorkInformations();
         this.workForm.reset();
 
+        this.updateDirectManagerInfo();
+
         this.messageService.add({
           severity: 'success',
           detail: 'Work information deleted successfully.',
@@ -212,6 +221,22 @@ export class WorkInformationComponent implements OnInit {
           detail: error.error.errorMessage
         });
       })
+  }
+
+  updateDirectManagerInfo() {
+    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
+      this.directManager.patchValue(result?.directManager);
+
+      if (result.directManager == null) {
+        this.directManager.get('name').patchValue(null);
+        this.directManager.get('titleJob').patchValue(null);
+      }
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
   }
 
   get effectiveDate(): FormControl {

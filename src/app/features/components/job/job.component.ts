@@ -24,6 +24,7 @@ export class JobComponent implements OnInit {
   workInformationResponse: WorkInformationDTO[];
 
   @Input() selected: boolean;
+  @Input() directManager: any;
 
   @Output() jobFormOutput = new EventEmitter<FormGroup>();
   @Output() jobFormValue = new EventEmitter<any>();

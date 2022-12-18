@@ -84,17 +84,22 @@
           <label><b>Manager</b></label>
           <div style="padding-top: 10px"></div>
 
-          <div class="col-sm-10 info">
+          <div class="col-sm-10 info" *ngIf="managerName?.value == null">
+            {{'-'}}
+          </div>
+
+          <div class="col-sm-10 info" *ngIf="managerName?.value != null">
             {{managerName.value + ' ' + managerSurname.value}}
+          </div>
+
+          <div class="col-sm-10 info" *ngIf="managerTitleJob?.value == null">
+            {{'-'}}
           </div>
 
           <div class="col-sm-10 info" *ngIf="managerTitleJob?.value != null">
             {{managerTitleJob.value}}
           </div>
 
-          <div class="col-sm-10 info" *ngIf="managerTitleJob?.value == null">
-            {{'Job title unavailable'}}
-          </div>
         </div>
 
         <div class="line"></div>
@@ -141,7 +146,7 @@
 
           <app-job (jobFormOutput)="transferJobForm($event)"
                    (jobFormValue)="transferJobFormValue($event)"
-                   [selected]="jobSelected">
+                   [directManager]="directManager">
           </app-job>
 
         </p-tabPanel>
