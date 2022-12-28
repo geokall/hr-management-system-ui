@@ -5,6 +5,7 @@ import {CompensationDTO} from "../../../core/shared/models/dto/compensation-dto"
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
+import {PayTypeEnum} from "../../../core/shared/models/enums/pay-type-enum";
 
 @Component({
   selector: 'app-compensation',
@@ -30,6 +31,11 @@ export class CompensationComponent implements OnInit {
 
   compensations: CompensationDTO[];
 
+  payTypes: any[] = Object.keys(PayTypeEnum)
+    .map((item) => {
+      // @ts-ignore
+      return {key: item, value: PayTypeEnum[item]}
+    });
 
   constructor(private fb: FormBuilder,
               private api: ApiService,
