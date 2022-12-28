@@ -9,6 +9,7 @@ import {MessageService} from "primeng/api";
 import {JobInformationDTO} from "../../../core/shared/models/dto/job-information-dto";
 import {BonusDTO} from "../../../core/shared/models/dto/bonus-dto";
 import {WorkInformationDTO} from "../../../core/shared/models/dto/work-information-dto";
+import {CompensationDTO} from "../../../core/shared/models/dto/compensation-dto";
 
 @Component({
   selector: 'app-job',
@@ -22,6 +23,7 @@ export class JobComponent implements OnInit {
 
   bonusResponse: BonusDTO[];
   workInformationResponse: WorkInformationDTO[];
+  compensations: CompensationDTO[];
 
   @Input() selected: boolean;
   @Input() directManager: any;

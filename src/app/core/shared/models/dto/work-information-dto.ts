@@ -2,7 +2,7 @@ import {IdNameDTO} from "./id-name-dto";
 
 export interface WorkInformationDTO {
   id: number;
-  workInformation: Date;
+  effectiveDate: Date;
   jobTitle: string;
   location: string;
   division: IdNameDTO;
