@@ -11,6 +11,7 @@ import {EducationDTO} from "../models/dto/education-dto";
 import {PersonalInformationDTO} from "../models/dto/personal-information-dto";
 import {IdNameDTO} from "../models/dto/id-name-dto";
 import {WorkInformationDTO} from "../models/dto/work-information-dto";
+import {CompensationDTO} from "../models/dto/compensation-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -158,5 +159,29 @@ export class ApiService {
     const url = `${environment.apiUrl}/job/delete-work-information/${id}`;
 
     return this.http.delete<WorkInformationDTO>(url);
+  }
+
+  fetchUserCompensations(id: number): Observable<CompensationDTO[]> {
+    const url = `${environment.apiUrl}/job/fetch-compensations/${id}`;
+
+    return this.http.get<CompensationDTO[]>(url);
+  }
+
+  createUserCompensation(id: number, compensationDTO: CompensationDTO): Observable<any> {
+    const url = `${environment.apiUrl}/job/create-compensation/${id}`;
+
+    return this.http.post<CompensationDTO>(url, compensationDTO);
+  }
+
+  updateUserCompensation(id: number, compensationDTO: CompensationDTO): Observable<any> {
+    const url = `${environment.apiUrl}/job/update-compensation/${id}`;
+
+    return this.http.put<CompensationDTO>(url, compensationDTO);
+  }
+
+  deleteUserCompensation(id: number): Observable<any> {
+    const url = `${environment.apiUrl}/job/delete-compensation/${id}`;
+
+    return this.http.delete<CompensationDTO>(url);
   }
 }
