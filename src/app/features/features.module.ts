@@ -30,7 +30,7 @@ import {ToastModule} from "primeng/toast";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {MessagesModule} from "primeng/messages";
 import {MessageModule} from "primeng/message";
-import {ConfirmationService, MessageService, SharedModule} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {FeaturesRoutingModule} from "./features-routing.module";
 import {PanelModule} from "primeng/panel";
@@ -51,6 +51,7 @@ import {BonusComponent} from "./components/bonus/bonus.component";
 import {EducationComponent} from "./components/education/education.component";
 import {WorkInformationComponent} from "./components/work-information/work-information.component";
 import {CompensationComponent} from "./components/compensation/compensation.component";
+import {SharedModule} from "../core/shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {CompensationComponent} from "./components/compensation/compensation.comp
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
     FormsModule,
     CardModule,
     DividerModule,
