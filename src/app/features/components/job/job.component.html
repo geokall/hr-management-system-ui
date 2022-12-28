@@ -76,6 +76,10 @@
 
       </div>
 
+      <app-compensation *ngIf="compensationsResponse"
+                        [compensationResponse]="compensationsResponse">
+      </app-compensation>
+
       <ng-template pTemplate="footer">
         <p-button *ngIf="isEditMode == false" (onClick)="updateJobInfo()"
                   [disabled]="jobForm.pristine && jobForm.untouched"

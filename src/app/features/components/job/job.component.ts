@@ -23,7 +23,7 @@ export class JobComponent implements OnInit {
 
   bonusResponse: BonusDTO[];
   workInformationResponse: WorkInformationDTO[];
-  compensations: CompensationDTO[];
+  compensationsResponse: CompensationDTO[];
 
   @Input() selected: boolean;
   @Input() directManager: any;
@@ -78,6 +78,7 @@ export class JobComponent implements OnInit {
 
       this.bonusResponse = result.bonuses;
       this.workInformationResponse = result.workInformations;
+      this.compensationsResponse = result.compensations;
     }, error => {
       this.messageService.add({
         severity: 'error',

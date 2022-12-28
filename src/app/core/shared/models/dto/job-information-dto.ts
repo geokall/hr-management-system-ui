@@ -1,5 +1,6 @@
 import {BonusDTO} from "./bonus-dto";
 import {WorkInformationDTO} from "./work-information-dto";
+import {CompensationDTO} from "./compensation-dto";
 
 export interface JobInformationDTO {
   id: number;
@@ -9,4 +10,5 @@ export interface JobInformationDTO {
   jobDescription: string;
   bonuses: BonusDTO[];
   workInformations: WorkInformationDTO[];
+  compensations: CompensationDTO[];
 }

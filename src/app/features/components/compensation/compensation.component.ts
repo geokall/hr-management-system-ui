@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {environment} from "../../environments/environment";
+import {environment} from "../../../../environments/environment";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {CompensationDTO} from "../core/shared/models/dto/compensation-dto";
-import {ApiService} from "../core/shared/services/api.service";
-import {AuthService} from "../core/shared/services/auth.service";
+import {CompensationDTO} from "../../../core/shared/models/dto/compensation-dto";
+import {ApiService} from "../../../core/shared/services/api.service";
+import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
 
 @Component({
