@@ -1,1 +1,101 @@
-<p>search-people works!</p>
+<p-toast></p-toast>
+<p-panel header="{{'Table of People'}}" [toggleable]="true">
+  <p-table #dt1 [loading]="isLoading" [showLoader]="false"
+           responsiveLayout="scroll"
+           [value]="peopleResponse" [rows]="10" [paginator]="true"
+           [globalFilterFields]="['name', 'surname', 'division.name', 'location.name', 'businessEmail', 'workNumber']"
+           [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="{{'Show'}} {first} {{'up'}} {last} {{'from total '}} {totalRecords} {{'people'}}"
+           [showCurrentPageReport]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="display: none;">id</th>
+        <th pSortableColumn="surname">{{'Surname'}}
+          <p-sortIcon field="surname"></p-sortIcon>
+        </th>
+        <th pSortableColumn="name">{{'Name'}}
+          <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="division.name">{{'Division Name'}}
+          <p-sortIcon field="division.name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="location.name">{{'Location Name'}}
+          <p-sortIcon field="location.name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="businessEmail">{{'Business Email'}}
+          <p-sortIcon field="businessEmail"></p-sortIcon>
+        </th>
+        <th pSortableColumn="workNumber">{{'Work Number'}}
+          <p-sortIcon field="workNumber"></p-sortIcon>
+        </th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'surname', 'contains')"
+                 [value]="$any(dt1.filters['surname'])?.value" placeholder="Search by surname"
+                 class="p-column-filter">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'name', 'contains')"
+                 [value]="$any(dt1.filters['name'])?.value" placeholder="Search by name" class="p-column-filter">
+        </th>
+        <th>
+          <p-columnFilter field="division" matchMode="in" [showMenu]="false">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+
+              <p-multiSelect [ngModel]="value" appendTo="body" [options]="divisionsMultiSelect"
+                             placeholder="Search by Division" (onChange)="filter($event.value)" optionLabel="name">
+                <ng-template let-option pTemplate="item">
+                  <div class="p-multiselect-representative-option">
+                    <span class="ml-1">{{option.name}}</span>
+                  </div>
+                </ng-template>
+              </p-multiSelect>
+
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter field="location" matchMode="in" [showMenu]="false">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+
+              <p-multiSelect [ngModel]="value" appendTo="body" [options]="locationsMultiSelect"
+                             placeholder="Search by Location" (onChange)="filter($event.value)" optionLabel="name">
+                <ng-template let-option pTemplate="item">
+                  <div class="p-multiselect-representative-option">
+                    <span class="ml-1">{{option.name}}</span>
+                  </div>
+                </ng-template>
+              </p-multiSelect>
+
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'businessEmail', 'contains')"
+                 [value]="$any(dt1.filters['businessEmail'])?.value" placeholder="Search by email"
+                 class="p-column-filter">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'workNumber', 'contains')"
+                 [value]="$any(dt1.filters['workNumber'])?.value" placeholder="Search by work number"
+                 class="p-column-filter">
+        </th>
+        <th></th>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-student let-columns="columns">
+      <tr>
+        <td style="display: none;">{{student.id}}</td>
+        <td>{{student.surname !== null ? student.surname : '-'}}</td>
+        <td>{{student.name !== null ? student.name : '-'}}</td>
+        <td>{{student?.division?.name !== null ? student?.division?.name : '-'}}</td>
+        <td>{{student?.location?.name !== null ? student?.location?.name : '-'}}</td>
+        <td>{{student.businessEmail !== null ? student.businessEmail : '-'}}</td>
+        <td>{{student.workNumber !== null ? student.workNumber : '-'}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>
+

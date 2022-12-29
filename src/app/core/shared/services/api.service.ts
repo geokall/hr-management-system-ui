@@ -13,6 +13,7 @@ import {IdNameDTO} from "../models/dto/id-name-dto";
 import {WorkInformationDTO} from "../models/dto/work-information-dto";
 import {CompensationDTO} from "../models/dto/compensation-dto";
 import {PasswordDTO} from "../models/dto/password-dto";
+import {UserDTO} from "../models/dto/user-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,12 @@ export class ApiService {
     const url = `${environment.apiUrl}/user/change-password/${id}`;
 
     return this.http.put<any>(url, dto);
+  }
+
+  getAllUsers(): Observable<UserDTO[]> {
+    const url = `${environment.apiUrl}/people/search-all`;
+
+    return this.http.get<UserDTO[]>(url);
   }
 
   getPersonalInfo(id: number): Observable<PersonalInformationDTO> {
