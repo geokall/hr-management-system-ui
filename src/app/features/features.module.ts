@@ -52,6 +52,7 @@ import {EducationComponent} from "./components/education/education.component";
 import {WorkInformationComponent} from "./components/work-information/work-information.component";
 import {CompensationComponent} from "./components/compensation/compensation.component";
 import {SharedModule} from "../core/shared/shared.module";
+import {PasswordComponent} from "../password/password.component";
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {SharedModule} from "../core/shared/shared.module";
     BonusComponent,
     EducationComponent,
     WorkInformationComponent,
-    CompensationComponent
+    CompensationComponent,
+    PasswordComponent
   ],
   imports: [
     CommonModule,

@@ -83,13 +83,15 @@ export class AuthService {
 
   isAdmin(): boolean {
     let roleName = '';
+
     if (this.isLoggedIn() && this.loggedInUser) {
-      roleName = this.loggedInUser.roles[0];
+      roleName = this.loggedInUser.role;
 
       if (roleName == 'ADMIN') {
         return true;
       }
     }
+
     return false;
   }
 

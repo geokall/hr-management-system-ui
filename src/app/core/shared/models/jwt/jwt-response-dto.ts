@@ -5,5 +5,5 @@ export interface JwtResponseDTO {
   surname: string;
   name: string;
   email: string;
-  roles: any;
+  role: any;
 }

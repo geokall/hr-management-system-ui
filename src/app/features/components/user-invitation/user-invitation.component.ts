@@ -28,7 +28,7 @@ export class UserInvitationComponent implements OnInit {
     this.api.invite(this.invitationForm.value.email).subscribe(result => {
         this.messageService.add({
           severity: 'success',
-          detail: "Invitation done",
+          detail: "Invitation sent successfully.",
         });
 
         this.router.navigateByUrl('');
