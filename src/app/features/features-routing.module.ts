@@ -5,7 +5,8 @@ import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 import {InfoMenuComponent} from "./components/info-menu/info-menu.component";
 import {UserInvitationComponent} from "./components/user-invitation/user-invitation.component";
-import {PasswordComponent} from "../password/password.component";
+import {PasswordComponent} from "./components/password/password.component";
+import {SearchPeopleComponent} from "./components/search-people/search-people.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     ]
   },
   {path: 'user-personal', component: InfoMenuComponent, canActivate: [AuthGuard]},
+  {path: 'search-people', component: SearchPeopleComponent, canActivate: [AuthGuard]},
   {path: 'user-invitation', component: UserInvitationComponent, canActivate: [AuthGuard]},
   {path: 'password-change', component: PasswordComponent, canActivate: [AuthGuard]},
   // {path: 'student-password', component: PasswordComponent, canActivate: [AuthGuard]},

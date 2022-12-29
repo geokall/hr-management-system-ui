@@ -49,6 +49,12 @@ export class HeaderComponent implements OnInit {
         visible: this.auth.isLoggedIn()
       },
       {
+        label: 'People',
+        icon: 'pi pi-users',
+        routerLink: '/search-people',
+        visible: this.auth.isLoggedIn()
+      },
+      {
         label: 'Invitation',
         icon: 'pi pi-users',
         routerLink: '/user-invitation',
@@ -59,7 +65,7 @@ export class HeaderComponent implements OnInit {
         icon: 'pi pi-users',
         routerLink: '/password-change',
         visible: this.auth.isLoggedIn()
-      },
+      }
     ]
   }
 

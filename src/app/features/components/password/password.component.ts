@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ApiService} from "../core/shared/services/api.service";
+import {ApiService} from "../../../core/shared/services/api.service";
 import {Router} from "@angular/router";
 import {MessageService} from "primeng/api";
-import {AuthService} from "../core/shared/services/auth.service";
+import {AuthService} from "../../../core/shared/services/auth.service";
 
 @Component({
   selector: 'app-password',

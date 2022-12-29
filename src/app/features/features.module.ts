@@ -52,7 +52,8 @@ import {EducationComponent} from "./components/education/education.component";
 import {WorkInformationComponent} from "./components/work-information/work-information.component";
 import {CompensationComponent} from "./components/compensation/compensation.component";
 import {SharedModule} from "../core/shared/shared.module";
-import {PasswordComponent} from "../password/password.component";
+import {PasswordComponent} from "./components/password/password.component";
+import {SearchPeopleComponent} from "./components/search-people/search-people.component";
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {PasswordComponent} from "../password/password.component";
     EducationComponent,
     WorkInformationComponent,
     CompensationComponent,
-    PasswordComponent
+    PasswordComponent,
+    SearchPeopleComponent
   ],
   imports: [
     CommonModule,
