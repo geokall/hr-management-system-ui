@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
         visible: this.auth.isLoggedIn()
       },
       {
-        label: 'Invite',
+        label: 'Invitation',
         icon: 'pi pi-users',
         routerLink: '/user-invitation',
         visible: this.auth.isLoggedIn() && this.auth.isAdmin()
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.auth.logout();
-    this.messageService.add({severity: 'success', detail: 'Αποσυνδεθήκατε'});
+    this.messageService.add({severity: 'success', detail: 'Logout successfully.'});
     this.router.navigateByUrl('/login');
   }
 
