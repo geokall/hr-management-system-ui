@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from "../../../../environments/environment";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {WorkInformationDTO} from "../../../core/shared/models/dto/work-information-dto";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
@@ -53,7 +53,7 @@ export class WorkInformationComponent implements OnInit {
   initForm() {
     this.workForm = new FormGroup({
       id: new FormControl(null),
-      effectiveDate: new FormControl(null),
+      effectiveDate: new FormControl(null, Validators.required),
       jobTitle: new FormControl(null),
       location: new FormControl(null),
       division: new FormControl(null),

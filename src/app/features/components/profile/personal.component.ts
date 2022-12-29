@@ -63,7 +63,7 @@ export class PersonalComponent implements OnInit {
       name: new FormControl(null, Validators.required),
       surname: new FormControl(null, Validators.required),
       businessEmail: new FormControl(null, [Validators.required, Validators.email]),
-      personalEmail: new FormControl(null, [Validators.required, Validators.email]),
+      personalEmail: new FormControl(null, Validators.email),
       username: new FormControl(null, Validators.required),
       birthDate: new FormControl(null),
       hireDate: new FormControl(null),

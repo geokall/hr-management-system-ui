@@ -20,13 +20,13 @@
         <div class="formgroup-inline">
 
           <div class="field">
-            <label for="name" class="block">Name</label>
+            <label for="name" class="block + required">Name</label>
             <input class="p-inputtext-sm" id="name" type="text" pInputText
                    [formControl]="name">
           </div>
 
           <div class="field">
-            <label for="surname" class="block">Surname</label>
+            <label for="surname" class="block + required">Surname</label>
             <input class="p-inputtext-sm" id="surname" type="text" pInputText
                    [formControl]="surname">
           </div>
@@ -191,12 +191,12 @@
 
       <ng-template pTemplate="footer">
         <p-button *ngIf="isEditMode == false" (onClick)="updateProfile()"
-                  [disabled]="personalForm.pristine && personalForm.untouched"
+                  [disabled]="personalForm.invalid"
                   [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
                   label="Save changes">
         </p-button>
         <p-button *ngIf="isEditMode == false" (onClick)="onClear()"
-                  [disabled]="personalForm.pristine && personalForm.untouched"
+                  [disabled]="personalForm.invalid"
                   [style]="{'margin-left': '.5em'}"
                   [icon]="!personalForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
                   [label]="!personalForm.get('id')?.value ? 'Clear': 'Refresh'"

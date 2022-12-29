@@ -92,7 +92,7 @@
     <div class="formgroup-inline">
 
       <div class="field">
-        <label for="effectiveDate" class="block">Effective Date</label>
+        <label for="effectiveDate" class="required">Effective Date</label>
         <p-calendar
           [formControl]="effectiveDate"
           id="effectiveDate"
@@ -151,10 +151,12 @@
               (onClick)="hideDialog()">
     </p-button>
     <p-button *ngIf="!editable && !deleteWork" label="Save"
+              [disabled]="workForm.invalid"
               icon="pi pi-check" class="p-button-text"
               (click)="saveWorkInformation()">
     </p-button>
     <p-button *ngIf="editable && !deleteWork" label="Update"
+              [disabled]="workForm.invalid"
               icon="pi pi-check" class="p-button-text"
               (click)="updateWorkInformation()">
     </p-button>

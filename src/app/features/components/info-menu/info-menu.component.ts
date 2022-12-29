@@ -152,6 +152,14 @@ export class InfoMenuComponent implements OnInit {
     return this.basicInfoForm.get('directReports') as FormArray;
   }
 
+  get personalName(): FormArray {
+    return this.personalForm.get('name') as FormArray;
+  }
+
+  get personalSurname(): FormArray {
+    return this.personalForm.get('surname') as FormArray;
+  }
+
   selectTab() {
     if (this.activeIndex == 0) {
       this.personalSelected = true;
@@ -185,5 +193,14 @@ export class InfoMenuComponent implements OnInit {
 
   transferJobFormValue(value: any) {
     this.jobFormValue = value;
+  }
+
+  setNameAndSurname(): string {
+    if (this.personalFormValue?.name !== null) {
+      return this.personalFormValue?.name + ' ' + this.personalFormValue?.surname;
+    } else {
+      return 'Name and Surname have not been modified yet'
+    }
+
   }
 }
