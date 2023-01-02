@@ -4,6 +4,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {PersonalInformationDTO} from "../../../core/shared/models/dto/personal-information-dto";
+import {JobInformationDTO} from "../../../core/shared/models/dto/job-information-dto";
 
 @Component({
   selector: 'app-info-menu',
@@ -24,7 +25,7 @@ export class InfoMenuComponent implements OnInit {
   personalFormValue: PersonalInformationDTO;
 
   jobForm: FormGroup;
-  jobFormValue: any;
+  jobFormValue: JobInformationDTO;
 
   activeIndex: number = 0;
 
@@ -53,6 +54,8 @@ export class InfoMenuComponent implements OnInit {
       mobileNumber: new FormControl(null),
       businessEmail: new FormControl(null),
       hireDate: new FormControl(null),
+      countYears: new FormControl(null),
+      countMonths: new FormControl(null),
       countDays: new FormControl(null),
       employeeNumber: new FormControl(null),
       jobStatus: new FormControl(null),
@@ -158,6 +161,18 @@ export class InfoMenuComponent implements OnInit {
 
   get personalSurname(): FormArray {
     return this.personalForm.get('surname') as FormArray;
+  }
+
+  get countYears(): FormControl {
+    return this.basicInfoForm.get('countYears') as FormControl;
+  }
+
+  get countMonths(): FormControl {
+    return this.basicInfoForm.get('countMonths') as FormControl;
+  }
+
+  get countDays(): FormControl {
+    return this.basicInfoForm.get('countDays') as FormControl;
   }
 
   selectTab() {

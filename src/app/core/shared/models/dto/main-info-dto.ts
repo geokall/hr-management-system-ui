@@ -9,6 +9,8 @@ export interface MainInfoDTO {
   mobileNumber: string;
   businessEmail: string;
   hireDate: Date;
+  countYears: number;
+  countMonths: number;
   countDays: string;
   employeeNumber: number;
   jobStatus: string;
