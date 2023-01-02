@@ -38,12 +38,12 @@
           <div class="field">
             <label for="birthDate" class="block">Birth Date</label>
             <p-calendar
-                        [formControl]="birthDate"
-                        id="birthDate"
-                        dateFormat="dd/mm/yy"
-                        [showIcon]="true"
-                        dataType="string"
-                        inputId="birthDate">
+              [formControl]="birthDate"
+              id="birthDate"
+              dateFormat="dd/mm/yy"
+              [showIcon]="true"
+              dataType="string"
+              inputId="birthDate">
             </p-calendar>
           </div>
 
@@ -79,7 +79,7 @@
 
       </div>
 
-      <i class="pi pi-user inline-block"></i>
+      <i class="pi pi-home inline-block"></i>
       <h3 class="next-more">Address</h3>
 
       <div class="field">
@@ -118,7 +118,7 @@
       <div class="line"></div>
       <div style="padding-top: 10px"></div>
 
-      <i class="pi pi-user inline-block"></i>
+      <i class="pi pi-mobile inline-block"></i>
       <h3 class="next-more">Contact</h3>
 
       <label class="block"><strong>Phone</strong></label>
@@ -146,37 +146,53 @@
       </div>
 
       <label class="block"><strong>Email</strong></label>
+
       <div style="padding-top: 10px"></div>
 
       <div class="field">
-        <input class="p-inputtext-sm" placeholder="Business Email" type="text" pInputText
-               [formControl]="businessEmail">
+        <span class="p-input-icon-left">
+          <i class="pi pi-at"></i>
+          <input class="p-inputtext-sm" placeholder="Business Email" type="text" pInputText
+                 [formControl]="businessEmail">
+        </span>
       </div>
 
       <div class="field">
-        <input class="p-inputtext-sm" placeholder="Personal Email" type="text" pInputText
-               [formControl]="personalEmail">
+        <span class="p-input-icon-left">
+          <i class="pi pi-building"></i>
+          <input class="p-inputtext-sm" placeholder="Personal Email" type="text" pInputText
+                 [formControl]="personalEmail">
+        </span>
       </div>
 
       <div class="line"></div>
       <div style="padding-top: 10px"></div>
 
-      <i class="pi pi-user inline-block"></i>
+      <i class="pi pi-external-link inline-block"></i>
       <h3 class="next-more">Social Links</h3>
 
       <div class="field">
-        <input class="p-inputtext-sm" placeholder="Linkedin" type="text" pInputText
-               [formControl]="linkedinUrl">
+      <span class="p-input-icon-left">
+            <i class="pi pi-linkedin"></i>
+            <input class="p-inputtext-sm" placeholder="Linkedin" type="text" pInputText
+                   [formControl]="linkedinUrl">
+      </span>
       </div>
 
       <div class="field">
-        <input class="p-inputtext-sm" placeholder="Twitter" type="text" pInputText
-               [formControl]="twitterUrl">
+        <span class="p-input-icon-left">
+          <i class="pi pi-twitter"></i>
+          <input class="p-inputtext-sm" placeholder="Twitter" type="text" pInputText
+                 [formControl]="twitterUrl">
+        </span>
       </div>
 
       <div class="field">
-        <input class="p-inputtext-sm" placeholder="Facebook" type="text" pInputText
-               [formControl]="facebookUrl">
+        <span class="p-input-icon-left">
+          <i class="pi pi-facebook"></i>
+          <input class="p-inputtext-sm" placeholder="Facebook" type="text" pInputText
+                 [formControl]="facebookUrl">
+        </span>
       </div>
 
       <div class="line"></div>
