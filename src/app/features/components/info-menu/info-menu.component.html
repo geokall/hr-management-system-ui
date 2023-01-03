@@ -9,21 +9,21 @@
 
       <div class="card">
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <i class="pi pi-volume-down inline-block"></i>
           <div class="col-sm-10 info next">
             {{workNumber.value}}
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <i class="pi pi-phone inline-block"></i>
           <div class="col-sm-10 info next">
             {{mobileNumber.value}}
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <i class="pi pi-at inline-block"></i>
           <div class="col-sm-10 info next">
             {{businessEmail.value}}
@@ -34,45 +34,52 @@
 
         <div style="padding-top: 10px"></div>
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <label><b>Hire Date</b></label>
-          <div class="col-sm-10 info">
-            <i class="pi pi-calendar inline-block"></i>
+        </div>
+
+        <div class="row mb-2 pb-2">
+          <i class="pi pi-calendar inline-block"></i>
+          <div class="col-sm-10 info next">
             {{hireDate.value}}
           </div>
+        </div>
+
+        <div class="row mb-2 pb-2">
 
           <div class="col-sm-10 info">
             <i class="pi pi-calendar-times inline-block"></i>
             {{countYears?.value + 'y' + ' - ' + countMonths.value + 'm' + ' - ' + countDays.value + 'd'}}
           </div>
+
         </div>
 
         <div class="line"></div>
 
         <div style="padding-top: 10px"></div>
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <i class="pi pi-hashtag inline-block"></i>
           <div class="col-sm-10 info next">
             {{employeeNumber.value}}
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <i class="pi pi-bookmark inline-block"></i>
           <div class="col-sm-10 info next">
             {{jobStatus.value}}
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <i class="pi pi-sitemap inline-block"></i>
           <div class="col-sm-10 info next">
             {{division.value}}
           </div>
         </div>
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <i class="pi pi-building inline-block"></i>
           <div class="col-sm-10 info next">
             {{location.value}}
@@ -83,7 +90,7 @@
 
         <div style="padding-top: 10px"></div>
 
-        <div class="row mb-3 pb-2">
+        <div class="row mb-2 pb-2">
           <label><b>Manager</b></label>
           <div style="padding-top: 10px"></div>
 
@@ -96,6 +103,8 @@
             <i class="pi pi-user-plus inline-block"></i>
             {{managerName.value + ' ' + managerSurname.value}}
           </div>
+
+          <div style="padding-top: 5px"></div>
 
           <div class="col-sm-10 info" *ngIf="managerTitleJob?.value == null">
             <i class="pi pi-pencil inline-block"></i>
@@ -113,7 +122,7 @@
 
         <div style="padding-top: 10px"></div>
 
-        <div class="row mb-3 pb-2" formArrayName="directReports">
+        <div class="row mb-2 pb-2" formArrayName="directReports">
 
           <label><b>Direct Reports</b></label>
           <div style="padding-top: 10px"></div>
@@ -125,7 +134,7 @@
           <div *ngFor="let directReport of directReports.controls; let i =index;">
             <div [formGroupName]="i">
               <i class="pi pi-user-edit inline-block"></i>
-              <div class="col-sm-10 info next">
+              <div class="col-sm-10 info next" style="padding-top: 5px">
                 {{directReport?.value.name + ' ' + directReport?.value.surname}}
               </div>
 

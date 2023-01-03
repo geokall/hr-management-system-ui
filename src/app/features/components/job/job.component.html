@@ -13,12 +13,9 @@
 
       </ng-template>
 
-      <app-bonus *ngIf="bonusResponse"
-                 [bonusResponse]="bonusResponse">
-      </app-bonus>
-
       <div class="card">
-        <i class="pi pi-user inline-block"></i>
+
+        <i class="pi pi-globe inline-block"></i>
         <h4 class="next-more">Job Information</h4>
 
         <div class="field">
@@ -66,6 +63,10 @@
         </textarea>
 
         </div>
+
+        <app-bonus *ngIf="bonusResponse"
+                   [bonusResponse]="bonusResponse">
+        </app-bonus>
 
         <app-work-information *ngIf="workInformationResponse"
                               [directManager]="directManager"
