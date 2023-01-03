@@ -34,6 +34,8 @@ export class InfoMenuComponent implements OnInit {
   personHeader: string = 'Personal';
   jobHeader: string = 'Job';
 
+  userTitleJob: string;
+
   constructor(private fb: FormBuilder,
               private api: ApiService,
               private auth: AuthService,
@@ -43,6 +45,7 @@ export class InfoMenuComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.retrieveMainInfo();
+    this.fetchLastEffectiveWorkInfo();
   }
 
   initForm(): void {
@@ -82,6 +85,18 @@ export class InfoMenuComponent implements OnInit {
             surname: report.surname
           }))
         })
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
+  }
+
+  fetchLastEffectiveWorkInfo(): any {
+    this.api.fetchLastEffectiveWorkInfo(this.auth.getId()).subscribe(result => {
+        this.userTitleJob = result?.name;
       },
       error => {
         this.messageService.add({
@@ -214,8 +229,15 @@ export class InfoMenuComponent implements OnInit {
     if (this.personalFormValue?.name !== null) {
       return this.personalFormValue?.name + ' ' + this.personalFormValue?.surname;
     } else {
-      return 'Name and Surname have not been modified yet'
+      return 'Name and Surname have not been modified yet.';
     }
+  }
 
+  setJobTitle(): any {
+    if (this.userTitleJob !== '' && this.userTitleJob !== null) {
+      return ' - ' + this.userTitleJob;
+    } else {
+      return '';
+    }
   }
 }

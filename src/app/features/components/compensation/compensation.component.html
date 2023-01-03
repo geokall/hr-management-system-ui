@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 
-<p-panel [header]=compensationHeader [toggleable]="true">
+<p-panel styleClass="default" [header]=compensationHeader [toggleable]="true">
   <button pButton [label]=compensationButtonHeader icon="pi pi-plus"
           class="p-button-secondary"
           (click)="openNewDialog()">
@@ -26,7 +26,7 @@
         <td style="display: none;">{{compensation.id}}</td>
         <td>{{compensation?.effectiveDate}}</td>
         <td>{{compensation?.payType}}</td>
-        <td>{{compensation?.payRate | currency: 'EUR' : true}}</td>
+        <td>{{compensation?.payRate | currency: 'EUR' : 'symbol'}}</td>
         <td>{{compensation?.comment}}</td>
         <td>
           <button pButton pRipple icon="pi pi-pencil"

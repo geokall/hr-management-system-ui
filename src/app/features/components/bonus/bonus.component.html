@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 
-<p-panel [header]=bonusHeader [toggleable]="true">
+<p-panel styleClass="default" [header]=bonusHeader [toggleable]="true">
 
   <button pButton [label]=bonusButtonHeader icon="pi pi-plus" class="p-button-secondary"
           (click)="openNewBonusDialog()">
@@ -23,7 +23,7 @@
       <tr>
         <td style="display: none;">{{bonus.id}}</td>
         <td>{{bonus.bonusDate}}</td>
-        <td>{{bonus.amount | currency: 'EUR' : true}}</td>
+        <td>{{bonus.amount | currency: 'EUR' : 'symbol'}}</td>
         <td>{{bonus.comment}}</td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-button-outlined mr-2"
