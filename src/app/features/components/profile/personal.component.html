@@ -125,24 +125,40 @@
       <div style="padding-top: 10px"></div>
 
       <div class="field">
-        <p-inputNumber class="p-inputtext-sm" placeholder="Work Phone"
-                       [maxlength]="10"
-                       [useGrouping]="false" [formControl]="workNumber">
-        </p-inputNumber>
+
+        <span class="p-input-icon-left">
+          <i class="pi pi-volume-down"></i>
+
+          <input [maxlength]="10" class="p-inputtext-sm" placeholder="Work phone"
+                 type="text" pInputText
+                 (keypress)="numberOnly($event)"
+                 [formControl]="workNumber">
+        </span>
+
       </div>
 
       <div class="field">
-        <p-inputNumber class="p-inputtext-sm" placeholder="Mobile Phone"
-                       [maxlength]="10"
-                       [useGrouping]="false" [formControl]="mobileNumber">
-        </p-inputNumber>
+        <span class="p-input-icon-left">
+          <i class="pi pi-phone"></i>
+
+          <input [maxlength]="10" class="p-inputtext-sm" placeholder="Mobile phone"
+                 type="text" pInputText
+                 (keypress)="numberOnly($event)"
+                 [formControl]="mobileNumber">
+        </span>
+
       </div>
 
       <div class="field">
-        <p-inputNumber class="p-inputtext-sm" placeholder="Home Phone"
-                       [maxlength]="10"
-                       [useGrouping]="false" [formControl]="homeNumber">
-        </p-inputNumber>
+        <span class="p-input-icon-left">
+          <i class="pi pi-home"></i>
+
+          <input [maxlength]="10" class="p-inputtext-sm" placeholder="Home phone"
+                 type="text" pInputText
+                 (keypress)="numberOnly($event)"
+                 [formControl]="homeNumber">
+        </span>
+
       </div>
 
       <label class="block"><strong>Email</strong></label>

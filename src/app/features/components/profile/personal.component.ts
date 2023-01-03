@@ -133,6 +133,15 @@ export class PersonalComponent implements OnInit {
     // this.form.reset(this.studentForm);
   }
 
+  numberOnly(event: { which: any; keyCode: any; }): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
+  }
+
   get username(): FormControl {
     return this.personalForm.get('username') as FormControl;
   }
