@@ -17,8 +17,6 @@
                  [bonusResponse]="bonusResponse">
       </app-bonus>
 
-      <div style="padding-top: 20px"></div>
-
       <div class="card">
         <i class="pi pi-user inline-block"></i>
         <h4 class="next-more">Job Information</h4>
@@ -28,38 +26,38 @@
           <p-calendar
             [formControl]="hireDate"
             id="hireDate"
-          dateFormat="dd/mm/yy"
-          [showIcon]="true"
-          dataType="string"
-          inputId="hireDate">
-        </p-calendar>
-      </div>
-
-      <div class="formgroup-inline">
-
-        <div class="field">
-          <label for="ethnicity" class="block">Ethnicity</label>
-          <p-dropdown [options]="ethnicities"
-                      [formControl]="ethnicity"
-                      placeholder="-Select-"
-                      id="ethnicity"
-                      optionValue="key"
-                      optionLabel="value">
-          </p-dropdown>
+            dateFormat="dd/mm/yy"
+            [showIcon]="true"
+            dataType="string"
+            inputId="hireDate">
+          </p-calendar>
         </div>
 
-        <div class="field">
-          <label for="jobCategory" class="block">Job Category</label>
-          <p-dropdown [options]="jobCategories"
-                      [formControl]="jobCategory"
-                      placeholder="-Select-"
-                      id="jobCategory"
-                      optionValue="key"
-                      optionLabel="value">
-          </p-dropdown>
-        </div>
+        <div class="formgroup-inline">
 
-      </div>
+          <div class="field">
+            <label for="ethnicity" class="block">Ethnicity</label>
+            <p-dropdown [options]="ethnicities"
+                        [formControl]="ethnicity"
+                        placeholder="-Select-"
+                        id="ethnicity"
+                        optionValue="key"
+                        optionLabel="value">
+            </p-dropdown>
+          </div>
+
+          <div class="field">
+            <label for="jobCategory" class="block">Job Category</label>
+            <p-dropdown [options]="jobCategories"
+                        [formControl]="jobCategory"
+                        placeholder="-Select-"
+                        id="jobCategory"
+                        optionValue="key"
+                        optionLabel="value">
+            </p-dropdown>
+          </div>
+
+        </div>
 
         <div class="field">
           <label for="jobDescription" class="block">Job Description</label>
