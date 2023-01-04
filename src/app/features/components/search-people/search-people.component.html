@@ -1,5 +1,6 @@
 <p-toast></p-toast>
-<p-panel header="{{'Table of People'}}" [toggleable]="true">
+
+<p-panel styleClass="custom-table-font" header="{{'Table of People'}}" [toggleable]="true">
   <p-table #dt1 [loading]="isLoading" [showLoader]="false"
            responsiveLayout="scroll"
            [value]="peopleResponse" [rows]="10" [paginator]="true"

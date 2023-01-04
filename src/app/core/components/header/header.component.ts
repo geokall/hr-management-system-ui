@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
       // },
       {
         label: 'My Info',
-        icon: 'pi pi-info',
+        icon: 'pi pi-database',
         routerLink: '/user-personal',
         visible: this.auth.isLoggedIn()
       },
