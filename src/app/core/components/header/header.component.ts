@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
       // },
       {
         label: 'My Info',
-        icon: 'pi pi-users',
+        icon: 'pi pi-info',
         routerLink: '/user-personal',
         visible: this.auth.isLoggedIn()
       },
@@ -56,13 +56,13 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: 'Invitation',
-        icon: 'pi pi-users',
+        icon: 'pi pi-send',
         routerLink: '/user-invitation',
         visible: this.auth.isLoggedIn() && this.auth.isAdmin()
       },
       {
         label: 'Password',
-        icon: 'pi pi-users',
+        icon: 'pi pi-key',
         routerLink: '/password-change',
         visible: this.auth.isLoggedIn()
       }
