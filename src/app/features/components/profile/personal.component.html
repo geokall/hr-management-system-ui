@@ -131,7 +131,7 @@
 
           <input [maxlength]="10" class="p-inputtext-sm" placeholder="Work phone"
                  type="text" pInputText
-                 (keypress)="numberOnly($event)"
+                 (keypress)="allowOnlyNumber($event)"
                  [formControl]="workNumber">
         </span>
 
@@ -143,7 +143,7 @@
 
           <input [maxlength]="10" class="p-inputtext-sm" placeholder="Mobile phone"
                  type="text" pInputText
-                 (keypress)="numberOnly($event)"
+                 (keypress)="allowOnlyNumber($event)"
                  [formControl]="mobileNumber">
         </span>
 
@@ -155,7 +155,7 @@
 
           <input [maxlength]="10" class="p-inputtext-sm" placeholder="Home phone"
                  type="text" pInputText
-                 (keypress)="numberOnly($event)"
+                 (keypress)="allowOnlyNumber($event)"
                  [formControl]="homeNumber">
         </span>
 
