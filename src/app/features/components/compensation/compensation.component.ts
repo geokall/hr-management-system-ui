@@ -15,6 +15,7 @@ import {PayTypeEnum} from "../../../core/shared/models/enums/pay-type-enum";
 export class CompensationComponent implements OnInit {
 
   @Input() compensationResponse: CompensationDTO[];
+  @Input() mainMenuForm: FormGroup;
 
   compensationButtonHeader: string = 'Add Compensation';
   compensationHeader: string = 'Compensation';
@@ -74,6 +75,18 @@ export class CompensationComponent implements OnInit {
     })
   }
 
+  updateMainInfoForm(): any {
+    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
+        this.mainMenuForm.patchValue(result);
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
+  }
+
   openNewDialog() {
     this.editable = false;
     this.deleteCompensation = false;
@@ -119,6 +132,8 @@ export class CompensationComponent implements OnInit {
       this.fetchUserCompensations();
       this.compensationForm.reset();
 
+      this.updateMainInfoForm();
+
       this.messageService.add({
         severity: 'success',
         detail: 'Compensation updated successfully.',
@@ -142,6 +157,8 @@ export class CompensationComponent implements OnInit {
         this.fetchUserCompensations();
 
         this.compensationForm.reset();
+
+        this.updateMainInfoForm();
 
         this.messageService.add({
           severity: 'success',

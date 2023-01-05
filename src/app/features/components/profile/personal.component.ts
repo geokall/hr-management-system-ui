@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ApiService} from "../../../core/shared/services/api.service";
 import {MessageService} from "primeng/api";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {environment} from "../../../../environments/environment";
 import {GenderEnum} from "../../../core/shared/models/enums/gender-enum";
@@ -21,6 +21,7 @@ export class PersonalComponent implements OnInit {
   personalResetValue: PersonalInformationDTO;
 
   @Input() selected: boolean;
+  @Input() mainMenuForm: FormGroup;
 
   @Output() personalFormOutput = new EventEmitter<FormGroup>();
   @Output() personalFormValue = new EventEmitter<any>();
@@ -120,6 +121,8 @@ export class PersonalComponent implements OnInit {
 
         this.getUserInfo();
 
+        this.updateMainInfoForm();
+
         this.messageService.add({
           severity: 'success',
           detail: 'Personal information updated successfully.',
@@ -129,6 +132,26 @@ export class PersonalComponent implements OnInit {
         this.saving = false;
         this.successModal = false;
 
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
+  }
+
+  updateMainInfoForm(): any {
+    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
+        this.mainMenuForm.patchValue(result);
+
+        result.directReports.forEach(report => {
+          this.directReports.setValue([]);
+          this.directReports.push(this.fb.group({
+            name: report.name,
+            surname: report.surname
+          }))
+        })
+      },
+      error => {
         this.messageService.add({
           severity: 'error',
           detail: error.error.errorMessage
@@ -233,6 +256,10 @@ export class PersonalComponent implements OnInit {
 
   get facebookUrl() {
     return this.personalForm.get('facebookUrl') as FormControl;
+  }
+
+  get directReports(): FormArray {
+    return this.mainMenuForm.get('directReports') as FormArray;
   }
 
 }

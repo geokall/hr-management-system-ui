@@ -69,6 +69,7 @@
         </app-bonus>
 
         <app-work-information *ngIf="workInformationResponse"
+                              [mainMenuForm]="mainMenuForm"
                               [directManager]="directManager"
                               [workInformationResponse]="workInformationResponse">
         </app-work-information>
@@ -76,6 +77,7 @@
       </div>
 
       <app-compensation *ngIf="compensationsResponse"
+                        [mainMenuForm]="mainMenuForm"
                         [compensationResponse]="compensationsResponse">
       </app-compensation>
 

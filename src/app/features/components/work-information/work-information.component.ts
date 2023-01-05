@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from "../../../../environments/environment";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {WorkInformationDTO} from "../../../core/shared/models/dto/work-information-dto";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
@@ -16,6 +16,7 @@ export class WorkInformationComponent implements OnInit {
 
   @Input() workInformationResponse: WorkInformationDTO[];
   @Input() directManager: any;
+  @Input() mainMenuForm: FormGroup;
 
   workButtonHeader: string = 'Add Work information';
   workHeader: string = 'Work Information';
@@ -110,6 +111,26 @@ export class WorkInformationComponent implements OnInit {
     })
   }
 
+  updateMainInfoForm(): any {
+    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
+        this.mainMenuForm.patchValue(result);
+
+        result.directReports.forEach(report => {
+          this.directReports.setValue([]);
+          this.directReports.push(this.fb.group({
+            name: report.name,
+            surname: report.surname
+          }))
+        })
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
+  }
+
   openNewDialog() {
     this.editable = false;
     this.deleteWork = false;
@@ -157,6 +178,8 @@ export class WorkInformationComponent implements OnInit {
 
       this.updateDirectManagerInfo();
 
+      this.updateMainInfoForm();
+
       this.messageService.add({
         severity: 'success',
         detail: 'Work information updated successfully.',
@@ -182,6 +205,8 @@ export class WorkInformationComponent implements OnInit {
         this.workForm.reset();
 
         this.updateDirectManagerInfo();
+
+        this.updateMainInfoForm();
 
         this.messageService.add({
           severity: 'success',
@@ -269,5 +294,9 @@ export class WorkInformationComponent implements OnInit {
 
   get managerName(): FormControl {
     return this.manager.get('name') as FormControl;
+  }
+
+  get directReports(): FormArray {
+    return this.mainMenuForm.get('directReports') as FormArray;
   }
 }

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {EthnicityEnum} from "../../../core/shared/models/enums/ethnicity-enum";
 import {JobCategoryEnum} from "../../../core/shared/models/enums/job-category-enum";
 import {environment} from "../../../../environments/environment";
@@ -28,6 +28,7 @@ export class JobComponent implements OnInit {
 
   @Input() selected: boolean;
   @Input() directManager: any;
+  @Input() mainMenuForm: FormGroup;
 
   @Output() jobFormOutput = new EventEmitter<FormGroup>();
   @Output() jobFormValue = new EventEmitter<any>();
@@ -96,6 +97,8 @@ export class JobComponent implements OnInit {
     this.api.updateUserJobInformation(this.auth.getId(), dto).subscribe(result => {
       this.fetchJobInfo();
 
+      this.updateMainInfoForm();
+
       this.messageService.add({
         severity: 'success',
         detail: 'Job information updated successfully.',
@@ -107,6 +110,26 @@ export class JobComponent implements OnInit {
         detail: error.error.errorMessage
       });
     })
+  }
+
+  updateMainInfoForm(): any {
+    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
+        this.mainMenuForm.patchValue(result);
+
+        result.directReports.forEach(report => {
+          this.directReports.setValue([]);
+          this.directReports.push(this.fb.group({
+            name: report.name,
+            surname: report.surname
+          }))
+        })
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error',
+          detail: error.error.errorMessage
+        });
+      })
   }
 
   onClear(): void {
@@ -128,5 +151,9 @@ export class JobComponent implements OnInit {
 
   get jobDescription(): FormControl {
     return this.jobForm.get('jobDescription') as FormControl;
+  }
+
+  get directReports(): FormArray {
+    return this.mainMenuForm.get('directReports') as FormArray;
   }
 }

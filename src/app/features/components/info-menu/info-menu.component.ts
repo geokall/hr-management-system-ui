@@ -195,10 +195,10 @@ export class InfoMenuComponent implements OnInit {
       this.personalSelected = true;
       this.jobSelected = false;
 
-      this.transferPersonalForm(this.personalForm)
-      this.transferPersonalFormValue(this.personalFormValue)
+      this.transferPersonalForm(this.personalForm);
+      this.transferPersonalFormValue(this.personalFormValue);
 
-      this.personalForm.patchValue(this.personalFormValue)
+      this.personalForm.patchValue(this.personalFormValue);
     }
     if (this.activeIndex == 1) {
       this.jobSelected = true;
