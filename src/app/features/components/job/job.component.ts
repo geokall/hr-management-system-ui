@@ -20,6 +20,7 @@ export class JobComponent implements OnInit {
   env = environment;
 
   jobForm: FormGroup;
+  resetJobValue: JobInformationDTO;
 
   bonusResponse: BonusDTO[];
   workInformationResponse: WorkInformationDTO[];
@@ -74,11 +75,13 @@ export class JobComponent implements OnInit {
 
   fetchJobInfo() {
     this.api.fetchUserJobInfo(this.auth.getId()).subscribe(result => {
-      this.jobForm.reset(result);
+      this.jobForm.patchValue(result);
 
       this.bonusResponse = result.bonuses;
       this.workInformationResponse = result.workInformations;
       this.compensationsResponse = result.compensations;
+
+      this.resetJobValue = result;
     }, error => {
       this.messageService.add({
         severity: 'error',
@@ -91,7 +94,6 @@ export class JobComponent implements OnInit {
     let dto = this.jobForm.value as JobInformationDTO;
 
     this.api.updateUserJobInformation(this.auth.getId(), dto).subscribe(result => {
-      this.jobForm.reset();
       this.fetchJobInfo();
 
       this.messageService.add({
@@ -108,7 +110,8 @@ export class JobComponent implements OnInit {
   }
 
   onClear(): void {
-    // this.form.reset(this.studentForm);
+    this.jobForm.reset();
+    this.jobForm.patchValue(this.resetJobValue);
   }
 
   get hireDate(): FormControl {

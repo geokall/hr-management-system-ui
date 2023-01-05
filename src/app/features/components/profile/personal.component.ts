@@ -7,6 +7,8 @@ import {environment} from "../../../../environments/environment";
 import {GenderEnum} from "../../../core/shared/models/enums/gender-enum";
 import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-status-enum";
 import {EducationDTO} from "../../../core/shared/models/dto/education-dto";
+import {Router} from "@angular/router";
+import {PersonalInformationDTO} from "../../../core/shared/models/dto/personal-information-dto";
 
 @Component({
   selector: 'app-personal',
@@ -16,6 +18,7 @@ import {EducationDTO} from "../../../core/shared/models/dto/education-dto";
 export class PersonalComponent implements OnInit {
 
   personalForm: FormGroup;
+  personalResetValue: PersonalInformationDTO;
 
   @Input() selected: boolean;
 
@@ -48,6 +51,7 @@ export class PersonalComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private api: ApiService,
               private auth: AuthService,
+              private router: Router,
               private messageService: MessageService) {
   }
 
@@ -98,6 +102,8 @@ export class PersonalComponent implements OnInit {
 
       this.personalFormOutput.emit(this.personalForm);
       this.personalFormValue.emit(userInfo);
+
+      this.personalResetValue = userInfo;
     }).add(() => this.loading = false);
   }
 
@@ -105,6 +111,7 @@ export class PersonalComponent implements OnInit {
     this.saving = true;
 
     let userDTO = this.personalForm.value;
+
     this.api.updateUserPersonalInfo(this.auth.getId(), userDTO).subscribe(result => {
         this.successModal = true;
         this.saving = false;
@@ -130,7 +137,8 @@ export class PersonalComponent implements OnInit {
   }
 
   onClear(): void {
-    // this.form.reset(this.studentForm);
+    this.personalForm.reset();
+    this.personalForm.patchValue(this.personalResetValue);
   }
 
   allowOnlyNumber(event: { which: any; keyCode: any; }): boolean {

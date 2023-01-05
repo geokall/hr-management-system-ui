@@ -223,15 +223,15 @@
 
       <ng-template pTemplate="footer">
         <p-button *ngIf="isEditMode == false" (onClick)="updateProfile()"
-                  [disabled]="personalForm.invalid"
+                  [disabled]="personalForm.invalid || (personalForm.untouched && personalForm.pristine)"
                   [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
                   label="Save changes">
         </p-button>
         <p-button *ngIf="isEditMode == false" (onClick)="onClear()"
-                  [disabled]="personalForm.invalid"
+                  [disabled]="personalForm.pristine"
                   [style]="{'margin-left': '.5em'}"
-                  [icon]="!personalForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
-                  [label]="!personalForm.get('id')?.value ? 'Clear': 'Refresh'"
+                  [icon]="'pi pi-eraser'"
+                  [label]="'Clear'"
                   styleClass="p-button-secondary">
         </p-button>
       </ng-template>

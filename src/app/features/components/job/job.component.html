@@ -81,15 +81,15 @@
 
       <ng-template pTemplate="footer">
         <p-button *ngIf="isEditMode == false" (onClick)="updateJobInfo()"
-                  [disabled]="jobForm.pristine && jobForm.untouched"
+                  [disabled]="jobForm.invalid || (jobForm.untouched && jobForm.pristine)"
                   [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
                   label="Save changes">
         </p-button>
         <p-button *ngIf="isEditMode == false" (onClick)="onClear()"
-                  [disabled]="jobForm.pristine && jobForm.untouched"
+                  [disabled]="jobForm.pristine"
                   [style]="{'margin-left': '.5em'}"
-                  [icon]="!jobForm.get('id')?.value ?  'pi pi-trash' : 'pi pi-refresh'"
-                  [label]="!jobForm.get('id')?.value ? 'Clear': 'Refresh'"
+                  [icon]="'pi pi-eraser'"
+                  [label]="'Clear'"
                   styleClass="p-button-secondary">
         </p-button>
       </ng-template>
