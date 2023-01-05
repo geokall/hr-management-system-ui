@@ -113,8 +113,9 @@
 
           <div class="col-sm-10 info" *ngIf="managerName?.value != null">
             <i class="pi pi-user-plus inline-block"></i>
-            <a [routerLink]="['/user-personal/', managerId.value]" target="_blank">
-              {{managerName.value + ' ' + managerSurname.value}}
+            <a [routerLink]="['/user-personal/', managerId.value]"
+               target="_blank" class="custom-router-link">
+              <span>{{managerName.value + ' ' + managerSurname.value}}</span>
             </a>
           </div>
 

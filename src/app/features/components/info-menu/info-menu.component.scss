@@ -2,3 +2,16 @@
   font-weight: 700;
   font-size: 1.5rem;
 }
+
+.custom-router-link:hover span {
+  background-color: white;
+  color: #46a2ff;
+  padding-left: 5px;
+}
+
+.custom-router-link:not(:hover) {
+  text-decoration: none;
+  padding-left: 5px;
+  color: #495057;
+  background-color: white;
+}
