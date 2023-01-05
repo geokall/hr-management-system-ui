@@ -7,6 +7,7 @@ import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
 import {IdNameDTO} from "../../../core/shared/models/dto/id-name-dto";
 import {JobStatusEnum} from "../../../core/shared/models/enums/job-status.enum";
+import {getEnumByKey} from "../../../core/shared/utils/enumByKey";
 
 @Component({
   selector: 'app-work-information',
@@ -284,12 +285,8 @@ export class WorkInformationComponent implements OnInit {
     return this.mainMenuForm.get('directReports') as FormArray;
   }
 
-  getEnumValue(degree: string): any {
-    if (degree != null && degree != '') {
-      // @ts-ignore
-      return JobStatusEnum[degree];
-    } else {
-      return null;
-    }
+  getEnumByKey(payType: any) {
+    return getEnumByKey(payType, JobStatusEnum);
   }
+
 }

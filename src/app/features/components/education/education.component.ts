@@ -6,6 +6,7 @@ import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
 import {EducationDTO} from "../../../core/shared/models/dto/education-dto";
 import {DegreeEnum} from "../../../core/shared/models/enums/degree-enum";
+import {getEnumByKey} from "../../../core/shared/utils/enumByKey";
 
 @Component({
   selector: 'app-education',
@@ -197,13 +198,8 @@ export class EducationComponent implements OnInit {
     return this.educationForm.get('gpa') as FormControl;
   }
 
-  getEnumValue(degree: string): any {
-    if (degree != null && degree != '') {
-      // @ts-ignore
-      return DegreeEnum[degree];
-    } else {
-      return null;
-    }
+  getEnumByKey(payType: any) {
+    return getEnumByKey(payType, DegreeEnum);
   }
 
 }

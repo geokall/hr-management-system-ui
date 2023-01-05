@@ -80,7 +80,7 @@
         <div class="row mb-2 pb-2">
           <i class="pi pi-bookmark inline-block"></i>
           <div class="col-sm-10 info next">
-            {{jobStatus.value != null ? jobStatus.value : '-'}}
+            {{jobStatus.value != null ? getEnumByKey(jobStatus.value) : '-'}}
           </div>
         </div>
 

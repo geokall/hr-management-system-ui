@@ -5,6 +5,8 @@ import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {PersonalInformationDTO} from "../../../core/shared/models/dto/personal-information-dto";
 import {JobInformationDTO} from "../../../core/shared/models/dto/job-information-dto";
+import {getEnumByKey} from "../../../core/shared/utils/enumByKey";
+import {JobStatusEnum} from "../../../core/shared/models/enums/job-status.enum";
 
 @Component({
   selector: 'app-info-menu',
@@ -207,5 +209,9 @@ export class InfoMenuComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  getEnumByKey(payType: any) {
+    return getEnumByKey(payType, JobStatusEnum);
   }
 }

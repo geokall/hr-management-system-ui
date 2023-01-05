@@ -6,6 +6,7 @@ import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
 import {PayTypeEnum} from "../../../core/shared/models/enums/pay-type-enum";
+import {getEnumByKey} from "../../../core/shared/utils/enumByKey";
 
 @Component({
   selector: 'app-compensation',
@@ -214,13 +215,7 @@ export class CompensationComponent implements OnInit {
     return this.compensationForm.get('comment') as FormControl;
   }
 
-  getEnumValue(degree: string): any {
-    if (degree != null && degree != '') {
-      // @ts-ignore
-      return PayTypeEnum[degree];
-    } else {
-      return null;
-    }
+  getEnumByKey(payType: any) {
+    return getEnumByKey(payType, PayTypeEnum);
   }
-
 }
