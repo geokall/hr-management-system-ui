@@ -90,6 +90,7 @@ export class InfoMenuComponent implements OnInit {
 
         result.directReports.forEach(report => {
           this.directReports.push(this.fb.group({
+            directReportUserId: report.directReportUserId,
             name: report.name,
             surname: report.surname
           }))
@@ -173,6 +174,10 @@ export class InfoMenuComponent implements OnInit {
 
   get directReports(): FormArray {
     return this.basicInfoForm.get('directReports') as FormArray;
+  }
+
+  get directReportUserId(): FormArray {
+    return this.personalForm.get('directReportUserId') as FormArray;
   }
 
   get personalName(): FormArray {

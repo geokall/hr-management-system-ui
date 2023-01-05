@@ -149,9 +149,15 @@
 
           <div *ngFor="let directReport of directReports.controls; let i =index;">
             <div [formGroupName]="i">
-              <i class="pi pi-user-edit inline-block"></i>
               <div class="col-sm-10 info next" style="padding-top: 5px">
-                {{directReport?.value.name + ' ' + directReport?.value.surname}}
+
+                <i class="pi pi-user-edit inline-block"></i>
+
+                <a [routerLink]="['/user-personal/', directReport.value.directReportUserId]"
+                   target="_blank" class="custom-router-link">
+                  <span>{{directReport?.value.name + ' ' + directReport?.value.surname}}</span>
+                </a>
+
               </div>
 
             </div>
