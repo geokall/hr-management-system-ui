@@ -176,8 +176,6 @@ export class WorkInformationComponent implements OnInit {
       this.fetchUserWorkInformations();
       this.workForm.reset();
 
-      this.updateDirectManagerInfo();
-
       this.updateMainInfoForm();
 
       this.messageService.add({
@@ -204,8 +202,6 @@ export class WorkInformationComponent implements OnInit {
 
         this.workForm.reset();
 
-        this.updateDirectManagerInfo();
-
         this.updateMainInfoForm();
 
         this.messageService.add({
@@ -231,8 +227,6 @@ export class WorkInformationComponent implements OnInit {
         this.fetchUserWorkInformations();
         this.workForm.reset();
 
-        this.updateDirectManagerInfo();
-
         this.messageService.add({
           severity: 'success',
           detail: 'Work information deleted successfully.',
@@ -246,22 +240,6 @@ export class WorkInformationComponent implements OnInit {
           detail: error.error.errorMessage
         });
       })
-  }
-
-  updateDirectManagerInfo() {
-    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
-      this.directManager.patchValue(result?.directManager);
-
-      if (result.directManager == null) {
-        this.directManager.get('name').patchValue(null);
-        this.directManager.get('titleJob').patchValue(null);
-      }
-    }, error => {
-      this.messageService.add({
-        severity: 'error',
-        detail: error.error.errorMessage
-      });
-    })
   }
 
   get effectiveDate(): FormControl {
