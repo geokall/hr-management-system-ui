@@ -5,6 +5,7 @@ export interface MainInfoDTO {
   id: number;
   name: string;
   surname: string;
+  jobTitle: string;
   workNumber: string;
   mobileNumber: string;
   businessEmail: string;

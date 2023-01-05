@@ -115,13 +115,6 @@ export class WorkInformationComponent implements OnInit {
     this.api.getMainInfo(this.auth.getId()).subscribe(result => {
         this.mainMenuForm.patchValue(result);
 
-        result.directReports.forEach(report => {
-          this.directReports.setValue([]);
-          this.directReports.push(this.fb.group({
-            name: report.name,
-            surname: report.surname
-          }))
-        })
       },
       error => {
         this.messageService.add({

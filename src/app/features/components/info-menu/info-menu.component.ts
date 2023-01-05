@@ -34,8 +34,6 @@ export class InfoMenuComponent implements OnInit {
   personHeader: string = 'Personal';
   jobHeader: string = 'Job';
 
-  userTitleJob: string;
-
   constructor(private fb: FormBuilder,
               private api: ApiService,
               private auth: AuthService,
@@ -45,7 +43,6 @@ export class InfoMenuComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.retrieveMainInfo();
-    this.fetchLastEffectiveWorkInfo();
   }
 
   initForm(): void {
@@ -53,6 +50,7 @@ export class InfoMenuComponent implements OnInit {
       id: new FormControl(null),
       name: new FormControl(null),
       surname: new FormControl(null),
+      jobTitle: new FormControl(null),
       workNumber: new FormControl(null),
       mobileNumber: new FormControl(null),
       businessEmail: new FormControl(null),
@@ -94,18 +92,6 @@ export class InfoMenuComponent implements OnInit {
       })
   }
 
-  fetchLastEffectiveWorkInfo(): any {
-    this.api.fetchLastEffectiveWorkInfo(this.auth.getId()).subscribe(result => {
-        this.userTitleJob = result?.name;
-      },
-      error => {
-        this.messageService.add({
-          severity: 'error',
-          detail: error.error.errorMessage
-        });
-      })
-  }
-
   get id(): FormControl {
     return this.basicInfoForm.get('id') as FormControl;
   }
@@ -116,6 +102,10 @@ export class InfoMenuComponent implements OnInit {
 
   get surname(): FormControl {
     return this.basicInfoForm.get('surname') as FormControl;
+  }
+
+  get jobTitle(): FormControl {
+    return this.basicInfoForm.get('jobTitle') as FormControl;
   }
 
   get workNumber(): FormControl {
@@ -226,16 +216,16 @@ export class InfoMenuComponent implements OnInit {
   }
 
   setNameAndSurname(): string {
-    if (this.personalFormValue?.name !== null) {
-      return this.personalFormValue?.name + ' ' + this.personalFormValue?.surname;
+    if (this.name?.value !== null) {
+      return this.name?.value + ' ' + this.surname?.value;
     } else {
       return 'Name and Surname have not been modified yet.';
     }
   }
 
   setJobTitle(): any {
-    if (this.userTitleJob !== '' && this.userTitleJob !== null) {
-      return ' - ' + this.userTitleJob;
+    if (this.jobTitle?.value !== null && this.jobTitle?.value != '') {
+      return ' - ' + this.jobTitle.value;
     } else {
       return '';
     }
