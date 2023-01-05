@@ -114,7 +114,6 @@ export class WorkInformationComponent implements OnInit {
   updateMainInfoForm(): any {
     this.api.getMainInfo(this.auth.getId()).subscribe(result => {
         this.mainMenuForm.patchValue(result);
-
       },
       error => {
         this.messageService.add({
@@ -219,6 +218,8 @@ export class WorkInformationComponent implements OnInit {
         this.deleteDialog = false;
         this.fetchUserWorkInformations();
         this.workForm.reset();
+
+        this.updateMainInfoForm();
 
         this.messageService.add({
           severity: 'success',
