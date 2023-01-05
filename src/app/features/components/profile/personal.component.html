@@ -222,12 +222,12 @@
       </app-education>
 
       <ng-template pTemplate="footer">
-        <p-button *ngIf="isEditMode == false" (onClick)="updateProfile()"
+        <p-button *ngIf="isEditMode == true" (onClick)="updateProfile()"
                   [disabled]="personalForm.invalid || (personalForm.untouched && personalForm.pristine)"
                   [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
                   label="Save changes">
         </p-button>
-        <p-button *ngIf="isEditMode == false" (onClick)="onClear()"
+        <p-button *ngIf="isEditMode == true" (onClick)="onClear()"
                   [disabled]="personalForm.pristine"
                   [style]="{'margin-left': '.5em'}"
                   [icon]="'pi pi-eraser'"

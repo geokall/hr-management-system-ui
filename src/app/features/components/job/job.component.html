@@ -81,12 +81,12 @@
       </app-compensation>
 
       <ng-template pTemplate="footer">
-        <p-button *ngIf="isEditMode == false" (onClick)="updateJobInfo()"
+        <p-button *ngIf="isEditMode == true" (onClick)="updateJobInfo()"
                   [disabled]="jobForm.invalid || (jobForm.untouched && jobForm.pristine)"
                   [icon]="!saving ? 'pi pi-check' : 'pi pi-spin pi-spinner'"
                   label="Save changes">
         </p-button>
-        <p-button *ngIf="isEditMode == false" (onClick)="onClear()"
+        <p-button *ngIf="isEditMode == true" (onClick)="onClear()"
                   [disabled]="jobForm.pristine"
                   [style]="{'margin-left': '.5em'}"
                   [icon]="'pi pi-eraser'"

@@ -10,6 +10,7 @@ import {JobInformationDTO} from "../../../core/shared/models/dto/job-information
 import {BonusDTO} from "../../../core/shared/models/dto/bonus-dto";
 import {WorkInformationDTO} from "../../../core/shared/models/dto/work-information-dto";
 import {CompensationDTO} from "../../../core/shared/models/dto/compensation-dto";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-job',
@@ -51,6 +52,8 @@ export class JobComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private api: ApiService,
               private auth: AuthService,
+              private activatedRoute: ActivatedRoute,
+              public router: Router,
               private messageService: MessageService) {
   }
 
@@ -75,7 +78,18 @@ export class JobComponent implements OnInit {
   }
 
   fetchJobInfo() {
-    this.api.fetchUserJobInfo(this.auth.getId()).subscribe(result => {
+    let id: number;
+    let routeId = this.activatedRoute.snapshot.params['id'];
+
+    if (routeId != null) {
+      id = routeId;
+      this.isEditMode = false;
+    } else {
+      id = this.auth.getId();
+      this.isEditMode = true;
+    }
+    console.log(this.isEditMode)
+    this.api.fetchUserJobInfo(id).subscribe(result => {
       this.jobForm.patchValue(result);
 
       this.bonusResponse = result.bonuses;

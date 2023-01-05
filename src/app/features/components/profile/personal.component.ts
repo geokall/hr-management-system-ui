@@ -7,7 +7,7 @@ import {environment} from "../../../../environments/environment";
 import {GenderEnum} from "../../../core/shared/models/enums/gender-enum";
 import {MaritalStatusEnum} from "../../../core/shared/models/enums/marital-status-enum";
 import {EducationDTO} from "../../../core/shared/models/dto/education-dto";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PersonalInformationDTO} from "../../../core/shared/models/dto/personal-information-dto";
 
 @Component({
@@ -52,7 +52,8 @@ export class PersonalComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private api: ApiService,
               private auth: AuthService,
-              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              public router: Router,
               private messageService: MessageService) {
   }
 
@@ -94,7 +95,18 @@ export class PersonalComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.api.getPersonalInfo(this.auth.getId()).subscribe(userInfo => {
+    let id: number;
+    let routeId = this.activatedRoute.snapshot.params['id'];
+
+    if (routeId != null) {
+      id = routeId;
+      this.isEditMode = false;
+    } else {
+      id = this.auth.getId();
+      this.isEditMode = true;
+    }
+
+    this.api.getPersonalInfo(id).subscribe(userInfo => {
       this.personalForm.patchValue(userInfo);
 
       this.userInfoView = true;
@@ -140,7 +152,16 @@ export class PersonalComponent implements OnInit {
   }
 
   updateMainInfoForm(): any {
-    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
+    let id: number;
+    let routeId = this.activatedRoute.snapshot.params['id'];
+
+    if (routeId != null) {
+      id = routeId;
+    } else {
+      id = this.auth.getId();
+    }
+
+    this.api.getMainInfo(id).subscribe(result => {
         this.mainMenuForm.patchValue(result);
 
       },

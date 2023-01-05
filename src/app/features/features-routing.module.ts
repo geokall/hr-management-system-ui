@@ -26,6 +26,7 @@ const routes: Routes = [
     ]
   },
   {path: 'user-personal', component: InfoMenuComponent, canActivate: [AuthGuard]},
+  {path: 'user-personal/:id', component: InfoMenuComponent, canActivate: [AuthGuard]},
   {path: 'search-people', component: SearchPeopleComponent, canActivate: [AuthGuard]},
   {path: 'user-invitation', component: UserInvitationComponent, canActivate: [AuthGuard]},
   {path: 'password-change', component: PasswordComponent, canActivate: [AuthGuard]},

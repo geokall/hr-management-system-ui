@@ -4,9 +4,9 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {PersonalInformationDTO} from "../../../core/shared/models/dto/personal-information-dto";
-import {JobInformationDTO} from "../../../core/shared/models/dto/job-information-dto";
 import {getEnumByKey} from "../../../core/shared/utils/enumByKey";
 import {JobStatusEnum} from "../../../core/shared/models/enums/job-status.enum";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-info-menu',
@@ -26,9 +26,6 @@ export class InfoMenuComponent implements OnInit {
   personalForm: FormGroup;
   personalFormValue: PersonalInformationDTO;
 
-  jobForm: FormGroup;
-  jobFormValue: JobInformationDTO;
-
   activeIndex: number = 0;
 
   personalSelected: boolean = false;
@@ -38,6 +35,8 @@ export class InfoMenuComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private api: ApiService,
+              private activatedRoute: ActivatedRoute,
+              public router: Router,
               private auth: AuthService,
               private messageService: MessageService) {
   }
@@ -67,6 +66,7 @@ export class InfoMenuComponent implements OnInit {
       directManager: new FormGroup({
         id: new FormControl(null),
         profilePicture: new FormControl(null),
+        managerId: new FormControl(null),
         name: new FormControl(null),
         surname: new FormControl(null),
         titleJob: new FormControl(null),
@@ -76,7 +76,16 @@ export class InfoMenuComponent implements OnInit {
   }
 
   retrieveMainInfo(): any {
-    this.api.getMainInfo(this.auth.getId()).subscribe(result => {
+    let id: number;
+    let routeId = this.activatedRoute.snapshot.params['id'];
+
+    if (routeId != null) {
+      id = routeId;
+    } else {
+      id = this.auth.getId();
+    }
+
+    this.api.getMainInfo(id).subscribe(result => {
         this.basicInfoForm.patchValue(result);
 
         result.directReports.forEach(report => {
@@ -144,6 +153,10 @@ export class InfoMenuComponent implements OnInit {
 
   get directManager(): FormGroup {
     return this.basicInfoForm.get('directManager') as FormGroup;
+  }
+
+  get managerId(): FormControl {
+    return this.directManager.get('managerId') as FormControl;
   }
 
   get managerName(): FormControl {
