@@ -6,6 +6,7 @@ import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {MessageService} from "primeng/api";
 import {IdNameDTO} from "../../../core/shared/models/dto/id-name-dto";
+import {JobStatusEnum} from "../../../core/shared/models/enums/job-status.enum";
 
 @Component({
   selector: 'app-work-information',
@@ -37,6 +38,12 @@ export class WorkInformationComponent implements OnInit {
   divisions: IdNameDTO[];
   managers: IdNameDTO[];
 
+  jobStatuses: any[] = Object.keys(JobStatusEnum)
+    .map((item) => {
+      // @ts-ignore
+      return {key: item, value: JobStatusEnum[item]}
+    });
+
   constructor(private fb: FormBuilder,
               private api: ApiService,
               private auth: AuthService,
@@ -56,6 +63,7 @@ export class WorkInformationComponent implements OnInit {
       id: new FormControl(null),
       effectiveDate: new FormControl(null, Validators.required),
       jobTitle: new FormControl(null),
+      jobStatus: new FormControl(null),
       location: new FormControl(null),
       division: new FormControl(null),
       manager: new FormControl(null)
@@ -242,6 +250,10 @@ export class WorkInformationComponent implements OnInit {
 
   get jobTitle(): FormControl {
     return this.workForm.get('jobTitle') as FormControl;
+  }
+
+  get jobStatus(): FormControl {
+    return this.workForm.get('jobStatus') as FormControl;
   }
 
   get location(): FormGroup {
