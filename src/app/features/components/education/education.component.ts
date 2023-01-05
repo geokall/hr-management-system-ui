@@ -197,4 +197,13 @@ export class EducationComponent implements OnInit {
     return this.educationForm.get('gpa') as FormControl;
   }
 
+  getEnumValue(degree: string): any {
+    if (degree != null && degree != '') {
+      // @ts-ignore
+      return DegreeEnum[degree];
+    } else {
+      return null;
+    }
+  }
+
 }

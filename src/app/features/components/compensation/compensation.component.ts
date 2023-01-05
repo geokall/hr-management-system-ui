@@ -214,4 +214,13 @@ export class CompensationComponent implements OnInit {
     return this.compensationForm.get('comment') as FormControl;
   }
 
+  getEnumValue(degree: string): any {
+    if (degree != null && degree != '') {
+      // @ts-ignore
+      return PayTypeEnum[degree];
+    } else {
+      return null;
+    }
+  }
+
 }

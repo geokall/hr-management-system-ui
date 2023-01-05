@@ -283,4 +283,13 @@ export class WorkInformationComponent implements OnInit {
   get directReports(): FormArray {
     return this.mainMenuForm.get('directReports') as FormArray;
   }
+
+  getEnumValue(degree: string): any {
+    if (degree != null && degree != '') {
+      // @ts-ignore
+      return JobStatusEnum[degree];
+    } else {
+      return null;
+    }
+  }
 }

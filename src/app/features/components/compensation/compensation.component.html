@@ -25,7 +25,7 @@
       <tr>
         <td style="display: none;">{{compensation.id}}</td>
         <td>{{compensation?.effectiveDate}}</td>
-        <td>{{compensation?.payType}}</td>
+        <td>{{getEnumValue(compensation?.payType)}}</td>
         <td>{{compensation?.payRate | currency: 'EUR' : 'symbol'}}</td>
         <td>{{compensation?.comment}}</td>
         <td>
