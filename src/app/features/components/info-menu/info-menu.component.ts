@@ -185,34 +185,12 @@ export class InfoMenuComponent implements OnInit {
       this.personalSelected = true;
       this.jobSelected = false;
 
-      this.transferPersonalForm(this.personalForm);
-      this.transferPersonalFormValue(this.personalFormValue);
-
       this.personalForm.patchValue(this.personalFormValue);
     }
     if (this.activeIndex == 1) {
       this.jobSelected = true;
       this.personalSelected = false;
-
-      this.transferJobFormValue(this.jobForm);
-      this.transferJobFormValue(this.jobFormValue);
     }
-  }
-
-  transferPersonalForm(personalForm: FormGroup) {
-    this.personalForm = personalForm;
-  }
-
-  transferPersonalFormValue(userInfo: PersonalInformationDTO) {
-    this.personalFormValue = userInfo;
-  }
-
-  transferJobForm(jobForm: FormGroup) {
-    this.jobForm = jobForm;
-  }
-
-  transferJobFormValue(value: any) {
-    this.jobFormValue = value;
   }
 
   setNameAndSurname(): string {
