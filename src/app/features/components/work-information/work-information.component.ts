@@ -19,6 +19,7 @@ export class WorkInformationComponent implements OnInit {
   @Input() workInformationResponse: WorkInformationDTO[];
   @Input() directManager: any;
   @Input() mainMenuForm: FormGroup;
+  @Input() editMode: boolean;
 
   workButtonHeader: string = 'Add Work information';
   workHeader: string = 'Work Information';

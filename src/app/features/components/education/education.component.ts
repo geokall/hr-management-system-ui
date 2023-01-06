@@ -16,6 +16,7 @@ import {getEnumByKey} from "../../../core/shared/utils/enumByKey";
 export class EducationComponent implements OnInit {
 
   @Input() educationResponse: EducationDTO[];
+  @Input() editMode: boolean;
 
   educationButtonHeader: string = 'Add education';
   educationHeader: string = 'Education';

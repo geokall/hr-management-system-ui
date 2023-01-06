@@ -17,6 +17,7 @@ export class CompensationComponent implements OnInit {
 
   @Input() compensationResponse: CompensationDTO[];
   @Input() mainMenuForm: FormGroup;
+  @Input() editMode: boolean;
 
   compensationButtonHeader: string = 'Add Compensation';
   compensationHeader: string = 'Compensation';

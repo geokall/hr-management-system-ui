@@ -38,6 +38,7 @@
           <div class="field">
             <label for="birthDate" class="block">Birth Date</label>
             <p-calendar
+              [disabled]="isEditMode == false"
               [formControl]="birthDate"
               id="birthDate"
               dateFormat="dd/mm/yy"
@@ -218,6 +219,7 @@
       <!--      <h3 class="next-more">Education</h3>-->
 
       <app-education *ngIf="educationResponse"
+                     [editMode]="isEditMode"
                      [educationResponse]="educationResponse">
       </app-education>
 

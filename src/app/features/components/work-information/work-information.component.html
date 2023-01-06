@@ -3,6 +3,7 @@
 <p-panel styleClass="default" [header]=workHeader [toggleable]="true">
   <button pButton [label]=workButtonHeader icon="pi pi-plus"
           class="p-button-secondary"
+          [disabled]="editMode == false"
           (click)="openNewDialog()">
   </button>
 
@@ -35,10 +36,12 @@
         <td>
           <button pButton pRipple icon="pi pi-pencil"
                   class="p-button-rounded p-button-warning p-button-outlined mr-2"
+                  [disabled]="editMode == false"
                   (click)="editRow(work)">
           </button>
           <button pButton pRipple icon="pi pi-trash"
                   class="p-button-rounded p-button-danger p-button-outlined"
+                  [disabled]="editMode == false"
                   (click)="deleteRow(work)">
           </button>
         </td>

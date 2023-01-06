@@ -14,6 +14,7 @@ import {BonusDTO} from "../../../core/shared/models/dto/bonus-dto";
 export class BonusComponent implements OnInit {
 
   @Input() bonusResponse: BonusDTO[];
+  @Input() editMode: boolean;
 
   env = environment;
 

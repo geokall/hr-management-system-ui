@@ -21,6 +21,7 @@
         <div class="field">
           <label for="hireDate" class="block">Hire Date</label>
           <p-calendar
+            [disabled]="isEditMode == false"
             [formControl]="hireDate"
             id="hireDate"
             dateFormat="dd/mm/yy"
@@ -65,10 +66,12 @@
         </div>
 
         <app-bonus *ngIf="bonusResponse"
+                   [editMode]="isEditMode"
                    [bonusResponse]="bonusResponse">
         </app-bonus>
 
         <app-work-information *ngIf="workInformationResponse"
+                              [editMode]="isEditMode"
                               [mainMenuForm]="mainMenuForm"
                               [workInformationResponse]="workInformationResponse">
         </app-work-information>
@@ -76,6 +79,7 @@
       </div>
 
       <app-compensation *ngIf="compensationsResponse"
+                        [editMode]="isEditMode"
                         [mainMenuForm]="mainMenuForm"
                         [compensationResponse]="compensationsResponse">
       </app-compensation>

@@ -1,7 +1,8 @@
 <p-toast></p-toast>
 
 <p-panel styleClass="default" [header]=educationHeader [toggleable]="true">
-  <button pButton [label]=educationButtonHeader icon="pi pi-plus" class="p-button-secondary"
+  <button pButton [disabled]="editMode == false" [label]=educationButtonHeader
+          icon="pi pi-plus" class="p-button-secondary"
           (click)="openNewDialog()">
   </button>
 
@@ -31,10 +32,14 @@
         <td>{{education.studyFrom}}</td>
         <td>{{education.studyTo}}</td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-button-outlined mr-2"
+          <button pButton pRipple icon="pi pi-pencil"
+                  class="p-button-rounded p-button-warning p-button-outlined mr-2"
+                  [disabled]="editMode == false"
                   (click)="editRow(education)">
           </button>
-          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-outlined"
+          <button pButton pRipple icon="pi pi-trash"
+                  class="p-button-rounded p-button-danger p-button-outlined"
+                  [disabled]="editMode == false"
                   (click)="deleteRow(education)">
           </button>
         </td>
