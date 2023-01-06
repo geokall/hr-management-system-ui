@@ -106,6 +106,10 @@ export class PersonalComponent implements OnInit {
       this.isEditMode = true;
     }
 
+    if (this.auth.getId() == routeId) {
+      this.isEditMode = true;
+    }
+
     this.api.getPersonalInfo(id).subscribe(userInfo => {
       this.personalForm.patchValue(userInfo);
 
@@ -159,6 +163,10 @@ export class PersonalComponent implements OnInit {
       id = routeId;
     } else {
       id = this.auth.getId();
+    }
+
+    if (this.auth.getId() == routeId) {
+      this.isEditMode = true;
     }
 
     this.api.getMainInfo(id).subscribe(result => {

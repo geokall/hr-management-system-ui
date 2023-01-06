@@ -89,6 +89,10 @@ export class JobComponent implements OnInit {
       this.isEditMode = true;
     }
 
+    if (this.auth.getId() == routeId) {
+      this.isEditMode = true;
+    }
+
     this.api.fetchUserJobInfo(id).subscribe(result => {
       this.jobForm.patchValue(result);
 
