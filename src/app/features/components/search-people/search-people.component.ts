@@ -12,12 +12,9 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class SearchPeopleComponent implements OnInit {
 
   peopleForm: any;
-  newDialog: boolean | undefined;
   peopleResponse: any;
   person: any;
   editable: boolean | undefined;
-
-  deletePerson: boolean | undefined;
 
   //@ts-ignore
   formErrors: Message[];
@@ -55,7 +52,6 @@ export class SearchPeopleComponent implements OnInit {
   fetchDivisions() {
     this.api.fetchDivisions().subscribe(response => {
       this.divisionsMultiSelect = response;
-      console.log(this.divisionsMultiSelect)
     }, error => {
       this.messageService.add({
         severity: 'error',
@@ -78,6 +74,7 @@ export class SearchPeopleComponent implements OnInit {
   getAllUsers() {
     this.api.getAllUsers().subscribe(response => {
         this.peopleResponse = response;
+        this.peopleForm.reset(response);
         this.isLoading = false;
       },
       error => {
@@ -88,16 +85,7 @@ export class SearchPeopleComponent implements OnInit {
       });
   }
 
-  editStudent(student: any) {
-
-  }
-
-  hideStudentDialog() {
-    this.newDialog = false;
-    this.peopleForm.reset();
-  }
-
-  updateStudent() {
-
+  get id(): FormControl {
+    return this.peopleForm.get('id') as FormControl;
   }
 }
