@@ -2,9 +2,9 @@ export const environment = {
   production: true,
   debug: false,
 
-  allowedDomains: ['https://geokall.gr/api'],
-  disallowedDomains: ['https://geokall.gr/api/auth/login'],
-  apiUrl: 'https://geokall.gr/api',
+  allowedDomains: ['https://hua-management.ddns.net/api'],
+  disallowedDomains: ['https://hua-management.ddns.net/api/auth/login'],
+  apiUrl: 'https://hua-management.ddns.net/api',
 
   storedVarKeys: {
     accessTokenKey: "hua_access_token",
