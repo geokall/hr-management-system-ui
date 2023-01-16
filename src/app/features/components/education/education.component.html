@@ -6,7 +6,8 @@
           (click)="openNewDialog()">
   </button>
 
-  <p-table #dt [loading]="isLoading" [showLoader]="false" responsiveLayout="scroll" [value]="educations"
+  <p-table #dt [loading]="isLoading" [showLoader]="false" responsiveLayout="scroll"
+           [value]="educations"
            [rowHover]="true" dataKey="id">
 
     <ng-template pTemplate="header">
@@ -120,25 +121,25 @@
       <input class="p-inputtext-sm" id="gpa" type="text" pInputText
              [formControl]="gpa">
     </div>
-
     <div class="formgroup-inline">
 
       <div class="field">
         <label for="studyFrom" class="block">Study From</label>
         <p-calendar formControlName="studyFrom"
                     id="studyFrom"
+                    appendTo="body"
                     dateFormat="dd/mm/yy"
                     [showIcon]="true"
                     dataType="string"
                     inputId="studyFrom">
         </p-calendar>
       </div>
-
       <div class="field">
         <label for="studyTo" class="block">Study To</label>
         <p-calendar formControlName="studyTo"
                     id="studyTo"
                     dateFormat="dd/mm/yy"
+                    appendTo="body"
                     [showIcon]="true"
                     dataType="string"
                     inputId="studyTo">
