@@ -54,6 +54,7 @@ import {CompensationComponent} from "./components/compensation/compensation.comp
 import {SharedModule} from "../core/shared/shared.module";
 import {PasswordComponent} from "./components/password/password.component";
 import {SearchPeopleComponent} from "./components/search-people/search-people.component";
+import {UserFileComponent} from "./components/user-file/user-file.component";
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {SearchPeopleComponent} from "./components/search-people/search-people.co
     WorkInformationComponent,
     CompensationComponent,
     PasswordComponent,
-    SearchPeopleComponent
+    SearchPeopleComponent,
+    UserFileComponent
   ],
   imports: [
     CommonModule,

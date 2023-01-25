@@ -30,8 +30,10 @@ export class InfoMenuComponent implements OnInit {
 
   personalSelected: boolean = false;
   jobSelected: boolean = false;
+  fileSelected: boolean = false;
   personHeader: string = 'Personal';
   jobHeader: string = 'Job';
+  fileHeader: string = 'Files';
 
   constructor(private fb: FormBuilder,
               private api: ApiService,
@@ -204,12 +206,19 @@ export class InfoMenuComponent implements OnInit {
     if (this.activeIndex == 0) {
       this.personalSelected = true;
       this.jobSelected = false;
+      this.fileSelected = false;
 
       this.personalForm.patchValue(this.personalFormValue);
     }
     if (this.activeIndex == 1) {
       this.jobSelected = true;
       this.personalSelected = false;
+      this.fileSelected = false;
+    }
+    if (this.activeIndex == 2) {
+      this.fileSelected = true;
+      this.personalSelected = false;
+      this.jobSelected = false;
     }
   }
 
