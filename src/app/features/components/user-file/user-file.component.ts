@@ -7,6 +7,7 @@ import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MessageService} from "primeng/api";
+import {FileDTO} from "../../../core/shared/models/dto/file-dto";
 
 @Component({
   selector: 'app-user-file',
@@ -56,21 +57,20 @@ export class UserFileComponent implements OnInit {
     })
   }
 
-  // onUpload(file: any) {
-  //   console.log(file)
-  //   // @ts-ignore
-  //   this.uploadedFiles.push(file);
-  //
-  //   this.getBase64(file).then(base64encoded => {
-  //     let base64encodedString = base64encoded as string;
-  //     let base64Format = base64encodedString.split(',')[1];
-  //     this.getActualFile.setValue(base64Format);
-  //     this.getFileName.setValue(file.name);
-  //     this.getMimeType.setValue(file.type);
-  //   })
-  //
-  //   this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-  // }
+  onSelect(event: { files: any; }) {
+    for (let file of event.files) {
+      // @ts-ignore
+      this.uploadedFiles.push(file);
+
+      this.getBase64(file).then(base64encoded => {
+        let base64encodedString = base64encoded as string;
+        let base64Format = base64encodedString.split(',')[1];
+        this.getActualFile.patchValue(base64Format);
+        this.getFileName.patchValue(file.name);
+        this.getMimeType.patchValue(file.type);
+      })
+    }
+  }
 
   getBase64(file: Blob) {
     return new Promise((resolve, reject) => {
@@ -99,5 +99,23 @@ export class UserFileComponent implements OnInit {
 
   clearForm() {
     this.uploadedFiles = [];
+  }
+
+  onUpload($event: any) {
+    console.log(this.getFileName.value)
+    let dto = this.getFile.value as FileDTO;
+    this.api.uploadToMinio(dto).subscribe(result => {
+
+      this.messageService.add({
+        severity: 'info',
+        summary: 'File Uploaded successfully'
+      });
+    }, error => {
+      this.messageService.add({
+        severity: 'error',
+        detail: error.error.errorMessage
+      });
+    })
+
   }
 }

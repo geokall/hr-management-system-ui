@@ -14,6 +14,7 @@ import {WorkInformationDTO} from "../models/dto/work-information-dto";
 import {CompensationDTO} from "../models/dto/compensation-dto";
 import {PasswordDTO} from "../models/dto/password-dto";
 import {UserDTO} from "../models/dto/user-dto";
+import {FileDTO} from "../models/dto/file-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -203,5 +204,10 @@ export class ApiService {
     const url = `${environment.apiUrl}/job/delete-compensation/${id}`;
 
     return this.http.delete<CompensationDTO>(url);
+  }
+
+  uploadToMinio(file: FileDTO): Observable<any> {
+    const url = `${environment.apiUrl}/minio/update-bucket`;
+    return this.http.post(url, file);
   }
 }

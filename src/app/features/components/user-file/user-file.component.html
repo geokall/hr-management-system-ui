@@ -2,12 +2,15 @@
 
 <div class="card">
   <h5>Upload file to Minio</h5>
-  <p-fileUpload id="file" name="file[]" (onBeforeUpload)="onUpload($event)" (onClear)="clearForm()"
+  <p-fileUpload id="file" name="file[]"
+                (onSelect)="onSelect($event)"
+                (onBeforeUpload)="onUpload($event)"
+                (onClear)="clearForm()"
                 [multiple]="false" accept=".pdf">
     <ng-template pTemplate="content">
-      <ul *ngIf="uploadedFiles.length">
-        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-      </ul>
+      <!--      <ul *ngIf="uploadedFiles.length">-->
+      <!--        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>-->
+      <!--      </ul>-->
     </ng-template>
   </p-fileUpload>
 </div>
