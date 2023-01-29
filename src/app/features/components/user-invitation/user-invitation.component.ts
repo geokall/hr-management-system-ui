@@ -13,6 +13,8 @@ export class UserInvitationComponent implements OnInit {
 
   invitationForm: FormGroup;
 
+  isSpinner: boolean = false;
+
   constructor(private api: ApiService,
               private router: Router,
               private messageService: MessageService) {
@@ -25,7 +27,11 @@ export class UserInvitationComponent implements OnInit {
   }
 
   submit() {
+    this.isSpinner = true;
+
     this.api.invite(this.invitationForm.value.email).subscribe(result => {
+
+        this.isSpinner = false;
 
         this.messageService.add({
           severity: 'success',
@@ -39,6 +45,8 @@ export class UserInvitationComponent implements OnInit {
           severity: 'error',
           detail: error.error.errorMessage
         });
+
+        this.isSpinner = false;
       });
 
     this.invitationForm.reset();
