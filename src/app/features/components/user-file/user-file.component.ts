@@ -118,8 +118,10 @@ export class UserFileComponent implements OnInit {
         this.isBucketExist.setValue(result.exist);
       });
 
-      this.api.notifyManager(this.managerId?.value).subscribe(result => {
-      });
+      if (this.managerId?.value != null) {
+        this.api.notifyManager(this.managerId.value).subscribe(result => {
+        });
+      }
 
       this.clearUploadedFiles();
 
