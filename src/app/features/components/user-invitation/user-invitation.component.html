@@ -12,8 +12,11 @@
         </div>
 
         <div class="field">
-          <button pButton [disabled]="invitationForm.valid === false" type="button"
-                  (click)="submit()" label="Send invitation">
+          <button pButton
+                  [disabled]="invitationForm.valid == false"
+                  type="button"
+                  label="Send invitation"
+                  (click)="submit()">
           </button>
         </div>
 

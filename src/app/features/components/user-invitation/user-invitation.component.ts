@@ -26,6 +26,7 @@ export class UserInvitationComponent implements OnInit {
 
   submit() {
     this.api.invite(this.invitationForm.value.email).subscribe(result => {
+
         this.messageService.add({
           severity: 'success',
           detail: "Invitation sent successfully.",
@@ -39,5 +40,7 @@ export class UserInvitationComponent implements OnInit {
           detail: error.error.errorMessage
         });
       });
+
+    this.invitationForm.reset();
   }
 }
