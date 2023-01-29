@@ -4,7 +4,7 @@
   <h5>Upload file to Minio</h5>
   <p-fileUpload id="file" name="file[]"
                 (onSelect)="onSelect($event)"
-                (onBeforeUpload)="onUpload($event)"
+                (onBeforeUpload)="onUpload()"
                 (onClear)="clearForm()"
                 [multiple]="false" accept=".pdf">
     <ng-template pTemplate="content">

@@ -1,8 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {JobInformationDTO} from "../../../core/shared/models/dto/job-information-dto";
-import {BonusDTO} from "../../../core/shared/models/dto/bonus-dto";
 import {ApiService} from "../../../core/shared/services/api.service";
 import {AuthService} from "../../../core/shared/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -19,20 +17,13 @@ export class UserFileComponent implements OnInit {
   env = environment;
 
   fileForm: FormGroup;
-  resetJobValue: JobInformationDTO;
-
-  fileResponse: BonusDTO[];
-
-  isEditMode: boolean = false;
-  saving: boolean = false;
 
   uploadedFiles: any[] = [];
 
-  minioUrl: string;
+  @Input() mainMenuForm: FormGroup;
 
   @Output() fileFormOutput = new EventEmitter<FormGroup>();
   @Output() fileValue = new EventEmitter<any>();
-
 
   constructor(private fb: FormBuilder,
               private api: ApiService,
@@ -44,7 +35,6 @@ export class UserFileComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.minioUrl = this.env.apiUrl.concat('/minio/update-bucket');
   }
 
   initForm(): void {
@@ -58,6 +48,7 @@ export class UserFileComponent implements OnInit {
   }
 
   onSelect(event: { files: any; }) {
+    console.log(this.isBucketExist.value)
     for (let file of event.files) {
       // @ts-ignore
       this.uploadedFiles.push(file);
@@ -101,21 +92,29 @@ export class UserFileComponent implements OnInit {
     this.uploadedFiles = [];
   }
 
-  onUpload($event: any) {
-    console.log(this.getFileName.value)
+  onUpload() {
     let dto = this.getFile.value as FileDTO;
+
     this.api.uploadToMinio(dto).subscribe(result => {
 
       this.messageService.add({
         severity: 'info',
         summary: 'File Uploaded successfully'
       });
+
+      this.api.isBucketExistBy(this.auth.getUsername()).subscribe(result => {
+        this.isBucketExist.setValue(result.exist);
+      })
+
     }, error => {
       this.messageService.add({
         severity: 'error',
         detail: error.error.errorMessage
       });
     })
+  }
 
+  get isBucketExist(): FormControl {
+    return this.mainMenuForm.get('isBucketExist') as FormControl;
   }
 }

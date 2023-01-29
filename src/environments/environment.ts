@@ -6,11 +6,12 @@ export const environment = {
   production: false,
   debug: true,
 
-  allowedDomains: ['localhost:4200', 'localhost:8082', 'localhost'],
-  disallowedDomains: ['http://localhost:4200/api/auth/login', 'http://localhost:8082/api/auth/login'],
-  apiUrl: 'http://localhost:8082/api',
-  minioConsoleUrl: 'https://hua-minio.ddns.net/9090',
-  minioStorageUrl: 'https://hua-minio.ddns.net/9000',
+  allowedDomains: ['localhost:4200', 'localhost:8080', 'localhost'],
+  disallowedDomains: ['http://localhost:4200/api/auth/login', 'http://localhost:8080/api/auth/login'],
+  apiUrl: 'http://localhost:8080/api',
+  minioConsoleUrl: 'http://hua-minio.ddns.net/9090',
+  minioStorageUrl: 'http://hua-minio.ddns.net/9000',
+  minioBucketUrl: 'http://hua-minio.ddns.net:9090/browser/',
 
   storedVarKeys: {
     accessTokenKey: "hua_access_token",

@@ -7,6 +7,7 @@ import {PersonalInformationDTO} from "../../../core/shared/models/dto/personal-i
 import {getEnumByKey} from "../../../core/shared/utils/enumByKey";
 import {JobStatusEnum} from "../../../core/shared/models/enums/job-status.enum";
 import {ActivatedRoute, Router} from "@angular/router";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-info-menu',
@@ -14,6 +15,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./info-menu.component.scss']
 })
 export class InfoMenuComponent implements OnInit {
+  env = environment;
 
   menuItems: MenuItem[];
   activeItem: MenuItem;
@@ -46,6 +48,7 @@ export class InfoMenuComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.retrieveMainInfo();
+    this.isBucketNameExist();
   }
 
   initForm(): void {
@@ -73,7 +76,8 @@ export class InfoMenuComponent implements OnInit {
         surname: new FormControl(null),
         titleJob: new FormControl(null),
       }),
-      directReports: this.fb.array([])
+      directReports: this.fb.array([]),
+      isBucketExist: new FormControl(null)
     })
   }
 
@@ -202,6 +206,10 @@ export class InfoMenuComponent implements OnInit {
     return this.basicInfoForm.get('countDays') as FormControl;
   }
 
+  get isBucketExist(): FormControl {
+    return this.basicInfoForm.get('isBucketExist') as FormControl;
+  }
+
   selectTab() {
     if (this.activeIndex == 0) {
       this.personalSelected = true;
@@ -240,5 +248,24 @@ export class InfoMenuComponent implements OnInit {
 
   getEnumByKey(payType: any) {
     return getEnumByKey(payType, JobStatusEnum);
+  }
+
+  redirectToMinio() {
+    window.open(environment.minioBucketUrl + this.auth.getUsername());
+  }
+
+  isBucketNameExist() {
+    // let bucketName = this.auth.getUsername();
+    //
+    // this.api.isBucketExistBy(bucketName).subscribe(result => {
+    //   this.isBucketExist = result.exist;
+    // }, error => {
+    //   this.messageService.add({
+    //     severity: 'error',
+    //     detail: error.error.errorMessage
+    //   });
+    //   this.isBucketExist = false;
+    // })
+
   }
 }

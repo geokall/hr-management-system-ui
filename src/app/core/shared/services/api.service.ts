@@ -15,6 +15,7 @@ import {CompensationDTO} from "../models/dto/compensation-dto";
 import {PasswordDTO} from "../models/dto/password-dto";
 import {UserDTO} from "../models/dto/user-dto";
 import {FileDTO} from "../models/dto/file-dto";
+import {BooleanOnlyDTO} from "../models/dto/boolean-only-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -209,5 +210,11 @@ export class ApiService {
   uploadToMinio(file: FileDTO): Observable<any> {
     const url = `${environment.apiUrl}/minio/update-bucket`;
     return this.http.post(url, file);
+  }
+
+  isBucketExistBy(bucketName: string): Observable<BooleanOnlyDTO> {
+    const url = `${environment.apiUrl}/minio/bucket-exist/${bucketName}`;
+
+    return this.http.get<BooleanOnlyDTO>(url);
   }
 }
