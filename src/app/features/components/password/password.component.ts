@@ -23,8 +23,8 @@ export class PasswordComponent implements OnInit {
   ngOnInit(): void {
     this.passwordForm = new FormGroup({
       currentPassword: new FormControl(null),
-      password: new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
-      samePassword: new FormControl(null)
+      newPassword: new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
+      sameNewPassword: new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(20)])
     });
   }
 
@@ -43,6 +43,8 @@ export class PasswordComponent implements OnInit {
           detail: error.error.errorMessage
         });
       });
+
+    this.passwordForm.reset();
   }
 
 }
