@@ -217,4 +217,10 @@ export class ApiService {
 
     return this.http.get<BooleanOnlyDTO>(url);
   }
+
+  notifyManager(managerId: number): Observable<any> {
+    const url = `${environment.apiUrl}/minio/notify-manager/${managerId}`;
+
+    return this.http.put<any>(url, null);
+  }
 }

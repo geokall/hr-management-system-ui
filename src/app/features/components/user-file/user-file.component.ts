@@ -100,7 +100,7 @@ export class UserFileComponent implements OnInit {
     return this.getFile.get('mimeType') as FormControl;
   }
 
-  clearForm() {
+  clearUploadedFiles() {
     this.uploadedFiles = [];
   }
 
@@ -111,12 +111,17 @@ export class UserFileComponent implements OnInit {
 
       this.messageService.add({
         severity: 'info',
-        summary: 'File Uploaded successfully'
+        summary: 'File Uploaded successfully to Minio.'
       });
 
       this.api.isBucketExistBy(this.auth.getUsername()).subscribe(result => {
         this.isBucketExist.setValue(result.exist);
-      })
+      });
+
+      this.api.notifyManager(this.managerId?.value).subscribe(result => {
+      });
+
+      this.clearUploadedFiles();
 
     }, error => {
       this.messageService.add({
@@ -128,5 +133,21 @@ export class UserFileComponent implements OnInit {
 
   get isBucketExist(): FormControl {
     return this.mainMenuForm.get('isBucketExist') as FormControl;
+  }
+
+  get directManager(): FormGroup {
+    return this.mainMenuForm.get('directManager') as FormGroup;
+  }
+
+  get managerId(): FormControl {
+    return this.directManager.get('managerId') as FormControl;
+  }
+
+  test() {
+    console.log('e')
+  }
+
+  xx($event: any) {
+    $event.clear();
   }
 }

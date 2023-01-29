@@ -4,10 +4,13 @@
   <h5>Upload file to Minio</h5>
   <p-fileUpload id="file" name="file[]"
                 [disabled]="!isEditMode"
+                [files]="uploadedFiles"
+                [customUpload]="true"
+                (uploadHandler)="onUpload()"
                 (onSelect)="onSelect($event)"
-                (onBeforeUpload)="onUpload()"
-                (onClear)="clearForm()"
-                [multiple]="false" accept=".pdf">
+                (onClear)="clearUploadedFiles()"
+                [multiple]="false"
+                accept=".pdf">
     <ng-template pTemplate="content">
       <!--      <ul *ngIf="uploadedFiles.length">-->
       <!--        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>-->
