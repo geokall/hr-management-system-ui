@@ -43,8 +43,6 @@ export class PasswordComponent implements OnInit {
           detail: error.error.errorMessage
         });
       });
-
-    this.passwordForm.reset();
   }
 
 }
