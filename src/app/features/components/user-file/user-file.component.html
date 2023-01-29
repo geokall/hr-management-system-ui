@@ -3,6 +3,7 @@
 <div class="card">
   <h5>Upload file to Minio</h5>
   <p-fileUpload id="file" name="file[]"
+                [disabled]="!isEditMode"
                 (onSelect)="onSelect($event)"
                 (onBeforeUpload)="onUpload()"
                 (onClear)="clearForm()"

@@ -20,6 +20,8 @@ export class UserFileComponent implements OnInit {
 
   uploadedFiles: any[] = [];
 
+  isEditMode: boolean = false;
+
   @Input() mainMenuForm: FormGroup;
 
   @Output() fileFormOutput = new EventEmitter<FormGroup>();
@@ -35,6 +37,7 @@ export class UserFileComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.isEditModeByRoute();
   }
 
   initForm(): void {
@@ -47,8 +50,17 @@ export class UserFileComponent implements OnInit {
     })
   }
 
+  isEditModeByRoute() {
+    let routeId = this.activatedRoute.snapshot.params['id'];
+
+    this.isEditMode = routeId == null;
+
+    if (this.auth.getId() == routeId) {
+      this.isEditMode = true;
+    }
+  }
+
   onSelect(event: { files: any; }) {
-    console.log(this.isBucketExist.value)
     for (let file of event.files) {
       // @ts-ignore
       this.uploadedFiles.push(file);
