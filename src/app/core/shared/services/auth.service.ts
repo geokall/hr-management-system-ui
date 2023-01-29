@@ -81,6 +81,22 @@ export class AuthService {
     return id;
   }
 
+  getRole(): string {
+    let roleName = '';
+
+    if (this.isLoggedIn() && this.loggedInUser) {
+      let role = this.loggedInUser.role;
+
+      if (role == 'ADMIN') {
+        roleName = 'Admin';
+      } else {
+        roleName = 'Reader'
+      }
+    }
+
+    return roleName;
+  }
+
   isAdmin(): boolean {
     let roleName = '';
 
