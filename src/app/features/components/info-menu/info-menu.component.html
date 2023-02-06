@@ -174,13 +174,18 @@
           <div style="padding-top: 10px"></div>
 
           <tr>
-            <td *ngIf="isBucketExist.value == true" class="col-sm-10 info">
+            <td *ngIf="isBucketExist.value == true && editMode == false" class="col-sm-10 info">
               <i (click)="redirectToMinio()"
                  class="pi pi-folder-open inline-block custom-router-link"
                  style="font-size: 1.3rem">
               </i>
             </td>
             <td *ngIf="isBucketExist.value == false">
+              <div>
+                {{'-'}}
+              </div>
+            </td>
+            <td *ngIf="editMode == true && isBucketExist.value == true">
               <div>
                 {{'-'}}
               </div>

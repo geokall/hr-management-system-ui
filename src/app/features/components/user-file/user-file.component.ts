@@ -144,12 +144,4 @@ export class UserFileComponent implements OnInit {
   get managerId(): FormControl {
     return this.directManager.get('managerId') as FormControl;
   }
-
-  test() {
-    console.log('e')
-  }
-
-  xx($event: any) {
-    $event.clear();
-  }
 }

@@ -22,6 +22,7 @@ export class InfoMenuComponent implements OnInit {
 
   loading: boolean = false;
   saving: boolean = false;
+  editMode: boolean = false;
 
   basicInfoForm: FormGroup;
 
@@ -87,8 +88,10 @@ export class InfoMenuComponent implements OnInit {
 
     if (routeId != null) {
       id = routeId;
+      this.editMode = true;
     } else {
       id = this.auth.getId();
+      this.editMode = false;
     }
 
     this.api.getMainInfo(id).subscribe(result => {
