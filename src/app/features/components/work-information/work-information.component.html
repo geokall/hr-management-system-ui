@@ -133,6 +133,7 @@
       <p-dropdown [options]="locations"
                   formControlName="location"
                   placeholder="-Select-"
+                  appendTo="body"
                   id="location"
                   optionLabel="name">
       </p-dropdown>
@@ -142,6 +143,7 @@
       <label for="division" class="block">Divisions</label>
       <p-dropdown [options]="divisions"
                   formControlName="division"
+                  appendTo="body"
                   placeholder="-Select-"
                   id="division"
                   optionLabel="name">
@@ -152,6 +154,7 @@
       <label for="manager" class="block">Reports to</label>
       <p-dropdown [options]="managers"
                   formControlName="manager"
+                  appendTo="body"
                   placeholder="-Select-"
                   id="manager"
                   optionLabel="name">
