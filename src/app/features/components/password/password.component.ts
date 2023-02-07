@@ -34,8 +34,8 @@ export class PasswordComponent implements OnInit {
           severity: 'success',
           detail: "Password changed successfully.",
         });
-
-        this.router.navigateByUrl('');
+        this.auth.logout();
+        this.router.navigateByUrl('/login');
       },
       error => {
         this.messageService.add({
