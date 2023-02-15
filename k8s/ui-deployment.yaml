@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ui
-          image: 'geokall/ui-management:presentation'
+          image: 'geokall/ui-management:presentation-final'
           imagePullPolicy: Always
           ports:
             - containerPort: 80
