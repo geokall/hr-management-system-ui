@@ -128,6 +128,8 @@ export class JobComponent implements OnInit {
         detail: error.error.errorMessage
       });
     })
+
+    this.jobForm.reset();
   }
 
   updateMainInfoForm(): any {

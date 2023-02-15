@@ -153,6 +153,8 @@ export class PersonalComponent implements OnInit {
           detail: error.error.errorMessage
         });
       })
+
+    this.personalForm.reset();
   }
 
   updateMainInfoForm(): any {
