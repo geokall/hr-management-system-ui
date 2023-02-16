@@ -203,4 +203,10 @@ export class EducationComponent implements OnInit {
     return getEnumByKey(payType, DegreeEnum);
   }
 
+  allowOnlyNumberAndDecimal(event: { which: any; keyCode: any; }): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+
+    return !(charCode > 31 && charCode != 46 && (charCode < 48 || charCode > 57));
+  }
+
 }

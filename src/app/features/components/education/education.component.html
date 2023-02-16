@@ -95,6 +95,7 @@
     <div class="field">
       <label for="college" class="block">College</label>
       <input class="p-inputtext-sm" id="college" type="text" pInputText
+             maxlength="60"
              [formControl]="college">
     </div>
 
@@ -112,14 +113,18 @@
     <div class="field">
       <label for="specialization" class="block">Specialization</label>
       <input class="p-inputtext-sm" id="specialization" type="text" pInputText
+             maxlength="60"
              [formControl]="specialization">
     </div>
 
     <div class="field">
       <label for="gpa" class="block">GPA</label>
       <input class="p-inputtext-sm" id="gpa" type="text" pInputText
+             maxlength="4"
+             (keypress)="allowOnlyNumberAndDecimal($event)"
              [formControl]="gpa">
     </div>
+
     <div class="formgroup-inline">
 
       <div class="field">

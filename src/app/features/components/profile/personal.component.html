@@ -22,12 +22,14 @@
           <div class="field">
             <label for="name" class="block + required">Name</label>
             <input class="p-inputtext-sm" id="name" type="text" pInputText
+                   maxlength="20"
                    [formControl]="name">
           </div>
 
           <div class="field">
             <label for="surname" class="block + required">Surname</label>
             <input class="p-inputtext-sm" id="surname" type="text" pInputText
+                   maxlength="20"
                    [formControl]="surname">
           </div>
 
@@ -84,11 +86,14 @@
       <h3 class="next-more">Address</h3>
 
       <div class="field">
-        <input class="p-inputtext-sm" placeholder="Street 1" type="text" pInputText [formControl]="street1">
+        <input class="p-inputtext-sm" placeholder="Street 1" type="text"
+               maxlength="60"
+               pInputText [formControl]="street1">
       </div>
 
       <div class="field">
         <input class="p-inputtext-sm" placeholder="Street 2" type="text" pInputText
+               maxlength="60"
                [formControl]="street2">
       </div>
 
@@ -96,16 +101,20 @@
 
         <div class="field">
           <input class="p-inputtext-sm" placeholder="City" type="text" pInputText
+                 maxlength="60"
                  [formControl]="city">
         </div>
 
         <div class="field">
           <input class="p-inputtext-sm" placeholder="Province" type="text" pInputText
+                 maxlength="60"
                  [formControl]="province">
         </div>
 
         <div class="field">
           <input class="p-inputtext-sm" placeholder="Postal Code" type="text" pInputText
+                 maxlength="15"
+                 (keypress)="allowOnlyNumber($event)"
                  [formControl]="postalCode">
         </div>
 
@@ -113,6 +122,7 @@
 
       <div class="field">
         <input class="p-inputtext-sm" placeholder="Country" type="text"
+               maxlength="60"
                pInputText [formControl]="country">
       </div>
 
@@ -170,6 +180,7 @@
         <span class="p-input-icon-left">
           <i class="pi pi-at"></i>
           <input class="p-inputtext-sm" placeholder="Business Email" type="text" pInputText
+                 maxlength="35"
                  [formControl]="businessEmail">
         </span>
       </div>
@@ -178,6 +189,7 @@
         <span class="p-input-icon-left">
           <i class="pi pi-building"></i>
           <input class="p-inputtext-sm" placeholder="Personal Email" type="text" pInputText
+                 maxlength="35"
                  [formControl]="personalEmail">
         </span>
       </div>
@@ -192,6 +204,7 @@
       <span class="p-input-icon-left">
             <i class="pi pi-linkedin"></i>
             <input class="p-inputtext-sm" placeholder="Linkedin" type="text" pInputText
+                   maxlength="60"
                    [formControl]="linkedinUrl">
       </span>
       </div>
@@ -200,6 +213,7 @@
         <span class="p-input-icon-left">
           <i class="pi pi-twitter"></i>
           <input class="p-inputtext-sm" placeholder="Twitter" type="text" pInputText
+                 maxlength="60"
                  [formControl]="twitterUrl">
         </span>
       </div>
@@ -208,6 +222,7 @@
         <span class="p-input-icon-left">
           <i class="pi pi-facebook"></i>
           <input class="p-inputtext-sm" placeholder="Facebook" type="text" pInputText
+                 maxlength="60"
                  [formControl]="facebookUrl">
         </span>
       </div>
