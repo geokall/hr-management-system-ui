@@ -60,6 +60,7 @@
         <div class="field">
           <label for="jobDescription" class="block">Job Description</label>
           <textarea pInputTextarea id="jobDescription" rows="5" cols="50"
+                    [maxlength]="250"
                     [formControl]="jobDescription">
         </textarea>
 

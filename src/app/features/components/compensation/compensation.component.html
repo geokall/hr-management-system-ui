@@ -120,6 +120,7 @@
     <div class="field">
       <label for="payRate">Amount</label>
       <p-inputNumber id="payRate" formControlName="payRate" inputId="payRate"
+                     [maxlength]="15"
                      mode="currency" currency="EUR">
       </p-inputNumber>
     </div>
@@ -128,6 +129,7 @@
 
       <label>Comment</label>
       <input type="text" pInputText id="comment" class="p-inputtext-md p-inputtext"
+             maxlength="50"
              formControlName="comment">
     </div>
 
